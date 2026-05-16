@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -7,116 +8,83 @@
 
 <style>
 
-body{
-background:black;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
 }
-
-.money-icon{
-font-size:120px;
-text-align:center;
-animation:floatMoney 3s ease-in-out infinite;
-}
-
-@keyframes floatMoney{
-0%{
-transform:translateY(0px);
-}
-50%{
-transform:translateY(-15px);
-}
-100%{
-transform:translateY(0px);
-}
-}
-
-</style>
 
 body{
 background:#f5f9ff;
 color:#222;
-overflow-x:hidden;
 }
 
 header{
-width:100%;
-padding:20px 8%;
-display:flex;
-justify-content:space-between;
-align-items:center;
 background:#0d6efd;
-position:sticky;
-top:0;
-z-index:1000;
-}
-
-.logo{
+padding:20px;
 display:flex;
-align-items:center;
-gap:10px;
-color:white;
-font-size:28px;
-font-weight:bold;
-}
-
-.logo img{
-width:55px;
-height:55px;
-object-fit:contain;
-}
-
-nav a{
-text-decoration:none;
-color:white;
-margin-left:20px;
-font-weight:bold;
-font-size:16px;
-}
-
-.hero{
-min-height:90vh;
-display:flex;
-align-items:center;
 justify-content:space-between;
-padding:60px 8%;
-gap:50px;
-background:
-linear-gradient(rgba(13,110,253,0.8),rgba(0,191,255,0.8)),
-url('dollar.png');
-background-size:cover;
-background-position:center;
+align-items:center;
 color:white;
 flex-wrap:wrap;
 }
 
-.hero-text{
-flex:1;
-min-width:300px;
+.logo{
+font-size:32px;
+font-weight:bold;
+display:flex;
+align-items:center;
+gap:10px;
 }
 
-.hero-text h1{
-font-size:60px;
+.logo span{
+font-size:45px;
+}
+
+nav{
+display:flex;
+gap:20px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+font-weight:bold;
+}
+
+.hero{
+background:linear-gradient(135deg,#0d6efd,#00bfff);
+color:white;
+padding:80px 20px;
+text-align:center;
+}
+
+.hero h1{
+font-size:55px;
 margin-bottom:20px;
-line-height:1.2;
 }
 
-.hero-text p{
+.hero p{
+max-width:700px;
+margin:auto;
 font-size:20px;
-margin-bottom:30px;
 line-height:1.7;
+margin-bottom:30px;
 }
 
 .hero-buttons{
 display:flex;
+justify-content:center;
 gap:15px;
 flex-wrap:wrap;
 }
 
 .hero-buttons a{
+padding:15px 30px;
 text-decoration:none;
-padding:16px 30px;
-border-radius:12px;
 font-weight:bold;
-font-size:16px;
+border-radius:12px;
 }
 
 .signup-btn{
@@ -129,159 +97,141 @@ border:2px solid white;
 color:white;
 }
 
-.hero-image{
-flex:1;
-display:flex;
-justify-content:center;
-align-items:center;
-min-width:300px;
-}
-
-.hero-image img{
-width:100%;
-max-width:420px;
-animation:float 3s ease-in-out infinite;
-}
-
-@keyframes float{
-0%{
-transform:translateY(0px);
-}
-50%{
-transform:translateY(-15px);
-}
-100%{
-transform:translateY(0px);
-}
-}
-
-.features{
-padding:80px 8%;
-}
-
-.section-title{
+.dropdown-section{
+padding:60px 20px;
 text-align:center;
+}
+
+.dropdown-section h2{
 font-size:40px;
-margin-bottom:50px;
+margin-bottom:25px;
 color:#0d6efd;
 }
 
-.feature-grid{
+.dropdown-box{
+max-width:500px;
+margin:auto;
+background:white;
+padding:30px;
+border-radius:20px;
+box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
+
+select{
+width:100%;
+padding:16px;
+border-radius:12px;
+border:1px solid #ccc;
+font-size:18px;
+margin-top:20px;
+}
+
+.products{
+padding:60px 20px;
+}
+
+.products h2{
+text-align:center;
+font-size:40px;
+margin-bottom:40px;
+color:#0d6efd;
+}
+
+.product-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:25px;
 }
 
-.feature-card{
+.product-card{
 background:white;
-padding:30px;
+padding:25px;
 border-radius:20px;
-box-shadow:0 5px 20px rgba(0,0,0,0.08);
+box-shadow:0 5px 20px rgba(0,0,0,0.1);
 text-align:center;
-transition:0.3s;
 }
 
-.feature-card:hover{
-transform:translateY(-10px);
-}
-
-.feature-card img{
-width:80px;
-margin-bottom:20px;
-}
-
-.feature-card h3{
+.product-card .money{
+font-size:70px;
 margin-bottom:15px;
-font-size:24px;
+}
+
+.product-card h3{
+font-size:28px;
+margin-bottom:10px;
 color:#0d6efd;
 }
 
-.feature-card p{
+.product-card p{
 line-height:1.7;
-color:#555;
+margin-bottom:20px;
 }
 
-.stats{
-padding:80px 8%;
+.product-card button{
+padding:12px 25px;
 background:#0d6efd;
 color:white;
+border:none;
+border-radius:10px;
+font-weight:bold;
+cursor:pointer;
 }
 
-.stats-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:30px;
+.timer-section{
+background:#0d6efd;
+color:white;
+padding:70px 20px;
 text-align:center;
 }
 
-.stat-box h2{
-font-size:45px;
-margin-bottom:10px;
+.timer-section h2{
+font-size:40px;
+margin-bottom:20px;
 }
 
-.stat-box p{
-font-size:18px;
+.countdown{
+font-size:55px;
+font-weight:bold;
 }
 
 footer{
 background:#061b44;
 color:white;
-padding:40px 8%;
 text-align:center;
+padding:40px 20px;
 }
 
-footer img{
-width:70px;
-margin-bottom:15px;
+@media(max-width:768px){
+
+.hero h1{
+font-size:38px;
 }
 
-@media(max-width:900px){
-
-.hero{
-flex-direction:column;
-text-align:center;
-padding-top:40px;
+.hero p{
+font-size:17px;
 }
 
-.hero-text h1{
-font-size:42px;
-}
-
-.hero-text p{
-font-size:18px;
-}
-
-.hero-buttons{
-justify-content:center;
+.countdown{
+font-size:38px;
 }
 
 nav{
-display:none;
-}
-
-}
-
-@media(max-width:500px){
-
-.hero-text h1{
-font-size:34px;
-}
-
-.section-title{
-font-size:30px;
+margin-top:15px;
+width:100%;
+justify-content:center;
 }
 
 }
 
 </style>
-</head>
 
+</head>
 <body>
 
 <header>
 
 <div class="logo">
-<img src="images/dollar.png">
+<span>💵</span>
 VOOGO
 </div>
 
@@ -295,14 +245,12 @@ VOOGO
 
 <section class="hero">
 
-<div class="hero-text">
-
 <h1>
-Grow Your Money With VOOGO
+Welcome To VOOGO Investment
 </h1>
 
 <p>
-Start investing smarter with secure deposits, referral earnings, and a powerful dashboard built for everyone.
+Grow your money smarter with VOOGO. Deposit funds, invest in different products, earn referral rewards and manage everything securely from your dashboard.
 </p>
 
 <div class="hero-buttons">
@@ -315,84 +263,126 @@ Login
 </a>
 </div>
 
-</div>
+</section>
 
-<div class="hero-image">
-<img src="images/dollar.png">
+<section class="dropdown-section">
+
+<h2>Select Investment Plan</h2>
+
+<div class="dropdown-box">
+
+<p>
+Choose a product below and start investing.
+</p>
+
+<select>
+<option>Choose Investment Product</option>
+<option>Starter Plan - ₦5,000</option>
+<option>Silver Plan - ₦20,000</option>
+<option>Gold Plan - ₦50,000</option>
+<option>Diamond Plan - ₦100,000</option>
+</select>
+
 </div>
 
 </section>
 
-<section class="features">
+<section class="products">
 
-<h2 class="section-title">
-Why Choose VOOGO
+<h2>Popular Products</h2>
+
+<div class="product-grid">
+
+<div class="product-card">
+<div class="money">💰</div>
+<h3>Starter Plan</h3>
+<p>
+Start small and grow steadily with daily earnings.
+</p>
+<button>
+Invest ₦5,000
+</button>
+</div>
+
+<div class="product-card">
+<div class="money">💵</div>
+<h3>Silver Plan</h3>
+<p>
+Perfect for medium investors who want faster returns.
+</p>
+<button>
+Invest ₦20,000
+</button>
+</div>
+
+<div class="product-card">
+<div class="money">🪙</div>
+<h3>Gold Plan</h3>
+<p>
+High level investment package with premium profits.
+</p>
+<button>
+Invest ₦50,000
+</button>
+</div>
+
+</div>
+
+</section>
+
+<section class="timer-section">
+
+<h2>
+New Prices Coming Soon
 </h2>
 
-<div class="feature-grid">
-
-<div class="feature-card">
-<img src="images/dollar.png">
-<h3>Fast Investment</h3>
-<p>
-Invest easily and monitor your earnings directly from your dashboard.
-</p>
-</div>
-
-<div class="feature-card">
-<img src="images/dollar.png">
-<h3>Referral Earnings</h3>
-<p>
-Invite friends using your username referral code and earn commissions.
-</p>
-</div>
-
-<div class="feature-card">
-<img src="images/dollar.png">
-<h3>Secure Accounts</h3>
-<p>
-Your account information is stored securely using Firebase technology.
-</p>
-</div>
-
-</div>
-
-</section>
-
-<section class="stats">
-
-<div class="stats-grid">
-
-<div class="stat-box">
-<h2>24/7</h2>
-<p>Customer Support</p>
-</div>
-
-<div class="stat-box">
-<h2>100%</h2>
-<p>Mobile Friendly</p>
-</div>
-
-<div class="stat-box">
-<h2>Fast</h2>
-<p>Account Access</p>
-</div>
-
+<div class="countdown" id="countdown">
+24:00:00
 </div>
 
 </section>
 
 <footer>
 
-<img src="images/dollar.png">
+<h2>💵 VOOGO Investment</h2>
 
-<h2>VOOGO Investment</h2>
+<br>
+
+<p>
+Secure. Fast. Reliable.
+</p>
+
+<br>
 
 <p>
 © 2026 VOOGO. All Rights Reserved.
 </p>
 
 </footer>
+
+<script>
+
+let time = 86400;
+
+setInterval(()=>{
+
+let hours = Math.floor(time / 3600);
+let minutes = Math.floor((time % 3600) / 60);
+let seconds = time % 60;
+
+hours = String(hours).padStart(2,'0');
+minutes = String(minutes).padStart(2,'0');
+seconds = String(seconds).padStart(2,'0');
+
+document.getElementById('countdown').innerHTML = `${hours}:${minutes}:${seconds}`;
+
+if(time > 0){
+time--;
+}
+
+},1000);
+
+</script>
 
 </body>
 </html>
