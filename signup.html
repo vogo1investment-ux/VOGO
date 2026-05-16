@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voogo Signup</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+
+background:
+linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)),
+url('dollar.png');
+
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+}
+
+.signup-box{
+background:white;
+width:90%;
+max-width:420px;
+padding:40px;
+border-radius:20px;
+box-shadow:0 5px 25px rgba(0,0,0,0.15);
+}
+
+.logo{
+text-align:center;
+font-size:40px;
+font-weight:bold;
+color:#0d6efd;
+margin-bottom:10px;
+}
+
+.text{
+text-align:center;
+color:#666;
+margin-bottom:30px;
+}
+
+input{
+width:100%;
+padding:16px;
+margin-bottom:20px;
+border:1px solid #ddd;
+border-radius:10px;
+font-size:16px;
+outline:none;
+}
+
+input:focus{
+border:1px solid #0d6efd;
+}
+
+button{
+width:100%;
+padding:16px;
+background:#0d6efd;
+color:white;
+border:none;
+border-radius:10px;
+font-size:18px;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+background:#0056d2;
+}
+
+.bottom{
+text-align:center;
+margin-top:20px;
+}
+
+.bottom a{
+color:#0d6efd;
+text-decoration:none;
+font-weight:bold;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="signup-box">
+
+<div class="logo">
+VOOGO
+</div>
+
+<div class="text">
+Create your account
+</div>
+
+<input type="email" id="signup-email" placeholder="Enter Email">
+
+<input type="password" id="signup-password" placeholder="Enter Password">
+
+<button onclick="signup()">
+Create Account
+</button>
+
+<div class="bottom">
+<a href="login.html">
+Already have account?
+</a>
+</div>
+
+</div>
+
+<script type="module" src="auth.js"></script>
+
+</body>
+</html>
