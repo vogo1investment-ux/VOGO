@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Voogo Signup</title>
+<title>VOOGO Signup</title>
 
 <style>
 
@@ -15,32 +15,26 @@ font-family:Arial,sans-serif;
 }
 
 body{
-height:100vh;
+background:linear-gradient(135deg,#0d6efd,#00bfff);
+min-height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-
-background:
-linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)),
-url('dollar.png');
-
-background-size:cover;
-background-position:center;
-background-attachment:fixed;
+padding:20px;
 }
 
 .signup-box{
 background:white;
-width:90%;
-max-width:420px;
+width:100%;
+max-width:500px;
 padding:40px;
-border-radius:20px;
-box-shadow:0 5px 25px rgba(0,0,0,0.15);
+border-radius:25px;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
 }
 
 .logo{
 text-align:center;
-font-size:40px;
+font-size:42px;
 font-weight:bold;
 color:#0d6efd;
 margin-bottom:10px;
@@ -48,22 +42,23 @@ margin-bottom:10px;
 
 .text{
 text-align:center;
-color:#666;
+color:#555;
 margin-bottom:30px;
+font-size:17px;
 }
 
 input{
 width:100%;
 padding:16px;
-margin-bottom:20px;
+margin-bottom:18px;
 border:1px solid #ddd;
-border-radius:10px;
+border-radius:12px;
 font-size:16px;
 outline:none;
 }
 
 input:focus{
-border:1px solid #0d6efd;
+border-color:#0d6efd;
 }
 
 button{
@@ -72,7 +67,7 @@ padding:16px;
 background:#0d6efd;
 color:white;
 border:none;
-border-radius:10px;
+border-radius:12px;
 font-size:18px;
 font-weight:bold;
 cursor:pointer;
@@ -89,9 +84,9 @@ margin-top:20px;
 }
 
 .bottom a{
-color:#0d6efd;
 text-decoration:none;
 font-weight:bold;
+color:#0d6efd;
 }
 
 </style>
@@ -106,12 +101,22 @@ VOOGO
 </div>
 
 <div class="text">
-Create your account
+Create Your Investment Account
 </div>
 
-<input type="email" id="signup-email" placeholder="Enter Email">
+<input type="text" id="username" placeholder="Username">
 
-<input type="password" id="signup-password" placeholder="Enter Password">
+<input type="text" id="fullname" placeholder="Full Name">
+
+<input type="email" id="email" placeholder="Email Address">
+
+<input type="tel" id="phone" placeholder="Phone Number">
+
+<input type="text" id="nin" placeholder="NIN Number">
+
+<input type="date" id="dob">
+
+<input type="password" id="password" placeholder="Password">
 
 <button onclick="signup()">
 Create Account
@@ -119,13 +124,154 @@ Create Account
 
 <div class="bottom">
 <a href="login.html">
-Already have account?
+Already have account? Login
 </a>
 </div>
 
 </div>
 
-<script type="module" src="auth.js"></script>
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+
+import {
+getAuth,
+createUserWithEmailAndPassword
+}
+
+from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
+
+
+import {
+getFirestore,
+doc,
+setDoc
+}
+
+from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDRAcsC8RUTPtxbMdHjHpYZH2LjaP8jqMM",
+  authDomain: "voogo-48569.firebaseapp.com",
+  projectId: "voogo-48569",
+  storageBucket: "voogo-48569.firebasestorage.app",
+  messagingSenderId: "735597967945",
+  appId: "1:735597967945:web:346f2a0506d55f7e651d98"
+};
+
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+const db = getFirestore(app);
+
+
+
+window.signup = async function(){
+
+const username = document.getElementById("username").value;
+
+const fullname = document.getElementById("fullname").value;
+
+const email = document.getElementById("email").value;
+
+const phone = document.getElementById("phone").value;
+
+const nin = document.getElementById("nin").value;
+
+const dob = document.getElementById("dob").value;
+
+const password = document.getElementById("password").value;
+
+
+
+if(
+!username ||
+!fullname ||
+!email ||
+!phone ||
+!nin ||
+!dob ||
+!password
+){
+alert("Please fill all fields");
+return;
+}
+
+
+
+const birthDate = new Date(dob);
+
+const today = new Date();
+
+let age = today.getFullYear() - birthDate.getFullYear();
+
+const month = today.getMonth() - birthDate.getMonth();
+
+if(month < 0 || (month === 0 && today.getDate() < birthDate.getDate())){
+age--;
+}
+
+
+if(age < 10){
+
+alert("Only users from 10 years and above can register.");
+
+return;
+
+}
+
+
+
+try{
+
+const userCredential = await createUserWithEmailAndPassword(
+auth,
+email,
+password
+);
+
+const user = userCredential.user;
+
+
+
+await setDoc(doc(db,"users",user.uid),{
+
+username: username,
+fullname: fullname,
+email: email,
+phone: phone,
+nin: nin,
+dob: dob,
+
+balance: 0,
+
+status: "pending",
+
+createdAt: new Date().toISOString()
+
+});
+
+
+
+alert("Account Created Successfully");
+
+window.location.href = "dashboard.html";
+
+}
+
+catch(error){
+
+alert(error.message);
+
+}
+
+}
+
+</script>
 
 </body>
 </html>
