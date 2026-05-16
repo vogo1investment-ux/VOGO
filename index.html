@@ -7,12 +7,29 @@
 
 <style>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
+body{
+background:black;
 }
+
+.money-icon{
+font-size:120px;
+text-align:center;
+animation:floatMoney 3s ease-in-out infinite;
+}
+
+@keyframes floatMoney{
+0%{
+transform:translateY(0px);
+}
+50%{
+transform:translateY(-15px);
+}
+100%{
+transform:translateY(0px);
+}
+}
+
+</style>
 
 body{
 background:#f5f9ff;
