@@ -1,417 +1,379 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Voogo - Buy, Sell & Earn Daily</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VOOGO Investment</title>
 
-   body{
-    background:
-    linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)),
-    url('dollar.png');
+<style>
 
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-
-    color: #1b1b1b;
-    line-height: 1.6;
-}
-    header {
-      background: linear-gradient(135deg, #0d6efd, #4da3ff);
-      color: white;
-      padding: 20px 40px;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      font-size: 32px;
-      font-weight: bold;
-      letter-spacing: 2px;
-    }
-
-    .menu {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .menu a {
-      text-decoration: none;
-      color: white;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    .menu a:hover {
-      color: #d9ecff;
-    }
-
-    .dropdown {
-      position: relative;
-      display: inline-block;
-    }
-
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background: white;
-      min-width: 220px;
-      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-      border-radius: 10px;
-      overflow: hidden;
-      right: 0;
-    }
-
-    .dropdown-content a {
-      color: #0d6efd;
-      padding: 14px 16px;
-      display: block;
-      text-decoration: none;
-      border-bottom: 1px solid #eee;
-    }
-
-    .dropdown-content a:hover {
-      background: #f2f8ff;
-    }
-
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
-
-   .hero {
-    padding: 100px 20px;
-    text-align: center;
-
-    background:
-    linear-gradient(rgba(255,255,255,0.82), rgba(255,255,255,0.82)),
-    url('dollar.png');
-
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
 }
 
-    .hero h1 {
-      font-size: 60px;
-      color: #0d6efd;
-      margin-bottom: 20px;
-    }
+body{
+background:#f5f9ff;
+color:#222;
+overflow-x:hidden;
+}
 
-    .hero p {
-      max-width: 700px;
-      margin: auto;
-      font-size: 20px;
-      color: #444;
-    }
+header{
+width:100%;
+padding:20px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:#0d6efd;
+position:sticky;
+top:0;
+z-index:1000;
+}
 
-    .hero-buttons {
-      margin-top: 35px;
-    }
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
+color:white;
+font-size:28px;
+font-weight:bold;
+}
 
-    .hero-buttons a {
-      text-decoration: none;
-      padding: 15px 30px;
-      margin: 10px;
-      border-radius: 8px;
-      font-weight: bold;
-      transition: 0.3s;
-    }
+.logo img{
+width:55px;
+height:55px;
+object-fit:contain;
+}
 
-    .btn-primary {
-      background: #0d6efd;
-      color: white;
-    }
+nav a{
+text-decoration:none;
+color:white;
+margin-left:20px;
+font-weight:bold;
+font-size:16px;
+}
 
-    .btn-primary:hover {
-      background: #0056d2;
-    }
+.hero{
+min-height:90vh;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:60px 8%;
+gap:50px;
+background:linear-gradient(135deg,#0d6efd,#00bfff);
+color:white;
+flex-wrap:wrap;
+}
 
-    .btn-secondary {
-      background: white;
-      color: #0d6efd;
-      border: 2px solid #0d6efd;
-    }
+.hero-text{
+flex:1;
+min-width:300px;
+}
 
-    .btn-secondary:hover {
-      background: #0d6efd;
-      color: white;
-    }
+.hero-text h1{
+font-size:60px;
+margin-bottom:20px;
+line-height:1.2;
+}
 
-    section {
-      padding: 70px 20px;
-    }
+.hero-text p{
+font-size:20px;
+margin-bottom:30px;
+line-height:1.7;
+}
 
-    .section-title {
-      text-align: center;
-      margin-bottom: 40px;
-      color: #0d6efd;
-      font-size: 40px;
-    }
+.hero-buttons{
+display:flex;
+gap:15px;
+flex-wrap:wrap;
+}
 
-    .about {
-      max-width: 1000px;
-      margin: auto;
-      text-align: center;
-      font-size: 18px;
-      color: #444;
-    }
+.hero-buttons a{
+text-decoration:none;
+padding:16px 30px;
+border-radius:12px;
+font-weight:bold;
+font-size:16px;
+}
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 25px;
-      max-width: 1100px;
-      margin: auto;
-    }
+.signup-btn{
+background:white;
+color:#0d6efd;
+}
 
-    .card {
-      background: white;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-      transition: 0.3s;
-      border-top: 5px solid #0d6efd;
-    }
+.login-btn{
+border:2px solid white;
+color:white;
+}
 
-    .card:hover {
-      transform: translateY(-8px);
-    }
+.hero-image{
+flex:1;
+display:flex;
+justify-content:center;
+align-items:center;
+min-width:300px;
+}
 
-    .card h3 {
-      color: #0d6efd;
-      margin-bottom: 15px;
-    }
+.hero-image img{
+width:100%;
+max-width:420px;
+animation:float 3s ease-in-out infinite;
+}
 
-    .testimonials {
-      background: #f5faff;
-    }
+@keyframes float{
+0%{
+transform:translateY(0px);
+}
+50%{
+transform:translateY(-15px);
+}
+100%{
+transform:translateY(0px);
+}
+}
 
-    .testimonial-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      max-width: 1200px;
-      margin: auto;
-    }
+.features{
+padding:80px 8%;
+}
 
-    .testimonial {
-      background: white;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.07);
-    }
+.section-title{
+text-align:center;
+font-size:40px;
+margin-bottom:50px;
+color:#0d6efd;
+}
 
-    .testimonial h4 {
-      color: #0d6efd;
-      margin-top: 15px;
-    }
+.feature-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
 
-    footer {
-      background: #0d6efd;
-      color: white;
-      text-align: center;
-      padding: 30px 20px;
-    }
+.feature-card{
+background:white;
+padding:30px;
+border-radius:20px;
+box-shadow:0 5px 20px rgba(0,0,0,0.08);
+text-align:center;
+transition:0.3s;
+}
 
-    .footer-links {
-      margin-top: 10px;
-    }
+.feature-card:hover{
+transform:translateY(-10px);
+}
 
-    .footer-links a {
-      color: white;
-      text-decoration: none;
-      margin: 0 10px;
-    }
+.feature-card img{
+width:80px;
+margin-bottom:20px;
+}
 
-    @media(max-width: 768px) {
-      .hero h1 {
-        font-size: 42px;
-      }
+.feature-card h3{
+margin-bottom:15px;
+font-size:24px;
+color:#0d6efd;
+}
 
-      nav {
-        flex-direction: column;
-        gap: 15px;
-      }
+.feature-card p{
+line-height:1.7;
+color:#555;
+}
 
-      .menu {
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-    }
-  </style>
+.stats{
+padding:80px 8%;
+background:#0d6efd;
+color:white;
+}
+
+.stats-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:30px;
+text-align:center;
+}
+
+.stat-box h2{
+font-size:45px;
+margin-bottom:10px;
+}
+
+.stat-box p{
+font-size:18px;
+}
+
+footer{
+background:#061b44;
+color:white;
+padding:40px 8%;
+text-align:center;
+}
+
+footer img{
+width:70px;
+margin-bottom:15px;
+}
+
+@media(max-width:900px){
+
+.hero{
+flex-direction:column;
+text-align:center;
+padding-top:40px;
+}
+
+.hero-text h1{
+font-size:42px;
+}
+
+.hero-text p{
+font-size:18px;
+}
+
+.hero-buttons{
+justify-content:center;
+}
+
+nav{
+display:none;
+}
+
+}
+
+@media(max-width:500px){
+
+.hero-text h1{
+font-size:34px;
+}
+
+.section-title{
+font-size:30px;
+}
+
+}
+
+</style>
 </head>
+
 <body>
 
 <header>
-  <nav>
-    <div class="logo">VOOGO</div>
 
-    <div class="menu">
-      <a href="#about">About</a>
-      <a href="#services">What We Buy & Sell</a>
-      <a href="#testimonials">Testimonials</a>
+<div class="logo">
+<img src="images/dollar.png">
+VOOGO
+</div>
 
-      <div class="dropdown">
-        <a href="#">Menu ▼</a>
-        <div class="dropdown-content">
-          <a href="login.html">Login</a>
-          <a href="signup.html">Get Started</a>
-          <a href="orders.html">Orders</a>
-          <a href="dashboard.html">Dashboard</a>
-          <a href="contact.html">Contact Us</a>
-        </div>
-      </div>
-    </div>
-  </nav>
+<nav>
+<a href="index.html">Home</a>
+<a href="signup.html">Signup</a>
+<a href="login.html">Login</a>
+</nav>
+
 </header>
 
 <section class="hero">
-  <h1>Buy, Sell & Earn Daily with Voogo</h1>
-  <p>
-    Voogo is your trusted online marketplace where you can buy and sell items you use every day and earn profit easily. From phones and fashion to electronics and home products — if people use it daily, we buy and sell it.
-  </p>
 
-  <div class="hero-buttons">
-    <a href="signup.html" class="btn-primary">Get Started</a>
-    <a href="orders.html" class="btn-secondary">Place Order</a>
-  </div>
+<div class="hero-text">
+
+<h1>
+Grow Your Money With VOOGO
+</h1>
+
+<p>
+Start investing smarter with secure deposits, referral earnings, and a powerful dashboard built for everyone.
+</p>
+
+<div class="hero-buttons">
+<a href="signup.html" class="signup-btn">
+Create Account
+</a>
+
+<a href="login.html" class="login-btn">
+Login
+</a>
+</div>
+
+</div>
+
+<div class="hero-image">
+<img src="images/dollar.png">
+</div>
+
 </section>
 
-<section id="about">
-  <h2 class="section-title">About Voogo</h2>
+<section class="features">
 
-  <div class="about">
-    <p>
-      Voogo is a modern online buying and selling platform built to help everyday people make money from products they already use daily. We believe everyone should have the opportunity to trade, earn profit, and grow financially online.
-      
-      Whether you want to sell gadgets, fashion items, food supplies, electronics, or home products, Voogo gives you the perfect marketplace to connect with buyers and sellers fast.
-      
-      Our goal is to make online trading simple, secure, and profitable for everyone.
-    </p>
-  </div>
+<h2 class="section-title">
+Why Choose VOOGO
+</h2>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+<img src="images/dollar.png">
+<h3>Fast Investment</h3>
+<p>
+Invest easily and monitor your earnings directly from your dashboard.
+</p>
+</div>
+
+<div class="feature-card">
+<img src="images/dollar.png">
+<h3>Referral Earnings</h3>
+<p>
+Invite friends using your username referral code and earn commissions.
+</p>
+</div>
+
+<div class="feature-card">
+<img src="images/dollar.png">
+<h3>Secure Accounts</h3>
+<p>
+Your account information is stored securely using Firebase technology.
+</p>
+</div>
+
+</div>
+
 </section>
 
-<section id="services">
-  <h2 class="section-title">3 Things We Buy & Sell</h2>
+<section class="stats">
 
-  <div class="cards">
-    <div class="card">
-      <h3>Electronics</h3>
-      <p>
-        Phones, laptops, accessories, speakers, gaming devices, and all everyday gadgets people use.
-      </p>
-    </div>
+<div class="stats-grid">
 
-    <div class="card">
-      <h3>Fashion & Clothing</h3>
-      <p>
-        Shoes, bags, clothes, watches, jewelry, and modern fashion products for daily use.
-      </p>
-    </div>
+<div class="stat-box">
+<h2>24/7</h2>
+<p>Customer Support</p>
+</div>
 
-    <div class="card">
-      <h3>Home & Lifestyle Products</h3>
-      <p>
-        Kitchen tools, furniture, beauty products, appliances, and household essentials.
-      </p>
-    </div>
-  </div>
-</section>
+<div class="stat-box">
+<h2>100%</h2>
+<p>Mobile Friendly</p>
+</div>
 
-<section class="testimonials" id="testimonials">
-  <h2 class="section-title">What People Say About Voogo</h2>
+<div class="stat-box">
+<h2>Fast</h2>
+<p>Account Access</p>
+</div>
 
-  <div class="testimonial-grid">
+</div>
 
-    <div class="testimonial">
-      <p>"Voogo helped me start selling my gadgets online and I now earn daily profits."</p>
-      <h4>- Daniel A.</h4>
-    </div>
-
-    <div class="testimonial">
-      <p>"Very clean website and easy to use. I sold my first product in two days."</p>
-      <h4>- Grace T.</h4>
-    </div>
-
-    <div class="testimonial">
-      <p>"I love how fast buyers contact sellers here. Great platform!"</p>
-      <h4>- Michael P.</h4>
-    </div>
-
-    <div class="testimonial">
-      <p>"Voogo made online business easier for me as a beginner."</p>
-      <h4>- Cynthia K.</h4>
-    </div>
-
-    <div class="testimonial">
-      <p>"The blue and white design looks very professional and modern."</p>
-      <h4>- Samuel O.</h4>
-    </div>
-
-    <div class="testimonial">
-      <p>"I now buy products cheaper and resell them for profit through Voogo."</p>
-      <h4>- Janet L.</h4>
-    </div>
-
-    <div class="testimonial">
-      <p>"Excellent marketplace for electronics and fashion products."</p>
-      <h4>- David E.</h4>
-    </div>
-
-    <div class="testimonial">
-      <p>"Everything works smoothly and the dropdown menu is easy to navigate."</p>
-      <h4>- Vivian S.</h4>
-    </div>
-
-    <div class="testimonial">
-      <p>"I hosted this on Neocities and it worked perfectly without editing anything."</p>
-      <h4>- Chris M.</h4>
-    </div>
-
-    <div class="testimonial">
-      <p>"Voogo is one of the best platforms for buying and selling daily products."</p>
-      <h4>- Esther B.</h4>
-    </div>
-
-  </div>
 </section>
 
 <footer>
-  <h2>VOOGO</h2>
-  <p>Buy • Sell • Earn Profit Daily</p>
 
-  <div class="footer-links">
-    <a href="#about">About</a>
-    <a href="#services">Services</a>
-    <a href="#testimonials">Testimonials</a>
-  </div>
+<img src="images/dollar.png">
 
-  <p style="margin-top:20px;">
-    © 2026 Voogo. All Rights Reserved.
-  </p>
+<h2>VOOGO Investment</h2>
+
+<p>
+© 2026 VOOGO. All Rights Reserved.
+</p>
+
 </footer>
-
-<script>
-  console.log("Voogo Website Loaded Successfully");
-</script>
 
 </body>
 </html>
+```
