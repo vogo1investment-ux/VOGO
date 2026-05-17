@@ -4,7 +4,7 @@
 
 <title>
 
-Cart
+Chat
 
 </title>
 
@@ -17,17 +17,49 @@ font-family:Arial;
 padding:20px;
 }
 
-.item{
+.messages{
+
+height:400px;
 
 background:black;
 
 padding:20px;
 
-border:1px solid #00cc66;
+border-radius:15px;
+
+overflow:auto;
+
+}
+
+input{
+
+width:100%;
+
+padding:15px;
 
 margin-top:15px;
 
-border-radius:15px;
+background:black;
+
+border:1px solid #00cc66;
+
+color:white;
+
+}
+
+button{
+
+width:100%;
+
+padding:15px;
+
+margin-top:15px;
+
+background:#00cc66;
+
+border:none;
+
+border-radius:10px;
 
 }
 
@@ -39,15 +71,25 @@ border-radius:15px;
 
 <h2>
 
-🧺 Cart
+💬 Chat
 
 </h2>
 
-<div id="cartItems">
+<div class="messages">
 
-No Products Yet
+Messages Here
 
 </div>
+
+<input
+
+placeholder="Type Message">
+
+<button>
+
+Send
+
+</button>
 
 </body>
 
