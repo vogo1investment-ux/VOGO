@@ -4,7 +4,7 @@
 
 <title>
 
-Chat
+Cart
 
 </title>
 
@@ -17,50 +17,43 @@ font-family:Arial;
 padding:20px;
 }
 
-.messages{
+.top{
+background:linear-gradient(
+135deg,
+#00cc66,
+#008844
+);
 
-height:400px;
+padding:25px;
+
+border-radius:20px;
+
+margin-bottom:20px;
+}
+
+.count{
+font-size:35px;
+font-weight:bold;
+}
+
+.item{
 
 background:black;
 
 padding:20px;
 
-border-radius:15px;
-
-overflow:auto;
-
-}
-
-input{
-
-width:100%;
-
-padding:15px;
-
 margin-top:15px;
 
-background:black;
+border-radius:15px;
 
 border:1px solid #00cc66;
 
-color:white;
-
 }
 
-button{
-
-width:100%;
-
-padding:15px;
-
-margin-top:15px;
-
-background:#00cc66;
-
-border:none;
-
-border-radius:10px;
-
+.price{
+color:#00cc66;
+font-size:22px;
+margin-top:10px;
 }
 
 </style>
@@ -69,27 +62,243 @@ border-radius:10px;
 
 <body>
 
-<h2>
+<div class="top">
 
-💬 Chat
+🧺 Cart
 
-</h2>
+<div class="count"
 
-<div class="messages">
+id="count">
 
-Messages Here
+Loading...
 
 </div>
 
-<input
+</div>
 
-placeholder="Type Message">
+<div id="products">
 
-<button>
+Loading Products...
 
-Send
+</div>
 
-</button>
+
+
+<script type="module">
+
+import {
+
+initializeApp
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+
+
+import {
+
+getFirestore,
+
+collection,
+
+getDocs,
+
+query,
+
+where
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+
+
+import {
+
+getAuth,
+
+onAuthStateChanged
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
+
+
+
+const firebaseConfig={
+
+apiKey:
+
+"AIzaSyDRAcsC8RUTPtxbMdHjHpYZH2LjaP8jqMM",
+
+authDomain:
+
+"voogo-48569.firebaseapp.com",
+
+projectId:
+
+"voogo-48569",
+
+storageBucket:
+
+"voogo-48569.firebasestorage.app",
+
+messagingSenderId:
+
+"735597967945",
+
+appId:
+
+"1:735597967945:web:346f2a0506d55f7e651d98"
+
+};
+
+
+
+const app=
+
+initializeApp(firebaseConfig);
+
+const db=
+
+getFirestore(app);
+
+const auth=
+
+getAuth(app);
+
+
+
+onAuthStateChanged(
+
+auth,
+
+async(user)=>{
+
+if(!user)return;
+
+
+
+const q=
+
+query(
+
+collection(
+
+db,
+
+"cart"
+
+),
+
+where(
+
+"uid",
+
+"==",
+
+user.uid
+
+)
+
+);
+
+
+
+const snap=
+
+await getDocs(q);
+
+
+
+let html="";
+
+let total=0;
+
+
+
+snap.forEach(
+
+(doc)=>{
+
+let d=
+
+doc.data();
+
+
+
+total++;
+
+
+
+html+=`
+
+<div class="item">
+
+${d.product}
+
+<div class="price">
+
+$${d.price}
+
+</div>
+
+Qty:
+
+${d.qty}
+
+</div>
+
+`;
+
+}
+
+
+
+);
+
+
+
+document
+
+.getElementById(
+
+"count"
+
+)
+
+.innerHTML=
+
+total+
+
+" Products";
+
+
+
+document
+
+.getElementById(
+
+"products"
+
+)
+
+.innerHTML=
+
+html ||
+
+"No Products";
+
+}
+
+);
+
+</script>
 
 </body>
 

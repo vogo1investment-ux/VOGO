@@ -4,7 +4,7 @@
 
 <title>
 
-Sell Product
+Sell
 
 </title>
 
@@ -24,7 +24,12 @@ border-radius:20px;
 border:2px solid #00cc66;
 }
 
-input,textarea{
+.price{
+font-size:40px;
+color:#00cc66;
+}
+
+input,select,button{
 
 width:100%;
 
@@ -34,30 +39,17 @@ margin-top:12px;
 
 background:#111;
 
-color:white;
-
 border:1px solid #00cc66;
+
+color:white;
 
 border-radius:10px;
 
 }
 
 button{
-
-width:100%;
-
-padding:15px;
-
-margin-top:15px;
-
 background:#00cc66;
-
-border:none;
-
-border-radius:10px;
-
-font-weight:bold;
-
+color:black;
 }
 
 </style>
@@ -68,29 +60,53 @@ font-weight:bold;
 
 <div class="box">
 
-<h2>
+Apple iPhone 15
 
-📦 Sell Product
+<div class="price">
 
-</h2>
+$900
 
-<input
+</div>
 
-placeholder="Product Name">
+<select>
 
-<input
+<option>
 
-placeholder="Price">
+1 Product
 
-<input
+</option>
 
-placeholder="Quantity">
+<option>
 
-<textarea
+2 Products
 
-placeholder="Description">
+</option>
 
-</textarea>
+<option>
+
+3 Products
+
+</option>
+
+<option>
+
+5 Products
+
+</option>
+
+<option>
+
+10 Products
+
+</option>
+
+<option>
+
+20 Products
+
+</option>
+
+</select>
 
 <input
 
@@ -98,13 +114,27 @@ type="password"
 
 placeholder="Password">
 
-<button>
+<button onclick="sell()">
 
 Sell Product
 
 </button>
 
 </div>
+
+<script>
+
+function sell(){
+
+alert(
+
+"Sold Successfully + Balance Added"
+
+);
+
+}
+
+</script>
 
 </body>
 

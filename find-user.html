@@ -4,7 +4,7 @@
 
 <title>
 
-Find User
+Find Users
 
 </title>
 
@@ -12,15 +12,21 @@ Find User
 
 body{
 background:#111;
-padding:20px;
 color:white;
 font-family:Arial;
+padding:20px;
 }
 
 input,button{
+
 width:100%;
+
 padding:15px;
-margin-top:10px;
+
+margin-top:12px;
+
+border-radius:10px;
+
 }
 
 button{
@@ -28,11 +34,36 @@ background:#00cc66;
 border:none;
 }
 
-.box{
+.user{
+
 background:black;
+
 padding:20px;
+
 margin-top:20px;
+
 border-radius:15px;
+
+border:1px solid #00cc66;
+
+}
+
+.chat{
+
+display:block;
+
+padding:12px;
+
+background:#00cc66;
+
+margin-top:12px;
+
+text-align:center;
+
+text-decoration:none;
+
+color:black;
+
 }
 
 </style>
@@ -41,59 +72,57 @@ border-radius:15px;
 
 <body>
 
-<input
+<h2>
 
-id="search"
+💬 Find Users
+
+</h2>
+
+<input
 
 placeholder="Username">
 
-<button onclick="findUser()">
+<button>
 
-Search User
+Search
 
 </button>
 
-<div class="box"
+<div class="user">
 
-id="result">
+Username:
 
-No Result
+VOGOUSER
+
+<a
+
+href="chat.html"
+
+class="chat">
+
+Open Chat
+
+</a>
 
 </div>
 
-<script>
+<div class="user">
 
-function findUser(){
+Username:
 
-let u=
+MARKETPRO
 
-document
+<a
 
-.getElementById(
+href="chat.html"
 
-"search"
+class="chat">
 
-)
+Open Chat
 
-.value;
+</a>
 
-document
-
-.getElementById(
-
-"result"
-
-)
-
-.innerHTML=
-
-u+
-
-"<br><br><a href='chat.html'>Chat</a>";
-
-}
-
-</script>
+</div>
 
 </body>
 

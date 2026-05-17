@@ -1,29 +1,141 @@
-<button onclick="submitWithdrawal()">
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>
+
+Withdrawal
+
+</title>
+
+<style>
+
+body{
+background:#111;
+padding:20px;
+color:white;
+font-family:Arial;
+}
+
+.box{
+background:black;
+padding:25px;
+border-radius:20px;
+border:2px solid #00cc66;
+}
+
+input,select{
+
+width:100%;
+
+padding:15px;
+
+margin-top:12px;
+
+background:#111;
+
+color:white;
+
+border:1px solid #00cc66;
+
+border-radius:10px;
+
+}
+
+button{
+
+width:100%;
+
+padding:15px;
+
+margin-top:15px;
+
+background:#00cc66;
+
+border:none;
+
+border-radius:10px;
+
+font-weight:bold;
+
+}
+
+.history{
+
+margin-top:20px;
+
+background:#222;
+
+padding:15px;
+
+border-radius:12px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h2>
+
+💸 Withdrawal
+
+</h2>
+
+<select>
+
+<option>
+
+🇳🇬 NGN
+
+</option>
+
+<option>
+
+🇺🇸 USD
+
+</option>
+
+</select>
+
+<input
+
+placeholder="Bank Name">
+
+<input
+
+placeholder="Account Name">
+
+<input
+
+placeholder="Account Number">
+
+<input
+
+placeholder="Amount">
+
+<button>
 
 Submit Withdrawal
 
 </button>
 
-<a href="history.html">
+<div class="history">
 
-<button>
+📜 History
 
-History
+<br><br>
 
-</button>
+No Withdrawal Yet
 
-</a>
+</div>
 
-<script>
+</div>
 
-function submitWithdrawal(){
+</body>
 
-alert(
-
-"Withdrawal Submitted"
-
-);
-
-}
-
-</script>
+</html>

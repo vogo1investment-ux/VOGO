@@ -24,7 +24,12 @@ border-radius:20px;
 border:2px solid #00cc66;
 }
 
-input,select{
+.price{
+font-size:40px;
+color:#00cc66;
+}
+
+input,select,button{
 
 width:100%;
 
@@ -34,30 +39,17 @@ margin-top:12px;
 
 background:#111;
 
-color:white;
-
 border:1px solid #00cc66;
+
+color:white;
 
 border-radius:10px;
 
 }
 
 button{
-
-width:100%;
-
-padding:15px;
-
-margin-top:15px;
-
 background:#00cc66;
-
-border:none;
-
-border-radius:10px;
-
-font-weight:bold;
-
+color:black;
 }
 
 </style>
@@ -70,71 +62,38 @@ font-weight:bold;
 
 <h2>
 
-🛒 Buy Product
+Apple iPhone 15
 
 </h2>
 
-<br>
+<div class="price"
 
-Product:
-
-Apple iPhone 15
-
-<br><br>
-
-Price:
+id="price">
 
 $900
 
-<select>
+</div>
 
-<option>
+<div>
 
-1
+⏰
 
-</option>
+<span id="timer">
 
-<option>
+01:00:00
 
-2
+</span>
 
-</option>
+</div>
 
-<option>
+<select id="qty">
 
-3
-
-</option>
-
-<option>
-
-4
-
-</option>
-
-<option>
-
-5
-
-</option>
-
-<option>
-
-10
-
-</option>
-
-<option>
-
-15
-
-</option>
-
-<option>
-
-20
-
-</option>
+<option>1</option>
+<option>2</option>
+<option>3</option>
+<option>5</option>
+<option>10</option>
+<option>20</option>
 
 </select>
 
@@ -142,15 +101,343 @@ $900
 
 type="password"
 
+id="password"
+
 placeholder="Password">
 
-<button>
+<button onclick="buyProduct()">
 
 Buy Product
 
 </button>
 
 </div>
+
+
+
+<script type="module">
+
+import {
+
+initializeApp
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+
+
+import {
+
+getFirestore,
+
+doc,
+
+getDoc,
+
+updateDoc,
+
+collection,
+
+addDoc
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+
+
+import {
+
+getAuth,
+
+onAuthStateChanged
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
+
+
+
+const firebaseConfig={
+
+apiKey:
+
+"AIzaSyDRAcsC8RUTPtxbMdHjHpYZH2LjaP8jqMM",
+
+authDomain:
+
+"voogo-48569.firebaseapp.com",
+
+projectId:
+
+"voogo-48569",
+
+storageBucket:
+
+"voogo-48569.firebasestorage.app",
+
+messagingSenderId:
+
+"735597967945",
+
+appId:
+
+"1:735597967945:web:346f2a0506d55f7e651d98"
+
+};
+
+
+
+const app=
+
+initializeApp(firebaseConfig);
+
+const db=
+
+getFirestore(app);
+
+const auth=
+
+getAuth(app);
+
+
+
+let currentUser;
+
+let productPrice=900;
+
+
+
+onAuthStateChanged(
+
+auth,
+
+(u)=>{
+
+currentUser=u;
+
+}
+
+);
+
+
+
+window.buyProduct=
+
+async()=>{
+
+if(!currentUser){
+
+alert(
+
+"Login First"
+
+);
+
+return;
+
+}
+
+
+
+const qty=
+
+Number(
+
+document
+
+.getElementById(
+
+"qty"
+
+)
+
+.value
+
+);
+
+
+
+const total=
+
+productPrice*qty;
+
+
+
+const ref=
+
+doc(
+
+db,
+
+"users",
+
+currentUser.uid
+
+);
+
+
+
+const snap=
+
+await getDoc(ref);
+
+
+
+let data=
+
+snap.data();
+
+
+
+let balance=
+
+Number(
+
+data.balance || 0
+
+);
+
+
+
+if(balance<total){
+
+alert(
+
+"Insufficient Balance"
+
+);
+
+return;
+
+}
+
+
+
+balance=
+
+balance-total;
+
+
+
+await updateDoc(
+
+ref,
+
+{
+
+balance:balance
+
+}
+
+);
+
+
+
+await addDoc(
+
+collection(
+
+db,
+
+"cart"
+
+),
+
+{
+
+uid:
+
+currentUser.uid,
+
+product:
+
+"Apple iPhone 15",
+
+price:
+
+productPrice,
+
+qty:qty
+
+}
+
+);
+
+
+
+alert(
+
+"Added To Cart"
+
+);
+
+};
+
+
+
+let sec=3600;
+
+setInterval(()=>{
+
+sec--;
+
+let h=
+
+Math.floor(sec/3600);
+
+let m=
+
+Math.floor((sec%3600)/60);
+
+let s=
+
+sec%60;
+
+
+
+document
+
+.getElementById(
+
+"timer"
+
+)
+
+.innerHTML=
+
+h+":"+m+":"+s;
+
+
+
+if(sec<=0){
+
+productPrice+=50;
+
+document
+
+.getElementById(
+
+"price"
+
+)
+
+.innerHTML=
+
+"$"+productPrice;
+
+sec=3600;
+
+}
+
+},1000);
+
+</script>
 
 </body>
 
