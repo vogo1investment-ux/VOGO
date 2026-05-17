@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>
+
+Withdrawal
+
+</title>
+
+<style>
+
+body{
+background:#111;
+color:white;
+font-family:Arial;
+padding:20px;
+}
+
+.box{
+background:black;
+padding:25px;
+border-radius:20px;
+border:2px solid #00cc66;
+}
+
+input,select,button{
+
+width:100%;
+
+padding:15px;
+
+margin-top:12px;
+
+background:#111;
+
+border:1px solid #00cc66;
+
+color:white;
+
+border-radius:10px;
+
+}
+
+button{
+
+background:#00cc66;
+
+color:black;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h2>
+
+💸 Withdrawal
+
+</h2>
+
+<select id="type">
+
+<option>
+
+NGN
+
+</option>
+
+<option>
+
+USD
+
+</option>
+
+</select>
+
+<input
+
+id="bank"
+
+placeholder="Bank Name">
+
+<input
+
+id="name"
+
+placeholder="Account Name">
+
+<input
+
+id="number"
+
+placeholder="Account Number">
+
+<input
+
+id="amount"
+
+placeholder="Amount">
+
+<button onclick="submitWithdrawal()">
+
+Submit
+
+</button>
+
+</div>
+
+</body>
+
+</html>

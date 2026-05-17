@@ -2,43 +2,200 @@
 <html>
 <head>
 <title>Profile</title>
+
 <style>
-body{background:#111;color:white;font-family:Arial;padding:20px}
-.box{background:black;border:2px solid #00cc66;padding:25px;border-radius:20px}
+
+body{
+background:#111;
+color:white;
+font-family:Arial;
+padding:20px;
+}
+
+.box{
+background:black;
+padding:25px;
+border-radius:20px;
+border:2px solid #00cc66;
+}
+
 .btn{
 display:block;
-margin-top:15px;
 padding:15px;
+margin-top:15px;
 background:#00cc66;
 color:black;
 text-decoration:none;
 text-align:center;
-border-radius:12px;
+border-radius:10px;
 font-weight:bold;
 }
+
 </style>
+
 </head>
+
 <body>
 
 <div class="box">
 
 <h2>👤 Profile</h2>
 
-<p>Username: ---</p>
+<br>
 
-<p>Email: ---</p>
+<p>
 
-<p>Country: ---</p>
+Username:
 
-<a class="btn" href="deposit.html">
+<span id="username">
+
+Loading...
+
+</span>
+
+</p>
+
+<br>
+
+<p>
+
+Email:
+
+<span id="email">
+
+Loading...
+
+</span>
+
+</p>
+
+<a class="btn"
+
+href="deposit.html">
+
 💳 Deposit
+
 </a>
 
-<a class="btn" href="withdrawal.html">
+<a class="btn"
+
+href="withdrawal.html">
+
 💸 Withdrawal
+
 </a>
 
 </div>
 
+<script type="module">
+
+import {
+
+initializeApp
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+
+import {
+
+getFirestore,
+
+doc,
+
+getDoc
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+
+import {
+
+getAuth,
+
+onAuthStateChanged
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
+
+
+const firebaseConfig={
+
+apiKey:"YOURKEY",
+authDomain:"YOURDOMAIN",
+projectId:"YOURPROJECT"
+
+};
+
+const app=
+
+initializeApp(firebaseConfig);
+
+const db=
+
+getFirestore(app);
+
+const auth=
+
+getAuth(app);
+
+onAuthStateChanged(
+
+auth,
+
+async(user)=>{
+
+if(user){
+
+const snap=
+
+await getDoc(
+
+doc(
+
+db,
+
+"users",
+
+user.uid
+
+)
+
+);
+
+if(snap.exists()){
+
+let d=snap.data();
+
+document.getElementById(
+
+"username"
+
+).innerHTML=d.username;
+
+document.getElementById(
+
+"email"
+
+).innerHTML=d.email;
+
+}
+
+}
+
+}
+
+);
+
+</script>
+
 </body>
+
 </html>
