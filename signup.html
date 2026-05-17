@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+
+content="width=device-width,
+
+initial-scale=1.0">
 
 <title>
 
@@ -22,10 +27,10 @@ font-family:Arial,sans-serif;
 
 body{
 background:#111;
-min-height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
+min-height:100vh;
 padding:20px;
 }
 
@@ -39,8 +44,8 @@ border:2px solid #00cc66;
 }
 
 h1{
-text-align:center;
 color:#00cc66;
+text-align:center;
 margin-bottom:10px;
 }
 
@@ -50,35 +55,58 @@ color:white;
 margin-bottom:25px;
 }
 
-input{
+input,select{
+
 width:100%;
+
 padding:16px;
+
 margin-bottom:18px;
+
 border-radius:10px;
+
 border:1px solid #00cc66;
+
 background:#111;
+
 color:white;
+
 }
 
 button{
+
 width:100%;
+
 padding:16px;
+
 background:#00cc66;
+
 border:none;
+
 border-radius:10px;
+
 font-weight:bold;
+
 font-size:16px;
+
 cursor:pointer;
+
 }
 
 .bottom{
+
 text-align:center;
+
 margin-top:20px;
+
 }
 
 .bottom a{
+
 color:#00cc66;
+
 text-decoration:none;
+
 }
 
 </style>
@@ -97,34 +125,94 @@ Signup
 
 <p>
 
-Create your VOOGO account
+Create VOOGO account
 
 </p>
 
-<input type="text"
+<input
+
+type="text"
+
+id="username"
+
 placeholder="Username">
 
-<input type="text"
+<input
+
+type="text"
+
+id="fullname"
+
 placeholder="Full Name">
 
-<input type="email"
+<input
+
+type="email"
+
+id="email"
+
 placeholder="Email">
 
-<input type="tel"
+<input
+
+type="tel"
+
+id="phone"
+
 placeholder="Phone Number">
 
-<input type="text"
+<input
+
+type="text"
+
+id="nin"
+
 placeholder="NIN Number">
 
-<input type="text"
+<select id="country">
+
+<option>
+
+🌍 Select Country
+
+</option>
+
+<option>🇳🇬 Nigeria</option>
+<option>🇬🇭 Ghana</option>
+<option>🇺🇸 USA</option>
+<option>🇬🇧 UK</option>
+<option>🇨🇦 Canada</option>
+<option>🇫🇷 France</option>
+<option>🇮🇳 India</option>
+<option>🇨🇳 China</option>
+<option>🇷🇺 Russia</option>
+<option>🇿🇦 South Africa</option>
+
+</select>
+
+<input
+
+type="text"
+
+id="referral"
+
 placeholder="Referral Username">
 
-<input type="date">
+<input
 
-<input type="password"
+type="date"
+
+id="dob">
+
+<input
+
+type="password"
+
+id="password"
+
 placeholder="Password">
 
-<button>
+<button onclick="signup()">
 
 Create Account
 
@@ -141,6 +229,255 @@ Already have account?
 </div>
 
 </div>
+
+
+
+<script type="module">
+
+import {
+
+initializeApp
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+
+
+import {
+
+getAuth,
+
+createUserWithEmailAndPassword
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
+
+
+import {
+
+getFirestore,
+
+doc,
+
+setDoc
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+
+
+
+const firebaseConfig = {
+
+apiKey:
+
+"AIzaSyDRAcsC8RUTPtxbMdHjHpYZH2LjaP8jqMM",
+
+authDomain:
+
+"voogo-48569.firebaseapp.com",
+
+projectId:
+
+"voogo-48569",
+
+storageBucket:
+
+"voogo-48569.firebasestorage.app",
+
+messagingSenderId:
+
+"735597967945",
+
+appId:
+
+"1:735597967945:web:346f2a0506d55f7e651d98"
+
+};
+
+
+
+const app=
+
+initializeApp(firebaseConfig);
+
+const auth=
+
+getAuth(app);
+
+const db=
+
+getFirestore(app);
+
+
+
+window.signup=
+
+async function(){
+
+const username=
+
+document.getElementById(
+
+"username"
+
+).value;
+
+const fullname=
+
+document.getElementById(
+
+"fullname"
+
+).value;
+
+const email=
+
+document.getElementById(
+
+"email"
+
+).value;
+
+const phone=
+
+document.getElementById(
+
+"phone"
+
+).value;
+
+const nin=
+
+document.getElementById(
+
+"nin"
+
+).value;
+
+const country=
+
+document.getElementById(
+
+"country"
+
+).value;
+
+const referral=
+
+document.getElementById(
+
+"referral"
+
+).value;
+
+const dob=
+
+document.getElementById(
+
+"dob"
+
+).value;
+
+const password=
+
+document.getElementById(
+
+"password"
+
+).value;
+
+
+
+try{
+
+const userCredential=
+
+await
+
+createUserWithEmailAndPassword(
+
+auth,
+
+email,
+
+password
+
+);
+
+
+
+const user=
+
+userCredential.user;
+
+
+
+await setDoc(
+
+doc(
+
+db,
+
+"users",
+
+user.uid
+
+),
+
+{
+
+username,
+fullname,
+email,
+phone,
+nin,
+country,
+referral,
+dob,
+
+balance:0,
+
+createdAt:
+
+new Date()
+
+}
+
+);
+
+
+
+alert(
+
+"Account Created"
+
+);
+
+
+
+window.location.href=
+
+"dashboard.html";
+
+
+
+}catch(error){
+
+alert(error.message);
+
+}
+
+}
+
+</script>
 
 </body>
 

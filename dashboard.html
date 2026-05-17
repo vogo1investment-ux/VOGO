@@ -1,10 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>VOOGO Dashboard</title>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+
+content="width=device-width,
+
+initial-scale=1.0">
+
+<title>
+
+VOOGO Dashboard
+
+</title>
 
 <style>
 
@@ -22,74 +32,114 @@ padding:20px;
 }
 
 .container{
-max-width:1100px;
+max-width:1200px;
 margin:auto;
 }
 
 .balance-box{
+
 background:black;
+
 border:2px solid #00cc66;
-padding:30px;
+
+padding:35px;
+
 border-radius:20px;
+
 margin-bottom:25px;
+
 }
 
 .balance-title{
-color:#00cc66;
+
 font-size:20px;
+
+color:#00cc66;
+
 }
 
 .usd{
-font-size:50px;
+
+font-size:55px;
+
 font-weight:bold;
-margin-top:10px;
+
+margin-top:15px;
+
 }
 
 .currency-grid{
+
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+
+grid-template-columns:
+
+repeat(auto-fit,minmax(180px,1fr));
+
 gap:15px;
-margin-bottom:25px;
+
+margin-bottom:30px;
+
 }
 
-.currency-card{
+.card{
+
 background:black;
+
 border:1px solid #00cc66;
+
 padding:20px;
+
 border-radius:15px;
+
 text-align:center;
+
 }
 
-.currency-card h3{
+.card h3{
+
 color:#00cc66;
+
 margin-bottom:10px;
+
 }
 
 .buttons{
+
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
-gap:20px;
+
+grid-template-columns:
+
+repeat(auto-fit,minmax(170px,1fr));
+
+gap:18px;
+
 }
 
 .btn{
-background:black;
-border:2px solid #00cc66;
-padding:25px;
-border-radius:18px;
-text-align:center;
-text-decoration:none;
-color:white;
-transition:.3s;
-}
 
-.btn:hover{
-background:#00cc66;
-color:black;
+background:black;
+
+border:2px solid #00cc66;
+
+padding:25px;
+
+border-radius:18px;
+
+text-align:center;
+
+text-decoration:none;
+
+color:white;
+
 }
 
 .icon{
-font-size:35px;
+
+font-size:34px;
+
 margin-bottom:10px;
+
 }
 
 </style>
@@ -108,9 +158,11 @@ USD Balance
 
 </div>
 
-<div class="usd">
+<div class="usd"
 
-$0.00
+id="usd">
+
+$0
 
 </div>
 
@@ -120,39 +172,114 @@ $0.00
 
 <div class="currency-grid">
 
-<div class="currency-card">
-<h3>🇳🇬 NGN</h3>
+<div class="card"
+
+id="ngn">
+
+<h3>
+
+🇳🇬 NGN
+
+</h3>
+
 ₦0
+
 </div>
 
-<div class="currency-card">
-<h3>🇬🇭 Ghana</h3>
+
+
+<div class="card"
+
+id="ghana">
+
+<h3>
+
+🇬🇭 Ghana
+
+</h3>
+
 ₵0
+
 </div>
 
-<div class="currency-card">
-<h3>🇪🇺 Europe</h3>
+
+
+<div class="card"
+
+id="europe">
+
+<h3>
+
+🇪🇺 Europe
+
+</h3>
+
 €0
+
 </div>
 
-<div class="currency-card">
-<h3>🇨🇳 China</h3>
+
+
+<div class="card"
+
+id="china">
+
+<h3>
+
+🇨🇳 China
+
+</h3>
+
 ¥0
+
 </div>
 
-<div class="currency-card">
-<h3>🇮🇳 India</h3>
+
+
+<div class="card"
+
+id="india">
+
+<h3>
+
+🇮🇳 India
+
+</h3>
+
 ₹0
+
 </div>
 
-<div class="currency-card">
-<h3>🇫🇷 France</h3>
+
+
+<div class="card"
+
+id="france">
+
+<h3>
+
+🇫🇷 France
+
+</h3>
+
 €0
+
 </div>
 
-<div class="currency-card">
-<h3>🇷🇺 Russia</h3>
+
+
+<div class="card"
+
+id="russia">
+
+<h3>
+
+🇷🇺 Russia
+
+</h3>
+
 ₽0
+
 </div>
 
 </div>
@@ -161,7 +288,9 @@ $0.00
 
 <div class="buttons">
 
-<a href="profile.html" class="btn">
+<a href="profile.html"
+
+class="btn">
 
 <div class="icon">
 
@@ -175,7 +304,9 @@ Profile
 
 
 
-<a href="market.html" class="btn">
+<a href="market.html"
+
+class="btn">
 
 <div class="icon">
 
@@ -189,7 +320,9 @@ Market
 
 
 
-<a href="deposit.html" class="btn">
+<a href="deposit.html"
+
+class="btn">
 
 <div class="icon">
 
@@ -203,7 +336,9 @@ Deposit
 
 
 
-<a href="withdrawal.html" class="btn">
+<a href="withdrawal.html"
+
+class="btn">
 
 <div class="icon">
 
@@ -217,7 +352,9 @@ Withdrawal
 
 
 
-<a href="cart.html" class="btn">
+<a href="cart.html"
+
+class="btn">
 
 <div class="icon">
 
@@ -231,7 +368,9 @@ Cart
 
 
 
-<a href="referral.html" class="btn">
+<a href="referral.html"
+
+class="btn">
 
 <div class="icon">
 
@@ -245,7 +384,9 @@ Referral
 
 
 
-<a href="find-user.html" class="btn">
+<a href="find-user.html"
+
+class="btn">
 
 <div class="icon">
 
@@ -259,7 +400,9 @@ Find User
 
 
 
-<a href="settings.html" class="btn">
+<a href="settings.html"
+
+class="btn">
 
 <div class="icon">
 
@@ -274,6 +417,332 @@ Settings
 </div>
 
 </div>
+
+
+
+<script type="module">
+
+import {
+
+initializeApp
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+
+
+import {
+
+getFirestore,
+
+doc,
+
+getDoc
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+
+
+import {
+
+getAuth,
+
+onAuthStateChanged
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
+
+
+
+const firebaseConfig = {
+
+apiKey:
+
+"AIzaSyDRAcsC8RUTPtxbMdHjHpYZH2LjaP8jqMM",
+
+authDomain:
+
+"voogo-48569.firebaseapp.com",
+
+projectId:
+
+"voogo-48569",
+
+storageBucket:
+
+"voogo-48569.firebasestorage.app",
+
+messagingSenderId:
+
+"735597967945",
+
+appId:
+
+"1:735597967945:web:346f2a0506d55f7e651d98"
+
+};
+
+
+
+const app=
+
+initializeApp(
+
+firebaseConfig
+
+);
+
+const db=
+
+getFirestore(app);
+
+const auth=
+
+getAuth(app);
+
+
+
+onAuthStateChanged(
+
+auth,
+
+async(user)=>{
+
+if(user){
+
+const ref=
+
+doc(
+
+db,
+
+"users",
+
+user.uid
+
+);
+
+const snap=
+
+await getDoc(ref);
+
+if(
+
+snap.exists()
+
+){
+
+const data=
+
+snap.data();
+
+let usd=
+
+data.balance || 0;
+
+
+
+document
+
+.getElementById(
+
+"usd"
+
+)
+
+.innerHTML=
+
+"$"
+
++
+
+usd;
+
+
+
+document
+
+.getElementById(
+
+"ngn"
+
+)
+
+.innerHTML=
+
+"<h3>🇳🇬 NGN</h3>₦"
+
++
+
+(
+
+usd*1457
+
+)
+
+.toLocaleString();
+
+
+
+document
+
+.getElementById(
+
+"ghana"
+
+)
+
+.innerHTML=
+
+"<h3>🇬🇭 Ghana</h3>₵"
+
++
+
+(
+
+usd*15
+
+)
+
+.toFixed(2);
+
+
+
+document
+
+.getElementById(
+
+"europe"
+
+)
+
+.innerHTML=
+
+"<h3>🇪🇺 Europe</h3>€"
+
++
+
+(
+
+usd*0.92
+
+)
+
+.toFixed(2);
+
+
+
+document
+
+.getElementById(
+
+"china"
+
+)
+
+.innerHTML=
+
+"<h3>🇨🇳 China</h3>¥"
+
++
+
+(
+
+usd*7.2
+
+)
+
+.toFixed(2);
+
+
+
+document
+
+.getElementById(
+
+"india"
+
+)
+
+.innerHTML=
+
+"<h3>🇮🇳 India</h3>₹"
+
++
+
+(
+
+usd*84
+
+)
+
+.toFixed(2);
+
+
+
+document
+
+.getElementById(
+
+"france"
+
+)
+
+.innerHTML=
+
+"<h3>🇫🇷 France</h3>€"
+
++
+
+(
+
+usd*0.92
+
+)
+
+.toFixed(2);
+
+
+
+document
+
+.getElementById(
+
+"russia"
+
+)
+
+.innerHTML=
+
+"<h3>🇷🇺 Russia</h3>₽"
+
++
+
+(
+
+usd*82
+
+)
+
+.toFixed(2);
+
+}
+
+}
+
+}
+
+);
+
+</script>
 
 </body>
 
