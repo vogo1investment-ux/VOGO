@@ -4,7 +4,7 @@
 
 <title>
 
-Users
+Find User
 
 </title>
 
@@ -17,18 +17,21 @@ color:white;
 font-family:Arial;
 }
 
-input{
+input,button{
 width:100%;
 padding:15px;
-background:black;
-border:1px solid #00cc66;
-color:white;
+margin-top:10px;
+}
+
+button{
+background:#00cc66;
+border:none;
 }
 
 .box{
-margin-top:20px;
-padding:20px;
 background:black;
+padding:20px;
+margin-top:20px;
 border-radius:15px;
 }
 
@@ -38,27 +41,59 @@ border-radius:15px;
 
 <body>
 
-<h2>
+<input
 
-💬 Find User
+id="search"
 
-</h2>
+placeholder="Username">
 
-<input placeholder="Search Username">
+<button onclick="findUser()">
 
-<div class="box">
-
-Username Result
-
-<br><br>
-
-<button>
-
-Chat
+Search User
 
 </button>
 
+<div class="box"
+
+id="result">
+
+No Result
+
 </div>
+
+<script>
+
+function findUser(){
+
+let u=
+
+document
+
+.getElementById(
+
+"search"
+
+)
+
+.value;
+
+document
+
+.getElementById(
+
+"result"
+
+)
+
+.innerHTML=
+
+u+
+
+"<br><br><a href='chat.html'>Chat</a>";
+
+}
+
+</script>
 
 </body>
 

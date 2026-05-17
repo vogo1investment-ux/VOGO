@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Deposit</title>
+
+<title>
+
+Deposit
+
+</title>
 
 <style>
 
@@ -12,15 +17,32 @@ font-family:Arial;
 padding:20px;
 }
 
-.box{
-background:black;
-border:2px solid #00cc66;
-padding:25px;
+.big{
+background:linear-gradient(135deg,#00cc66,#008844);
+padding:30px;
 border-radius:20px;
 }
 
-.green{
-color:#00cc66;
+.number{
+font-size:40px;
+font-weight:bold;
+}
+
+.box{
+margin-top:20px;
+background:black;
+padding:20px;
+border-radius:15px;
+border:1px solid #00cc66;
+}
+
+input{
+width:100%;
+padding:15px;
+margin-top:10px;
+background:#111;
+color:white;
+border:1px solid #00cc66;
 }
 
 </style>
@@ -29,57 +51,46 @@ color:#00cc66;
 
 <body>
 
-<div class="box">
-
-<h2 class="green">
-
-💳 Deposit
-
-</h2>
-
-<br>
-
-<p>
-
-Bank:
-
-<b>
+<div class="big">
 
 Wema Bank
 
-</b>
-
-</p>
-
-<br>
-
-<p>
-
-Account Name:
-
-<b>
-
-VOGO
-
-</b>
-
-</p>
-
-<br>
-
-<p>
-
-Account Number:
-
-<b>
+<div class="number">
 
 7353384026
 
-</b>
+</div>
 
-</p>
+VOGO
+
+</div>
+
+<div class="box">
+
+<h3>
+
+Deposit Details
+
+</h3>
+
+<input placeholder="Your Bank Name">
+
+<input placeholder="Your Account Name">
+
+<input placeholder="Your Account Number">
+
+</div>
+
+<div class="box">
+
+📜 Deposit History
+
+<br><br>
+
+No Deposits Yet
 
 </div>
 
 </body>
+
 </html>
