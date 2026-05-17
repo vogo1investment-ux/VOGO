@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>VOOGO Dashboard</title>
 
 <style>
@@ -15,303 +16,265 @@ font-family:Arial,sans-serif;
 }
 
 body{
-background:#f5f9ff;
+background:#111;
+color:white;
 padding:20px;
 }
 
-.dashboard{
-max-width:700px;
+.container{
+max-width:1100px;
 margin:auto;
 }
 
-.top-box{
-background:linear-gradient(135deg,#0d6efd,#00bfff);
-padding:35px;
-border-radius:25px;
-color:white;
-box-shadow:0 5px 20px rgba(0,0,0,0.15);
-margin-bottom:25px;
-}
-
-.top-box h2{
-font-size:20px;
-margin-bottom:10px;
-}
-
-.balance{
-font-size:45px;
-font-weight:bold;
-margin-bottom:10px;
-}
-
-.referral{
-font-size:20px;
-opacity:0.95;
-}
-
-.profile-box{
-background:white;
+.balance-box{
+background:black;
+border:2px solid #00cc66;
 padding:30px;
-border-radius:25px;
-box-shadow:0 5px 20px rgba(0,0,0,0.08);
-}
-
-.profile-title{
-font-size:28px;
+border-radius:20px;
 margin-bottom:25px;
-color:#0d6efd;
+}
+
+.balance-title{
+color:#00cc66;
+font-size:20px;
+}
+
+.usd{
+font-size:50px;
 font-weight:bold;
+margin-top:10px;
 }
 
-.info{
-margin-bottom:18px;
+.currency-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:15px;
+margin-bottom:25px;
 }
 
-.label{
-font-weight:bold;
-font-size:15px;
-color:#555;
-margin-bottom:5px;
+.currency-card{
+background:black;
+border:1px solid #00cc66;
+padding:20px;
+border-radius:15px;
+text-align:center;
 }
 
-.value{
-background:#f1f5ff;
-padding:15px;
-border-radius:12px;
-font-size:17px;
-word-break:break-word;
+.currency-card h3{
+color:#00cc66;
+margin-bottom:10px;
 }
 
-.edit-btn{
-margin-top:25px;
-width:100%;
-padding:16px;
-background:#0d6efd;
+.buttons{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+gap:20px;
+}
+
+.btn{
+background:black;
+border:2px solid #00cc66;
+padding:25px;
+border-radius:18px;
+text-align:center;
+text-decoration:none;
 color:white;
-border:none;
-border-radius:12px;
-font-size:17px;
-font-weight:bold;
-cursor:pointer;
+transition:.3s;
 }
 
-.edit-btn:hover{
-background:#0056d2;
+.btn:hover{
+background:#00cc66;
+color:black;
 }
 
-@media(max-width:600px){
-
-.balance{
+.icon{
 font-size:35px;
-}
-
-.profile-title{
-font-size:24px;
-}
-
+margin-bottom:10px;
 }
 
 </style>
+
 </head>
 
 <body>
 
-<div class="dashboard">
+<div class="container">
 
-<div class="top-box">
+<div class="balance-box">
 
-<h2>Main Balance</h2>
+<div class="balance-title">
 
-<div class="balance">
-₦<span id="balance">0</span>
-</div>
-
-<div class="referral">
-Referral Bonus:
-₦<span id="referralBonus">0</span>
-</div>
+USD Balance
 
 </div>
 
+<div class="usd">
 
-<div class="profile-box">
-
-<div class="profile-title">
-User Profile
-</div>
-
-<div class="info">
-<div class="label">Username</div>
-<div class="value" id="username">Loading...</div>
-</div>
-
-<div class="info">
-<div class="label">Full Name</div>
-<div class="value" id="fullname">Loading...</div>
-</div>
-
-<div class="info">
-<div class="label">Email Address</div>
-<div class="value" id="email">Loading...</div>
-</div>
-
-<div class="info">
-<div class="label">Phone Number</div>
-<div class="value" id="phone">Loading...</div>
-</div>
-
-<div class="info">
-<div class="label">NIN Number</div>
-<div class="value" id="nin">Loading...</div>
-</div>
-
-<div class="info">
-<div class="label">Date Of Birth</div>
-<div class="value" id="dob">Loading...</div>
-</div>
-
-<div class="info">
-<div class="label">Referral Username</div>
-<div class="value" id="referralCode">None</div>
-</div>
-
-<button class="edit-btn" onclick="editProfile()">
-Edit Profile
-</button>
+$0.00
 
 </div>
 
 </div>
 
-<script type="module">
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
-
-import {
-getAuth,
-onAuthStateChanged
-}
-
-from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
 
 
-import {
-getFirestore,
-doc,
-getDoc,
-updateDoc
-}
+<div class="currency-grid">
 
-from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+<div class="currency-card">
+<h3>🇳🇬 NGN</h3>
+₦0
+</div>
 
+<div class="currency-card">
+<h3>🇬🇭 Ghana</h3>
+₵0
+</div>
 
+<div class="currency-card">
+<h3>🇪🇺 Europe</h3>
+€0
+</div>
 
-const firebaseConfig = {
-  apiKey: "AIzaSyDRAcsC8RUTPtxbMdHjHpYZH2LjaP8jqMM",
-  authDomain: "voogo-48569.firebaseapp.com",
-  projectId: "voogo-48569",
-  storageBucket: "voogo-48569.firebasestorage.app",
-  messagingSenderId: "735597967945",
-  appId: "1:735597967945:web:346f2a0506d55f7e651d98"
-};
+<div class="currency-card">
+<h3>🇨🇳 China</h3>
+¥0
+</div>
 
+<div class="currency-card">
+<h3>🇮🇳 India</h3>
+₹0
+</div>
 
-const app = initializeApp(firebaseConfig);
+<div class="currency-card">
+<h3>🇫🇷 France</h3>
+€0
+</div>
 
-const auth = getAuth(app);
+<div class="currency-card">
+<h3>🇷🇺 Russia</h3>
+₽0
+</div>
 
-const db = getFirestore(app);
-
-
-
-onAuthStateChanged(auth, async(user)=>{
-
-if(user){
-
-const docRef = doc(db,"users",user.uid);
-
-const docSnap = await getDoc(docRef);
-
-
-if(docSnap.exists()){
-
-const data = docSnap.data();
-
-
-document.getElementById("balance").innerText =
-data.balance || 0;
-
-document.getElementById("referralBonus").innerText =
-data.referralEarnings || 0;
-
-document.getElementById("username").innerText =
-data.username || "";
-
-document.getElementById("fullname").innerText =
-data.fullname || "";
-
-document.getElementById("email").innerText =
-data.email || "";
-
-document.getElementById("phone").innerText =
-data.phone || "";
-
-document.getElementById("nin").innerText =
-data.nin || "";
-
-document.getElementById("dob").innerText =
-data.dob || "";
-
-document.getElementById("referralCode").innerText =
-data.referralCode || "None";
-
-}
-
-}else{
-
-window.location.href = "login.html";
-
-}
-
-});
+</div>
 
 
 
-window.editProfile = async function(){
+<div class="buttons">
 
-const user = auth.currentUser;
+<a href="profile.html" class="btn">
 
-if(!user) return;
+<div class="icon">
 
+👤
 
-const newUsername = prompt(
-"Enter new username:"
-);
+</div>
 
-const newPhone = prompt(
-"Enter new phone number:"
-);
+Profile
 
-
-if(newUsername && newPhone){
-
-await updateDoc(doc(db,"users",user.uid),{
-
-username:newUsername,
-phone:newPhone
-
-});
+</a>
 
 
-alert("Profile Updated");
 
-location.reload();
+<a href="market.html" class="btn">
 
-}
+<div class="icon">
 
-}
+🛒
 
-</script>
+</div>
+
+Market
+
+</a>
+
+
+
+<a href="deposit.html" class="btn">
+
+<div class="icon">
+
+💳
+
+</div>
+
+Deposit
+
+</a>
+
+
+
+<a href="withdrawal.html" class="btn">
+
+<div class="icon">
+
+💸
+
+</div>
+
+Withdrawal
+
+</a>
+
+
+
+<a href="cart.html" class="btn">
+
+<div class="icon">
+
+🧺
+
+</div>
+
+Cart
+
+</a>
+
+
+
+<a href="referral.html" class="btn">
+
+<div class="icon">
+
+🎁
+
+</div>
+
+Referral
+
+</a>
+
+
+
+<a href="find-user.html" class="btn">
+
+<div class="icon">
+
+💬
+
+</div>
+
+Find User
+
+</a>
+
+
+
+<a href="settings.html" class="btn">
+
+<div class="icon">
+
+⚙️
+
+</div>
+
+Settings
+
+</a>
+
+</div>
+
+</div>
 
 </body>
+
 </html>
