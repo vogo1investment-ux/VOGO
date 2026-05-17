@@ -2,8 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VOOGO Signup</title>
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+
+VOOGO Signup
+
+</title>
 
 <style>
 
@@ -15,86 +21,54 @@ font-family:Arial,sans-serif;
 }
 
 body{
+background:#111;
 min-height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
 padding:20px;
-position:relative;
-overflow:hidden;
-background:linear-gradient(135deg,#0d6efd,#00bfff);
 }
 
-body::before{
-content:"";
-position:absolute;
-width:100%;
-height:100%;
-background:url('images/dollar.png') center center no-repeat;
-background-size:350px;
-opacity:0.08;
-z-index:0;
-}
-
-.signup-box{
-background:white;
+.box{
+background:black;
 width:100%;
 max-width:500px;
-padding:40px;
-border-radius:25px;
-box-shadow:0 10px 30px rgba(0,0,0,0.2);
-position:relative;
-z-index:1;
+padding:35px;
+border-radius:20px;
+border:2px solid #00cc66;
 }
 
-.logo{
+h1{
 text-align:center;
-margin-bottom:15px;
+color:#00cc66;
+margin-bottom:10px;
 }
 
-.logo img{
-width:120px;
-height:120px;
-object-fit:contain;
-}
-
-.text{
+p{
 text-align:center;
-color:#555;
-margin-bottom:30px;
-font-size:17px;
-font-weight:bold;
+color:white;
+margin-bottom:25px;
 }
 
 input{
 width:100%;
 padding:16px;
 margin-bottom:18px;
-border:1px solid #ddd;
-border-radius:12px;
-font-size:16px;
-outline:none;
-}
-
-input:focus{
-border-color:#0d6efd;
+border-radius:10px;
+border:1px solid #00cc66;
+background:#111;
+color:white;
 }
 
 button{
 width:100%;
 padding:16px;
-background:#0d6efd;
-color:white;
+background:#00cc66;
 border:none;
-border-radius:12px;
-font-size:18px;
+border-radius:10px;
 font-weight:bold;
+font-size:16px;
 cursor:pointer;
-transition:0.3s;
-}
-
-button:hover{
-background:#0056d2;
 }
 
 .bottom{
@@ -103,205 +77,71 @@ margin-top:20px;
 }
 
 .bottom a{
+color:#00cc66;
 text-decoration:none;
-font-weight:bold;
-color:#0d6efd;
 }
 
 </style>
+
 </head>
 
 <body>
 
-<div class="signup-box">
+<div class="box">
 
-<div class="logo">
+<h1>
 
-<img src="images/dollar.png">
+Signup
 
-</div>
+</h1>
 
-<div class="text">
-Create Your Investment Account
-</div>
+<p>
 
-<input type="text" id="username" placeholder="Username">
+Create your VOOGO account
 
-<input type="text" id="fullname" placeholder="Full Name">
+</p>
 
-<input type="email" id="email" placeholder="Email Address">
+<input type="text"
+placeholder="Username">
 
-<input type="tel" id="phone" placeholder="Phone Number">
+<input type="text"
+placeholder="Full Name">
 
-<input type="text" id="nin" placeholder="NIN Number">
+<input type="email"
+placeholder="Email">
 
-<input type="text" id="referral" placeholder="Referral Username (Optional)">
+<input type="tel"
+placeholder="Phone Number">
 
-<input type="date" id="dob">
+<input type="text"
+placeholder="NIN Number">
 
-<input type="password" id="password" placeholder="Password">
+<input type="text"
+placeholder="Referral Username">
 
-<button onclick="signup()">
+<input type="date">
+
+<input type="password"
+placeholder="Password">
+
+<button>
+
 Create Account
+
 </button>
 
 <div class="bottom">
+
 <a href="login.html">
-Already have account? Login
+
+Already have account?
+
 </a>
-</div>
 
 </div>
 
-<script type="module">
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
-
-import {
-getAuth,
-createUserWithEmailAndPassword
-}
-
-from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
-
-
-import {
-getFirestore,
-doc,
-setDoc
-}
-
-from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
-
-
-
-const firebaseConfig = {
-  apiKey: "AIzaSyDRAcsC8RUTPtxbMdHjHpYZH2LjaP8jqMM",
-  authDomain: "voogo-48569.firebaseapp.com",
-  projectId: "voogo-48569",
-  storageBucket: "voogo-48569.firebasestorage.app",
-  messagingSenderId: "735597967945",
-  appId: "1:735597967945:web:346f2a0506d55f7e651d98"
-};
-
-
-const app = initializeApp(firebaseConfig);
-
-const auth = getAuth(app);
-
-const db = getFirestore(app);
-
-
-
-window.signup = async function(){
-
-const username = document.getElementById("username").value;
-
-const fullname = document.getElementById("fullname").value;
-
-const email = document.getElementById("email").value;
-
-const phone = document.getElementById("phone").value;
-
-const nin = document.getElementById("nin").value;
-
-const referral = document.getElementById("referral").value;
-
-const dob = document.getElementById("dob").value;
-
-const password = document.getElementById("password").value;
-
-
-
-if(
-!username ||
-!fullname ||
-!email ||
-!phone ||
-!nin ||
-!dob ||
-!password
-){
-alert("Please fill all fields");
-return;
-}
-
-
-
-const birthDate = new Date(dob);
-
-const today = new Date();
-
-let age = today.getFullYear() - birthDate.getFullYear();
-
-const month = today.getMonth() - birthDate.getMonth();
-
-if(month < 0 || (month === 0 && today.getDate() < birthDate.getDate())){
-age--;
-}
-
-
-if(age < 10){
-
-alert("Only users from 10 years and above can register.");
-
-return;
-
-}
-
-
-
-try{
-
-const userCredential = await createUserWithEmailAndPassword(
-auth,
-email,
-password
-);
-
-const user = userCredential.user;
-
-
-
-await setDoc(doc(db,"users",user.uid),{
-
-username: username,
-fullname: fullname,
-email: email,
-phone: phone,
-nin: nin,
-
-referralCode: referral,
-
-dob: dob,
-
-balance: 0,
-
-referralEarnings: 0,
-
-status: "pending",
-
-createdAt: new Date().toISOString()
-
-});
-
-
-
-alert("Account Created Successfully");
-
-window.location.href = "dashboard.html";
-
-}
-
-catch(error){
-
-alert(error.message);
-
-}
-
-}
-
-</script>
+</div>
 
 </body>
+
 </html>
