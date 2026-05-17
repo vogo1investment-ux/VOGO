@@ -29,6 +29,7 @@ body{
 background:#111;
 color:white;
 padding:20px;
+padding-bottom:120px;
 }
 
 .container{
@@ -104,41 +105,147 @@ margin-bottom:10px;
 
 }
 
-.buttons{
 
-display:grid;
 
-grid-template-columns:
+/* BOTTOM NAVIGATION */
 
-repeat(auto-fit,minmax(170px,1fr));
+.bottom-nav{
 
-gap:18px;
+position:fixed;
 
-}
+bottom:0;
 
-.btn{
+left:0;
+
+width:100%;
 
 background:black;
 
-border:2px solid #00cc66;
+border-top:2px solid #00cc66;
 
-padding:25px;
+display:flex;
 
-border-radius:18px;
+justify-content:space-around;
 
-text-align:center;
+padding:12px;
+
+z-index:1000;
+
+}
+
+.bottom-btn{
 
 text-decoration:none;
 
 color:white;
 
+text-align:center;
+
+font-size:13px;
+
 }
 
-.icon{
+.bottom-btn div{
 
-font-size:34px;
+font-size:24px;
 
-margin-bottom:10px;
+margin-bottom:5px;
+
+}
+
+
+
+/* 3 DOT MENU */
+
+.menu-box{
+
+position:fixed;
+
+right:15px;
+
+bottom:90px;
+
+z-index:1001;
+
+}
+
+.menu-btn{
+
+background:#00cc66;
+
+border:none;
+
+width:55px;
+
+height:55px;
+
+border-radius:50%;
+
+font-size:25px;
+
+cursor:pointer;
+
+font-weight:bold;
+
+}
+
+.dropdown{
+
+display:none;
+
+position:absolute;
+
+bottom:65px;
+
+right:0;
+
+background:black;
+
+border:1px solid #00cc66;
+
+border-radius:15px;
+
+overflow:hidden;
+
+min-width:190px;
+
+}
+
+.dropdown a{
+
+display:block;
+
+padding:15px;
+
+color:white;
+
+text-decoration:none;
+
+border-bottom:1px solid #222;
+
+}
+
+.dropdown a:hover{
+
+background:#00cc66;
+
+color:black;
+
+}
+
+.show{
+
+display:block;
+
+}
+
+@media(max-width:768px){
+
+.usd{
+
+font-size:40px;
+
+}
 
 }
 
@@ -226,524 +333,4 @@ id="china">
 
 <h3>
 
-🇨🇳 China
-
-</h3>
-
-¥0
-
-</div>
-
-
-
-<div class="card"
-
-id="india">
-
-<h3>
-
-🇮🇳 India
-
-</h3>
-
-₹0
-
-</div>
-
-
-
-<div class="card"
-
-id="france">
-
-<h3>
-
-🇫🇷 France
-
-</h3>
-
-€0
-
-</div>
-
-
-
-<div class="card"
-
-id="russia">
-
-<h3>
-
-🇷🇺 Russia
-
-</h3>
-
-₽0
-
-</div>
-
-</div>
-
-
-
-<div class="buttons">
-
-<a href="profile.html"
-
-class="btn">
-
-<div class="icon">
-
-👤
-
-</div>
-
-Profile
-
-</a>
-
-
-
-<a href="market.html"
-
-class="btn">
-
-<div class="icon">
-
-🛒
-
-</div>
-
-Market
-
-</a>
-
-
-
-<a href="deposit.html"
-
-class="btn">
-
-<div class="icon">
-
-💳
-
-</div>
-
-Deposit
-
-</a>
-
-
-
-<a href="withdrawal.html"
-
-class="btn">
-
-<div class="icon">
-
-💸
-
-</div>
-
-Withdrawal
-
-</a>
-
-
-
-<a href="cart.html"
-
-class="btn">
-
-<div class="icon">
-
-🧺
-
-</div>
-
-Cart
-
-</a>
-
-
-
-<a href="referral.html"
-
-class="btn">
-
-<div class="icon">
-
-🎁
-
-</div>
-
-Referral
-
-</a>
-
-
-
-<a href="find-user.html"
-
-class="btn">
-
-<div class="icon">
-
-💬
-
-</div>
-
-Find User
-
-</a>
-
-
-
-<a href="settings.html"
-
-class="btn">
-
-<div class="icon">
-
-⚙️
-
-</div>
-
-Settings
-
-</a>
-
-</div>
-
-</div>
-
-
-
-<script type="module">
-
-import {
-
-initializeApp
-
-}
-
-from
-
-"https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
-
-
-import {
-
-getFirestore,
-
-doc,
-
-getDoc
-
-}
-
-from
-
-"https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
-
-
-import {
-
-getAuth,
-
-onAuthStateChanged
-
-}
-
-from
-
-"https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
-
-
-
-const firebaseConfig = {
-
-apiKey:
-
-"AIzaSyDRAcsC8RUTPtxbMdHjHpYZH2LjaP8jqMM",
-
-authDomain:
-
-"voogo-48569.firebaseapp.com",
-
-projectId:
-
-"voogo-48569",
-
-storageBucket:
-
-"voogo-48569.firebasestorage.app",
-
-messagingSenderId:
-
-"735597967945",
-
-appId:
-
-"1:735597967945:web:346f2a0506d55f7e651d98"
-
-};
-
-
-
-const app=
-
-initializeApp(
-
-firebaseConfig
-
-);
-
-const db=
-
-getFirestore(app);
-
-const auth=
-
-getAuth(app);
-
-
-
-onAuthStateChanged(
-
-auth,
-
-async(user)=>{
-
-if(user){
-
-const ref=
-
-doc(
-
-db,
-
-"users",
-
-user.uid
-
-);
-
-const snap=
-
-await getDoc(ref);
-
-if(
-
-snap.exists()
-
-){
-
-const data=
-
-snap.data();
-
-let usd=
-
-data.balance || 0;
-
-
-
-document
-
-.getElementById(
-
-"usd"
-
-)
-
-.innerHTML=
-
-"$"
-
-+
-
-usd;
-
-
-
-document
-
-.getElementById(
-
-"ngn"
-
-)
-
-.innerHTML=
-
-"<h3>🇳🇬 NGN</h3>₦"
-
-+
-
-(
-
-usd*1457
-
-)
-
-.toLocaleString();
-
-
-
-document
-
-.getElementById(
-
-"ghana"
-
-)
-
-.innerHTML=
-
-"<h3>🇬🇭 Ghana</h3>₵"
-
-+
-
-(
-
-usd*15
-
-)
-
-.toFixed(2);
-
-
-
-document
-
-.getElementById(
-
-"europe"
-
-)
-
-.innerHTML=
-
-"<h3>🇪🇺 Europe</h3>€"
-
-+
-
-(
-
-usd*0.92
-
-)
-
-.toFixed(2);
-
-
-
-document
-
-.getElementById(
-
-"china"
-
-)
-
-.innerHTML=
-
-"<h3>🇨🇳 China</h3>¥"
-
-+
-
-(
-
-usd*7.2
-
-)
-
-.toFixed(2);
-
-
-
-document
-
-.getElementById(
-
-"india"
-
-)
-
-.innerHTML=
-
-"<h3>🇮🇳 India</h3>₹"
-
-+
-
-(
-
-usd*84
-
-)
-
-.toFixed(2);
-
-
-
-document
-
-.getElementById(
-
-"france"
-
-)
-
-.innerHTML=
-
-"<h3>🇫🇷 France</h3>€"
-
-+
-
-(
-
-usd*0.92
-
-)
-
-.toFixed(2);
-
-
-
-document
-
-.getElementById(
-
-"russia"
-
-)
-
-.innerHTML=
-
-"<h3>🇷🇺 Russia</h3>₽"
-
-+
-
-(
-
-usd*82
-
-)
-
-.toFixed(2);
-
-}
-
-}
-
-}
-
-);
-
-</script>
-
-</body>
-
-</html>
+🇨🇳
