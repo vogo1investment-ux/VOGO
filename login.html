@@ -1,9 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VOOGO Login</title>
+
+<meta name="viewport"
+
+content="width=device-width,
+
+initial-scale=1.0">
+
+<title>
+
+VOOGO Login
+
+</title>
 
 <style>
 
@@ -16,10 +27,10 @@ font-family:Arial,sans-serif;
 
 body{
 background:#111;
-min-height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
+min-height:100vh;
 padding:20px;
 }
 
@@ -45,34 +56,57 @@ margin-bottom:25px;
 }
 
 input{
+
 width:100%;
+
 padding:16px;
+
 margin-bottom:18px;
+
 border-radius:10px;
+
 border:1px solid #00cc66;
+
 background:#111;
+
 color:white;
+
 }
 
 button{
+
 width:100%;
+
 padding:16px;
+
 background:#00cc66;
+
 border:none;
+
 border-radius:10px;
-font-weight:bold;
+
 font-size:16px;
+
+font-weight:bold;
+
 cursor:pointer;
+
 }
 
 .bottom{
+
 text-align:center;
+
 margin-top:20px;
+
 }
 
 .bottom a{
+
 color:#00cc66;
+
 text-decoration:none;
+
 }
 
 </style>
@@ -91,17 +125,27 @@ Login
 
 <p>
 
-Access your VOOGO account
+Access your account
 
 </p>
 
-<input type="text"
-placeholder="Username">
+<input
 
-<input type="password"
+type="email"
+
+id="email"
+
+placeholder="Email">
+
+<input
+
+type="password"
+
+id="password"
+
 placeholder="Password">
 
-<button>
+<button onclick="login()">
 
 Login
 
@@ -118,6 +162,135 @@ Create Account
 </div>
 
 </div>
+
+
+
+<script type="module">
+
+import {
+
+initializeApp
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+
+
+import {
+
+getAuth,
+
+signInWithEmailAndPassword
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
+
+
+
+const firebaseConfig = {
+
+apiKey:
+
+"AIzaSyDRAcsC8RUTPtxbMdHjHpYZH2LjaP8jqMM",
+
+authDomain:
+
+"voogo-48569.firebaseapp.com",
+
+projectId:
+
+"voogo-48569",
+
+storageBucket:
+
+"voogo-48569.firebasestorage.app",
+
+messagingSenderId:
+
+"735597967945",
+
+appId:
+
+"1:735597967945:web:346f2a0506d55f7e651d98"
+
+};
+
+
+
+const app=
+
+initializeApp(firebaseConfig);
+
+const auth=
+
+getAuth(app);
+
+
+
+window.login=
+
+async function(){
+
+const email=
+
+document.getElementById(
+
+"email"
+
+).value;
+
+const password=
+
+document.getElementById(
+
+"password"
+
+).value;
+
+
+
+try{
+
+await signInWithEmailAndPassword(
+
+auth,
+
+email,
+
+password
+
+);
+
+
+
+alert(
+
+"Login Successful"
+
+);
+
+
+
+window.location.href=
+
+"dashboard.html";
+
+
+
+}catch(error){
+
+alert(error.message);
+
+}
+
+}
+
+</script>
 
 </body>
 
