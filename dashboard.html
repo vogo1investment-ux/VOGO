@@ -28,46 +28,85 @@ font-family:Arial,sans-serif;
 body{
 background:#111;
 color:white;
-padding:20px;
-padding-bottom:120px;
+padding:15px;
+padding-bottom:110px;
 }
 
-.container{
-max-width:1200px;
-margin:auto;
-}
+/* TOP */
 
-.balance-box{
+.top{
 
-background:black;
+display:flex;
 
-border:2px solid #00cc66;
+justify-content:space-between;
 
-padding:35px;
+align-items:center;
 
-border-radius:20px;
-
-margin-bottom:25px;
+margin-bottom:20px;
 
 }
 
-.balance-title{
+.logo{
 
-font-size:20px;
+font-size:28px;
+
+font-weight:bold;
 
 color:#00cc66;
 
 }
 
-.usd{
+.menu{
 
-font-size:55px;
+font-size:30px;
+
+cursor:pointer;
+
+}
+
+/* BALANCE */
+
+.balance-box{
+
+background:
+
+linear-gradient(
+
+135deg,
+
+#00cc66,
+
+#008844
+
+);
+
+padding:30px;
+
+border-radius:22px;
+
+margin-bottom:20px;
+
+}
+
+.balance-title{
+
+font-size:18px;
+
+opacity:0.9;
+
+}
+
+.balance{
+
+font-size:45px;
 
 font-weight:bold;
 
-margin-top:15px;
+margin-top:10px;
 
 }
+
+/* CURRENCIES */
 
 .currency-grid{
 
@@ -75,11 +114,11 @@ display:grid;
 
 grid-template-columns:
 
-repeat(auto-fit,minmax(180px,1fr));
+repeat(2,1fr);
 
 gap:15px;
 
-margin-bottom:30px;
+margin-bottom:25px;
 
 }
 
@@ -89,9 +128,9 @@ background:black;
 
 border:1px solid #00cc66;
 
-padding:20px;
+padding:18px;
 
-border-radius:15px;
+border-radius:18px;
 
 text-align:center;
 
@@ -103,11 +142,11 @@ color:#00cc66;
 
 margin-bottom:10px;
 
+font-size:17px;
+
 }
 
-
-
-/* BOTTOM NAVIGATION */
+/* OPAY STYLE NAV */
 
 .bottom-nav{
 
@@ -121,73 +160,41 @@ width:100%;
 
 background:black;
 
-border-top:2px solid #00cc66;
+border-top:1px solid #00cc66;
 
 display:flex;
 
 justify-content:space-around;
 
-padding:12px;
+padding:12px 5px;
 
 z-index:1000;
 
 }
 
-.bottom-btn{
+.nav-btn{
 
 text-decoration:none;
 
 color:white;
 
+font-size:12px;
+
 text-align:center;
 
-font-size:13px;
+width:20%;
 
 }
 
-.bottom-btn div{
+.nav-icon{
 
 font-size:24px;
 
-margin-bottom:5px;
+margin-bottom:4px;
 
 }
 
-
-
-/* 3 DOT MENU */
-
-.menu-box{
-
-position:fixed;
-
-right:15px;
-
-bottom:90px;
-
-z-index:1001;
-
-}
-
-.menu-btn{
-
-background:#00cc66;
-
-border:none;
-
-width:55px;
-
-height:55px;
-
-border-radius:50%;
-
-font-size:25px;
-
-cursor:pointer;
-
-font-weight:bold;
-
-}
+/* DROPDOWN */
 
 .dropdown{
 
@@ -195,9 +202,9 @@ display:none;
 
 position:absolute;
 
-bottom:65px;
+top:70px;
 
-right:0;
+right:15px;
 
 background:black;
 
@@ -207,7 +214,9 @@ border-radius:15px;
 
 overflow:hidden;
 
-min-width:190px;
+width:200px;
+
+z-index:9999;
 
 }
 
@@ -239,11 +248,11 @@ display:block;
 
 }
 
-@media(max-width:768px){
+@media(max-width:600px){
 
-.usd{
+.balance{
 
-font-size:40px;
+font-size:38px;
 
 }
 
@@ -255,7 +264,63 @@ font-size:40px;
 
 <body>
 
-<div class="container">
+<!-- TOP -->
+
+<div class="top">
+
+<div class="logo">
+
+VOOGO
+
+</div>
+
+<div
+
+class="menu"
+
+onclick="toggleMenu()">
+
+⋮
+
+</div>
+
+</div>
+
+<!-- MENU -->
+
+<div
+
+class="dropdown"
+
+id="dropdown">
+
+<a href="deposit.html">
+
+💳 Deposit
+
+</a>
+
+<a href="withdrawal.html">
+
+💸 Withdrawal
+
+</a>
+
+<a href="referral.html">
+
+🎁 Referral
+
+</a>
+
+<a href="settings.html">
+
+⚙️ Settings
+
+</a>
+
+</div>
+
+<!-- BALANCE -->
 
 <div class="balance-box">
 
@@ -265,9 +330,11 @@ USD Balance
 
 </div>
 
-<div class="usd"
+<div
 
-id="usd">
+class="balance"
+
+id="usdBalance">
 
 $0
 
@@ -275,11 +342,13 @@ $0
 
 </div>
 
-
+<!-- CURRENCY -->
 
 <div class="currency-grid">
 
-<div class="card"
+<div
+
+class="card"
 
 id="ngn">
 
@@ -293,9 +362,9 @@ id="ngn">
 
 </div>
 
+<div
 
-
-<div class="card"
+class="card"
 
 id="ghana">
 
@@ -309,9 +378,9 @@ id="ghana">
 
 </div>
 
+<div
 
-
-<div class="card"
+class="card"
 
 id="europe">
 
@@ -325,12 +394,478 @@ id="europe">
 
 </div>
 
+<div
 
-
-<div class="card"
+class="card"
 
 id="china">
 
 <h3>
 
-🇨🇳
+🇨🇳 China
+
+</h3>
+
+¥0
+
+</div>
+
+<div
+
+class="card"
+
+id="india">
+
+<h3>
+
+🇮🇳 India
+
+</h3>
+
+₹0
+
+</div>
+
+<div
+
+class="card"
+
+id="russia">
+
+<h3>
+
+🇷🇺 Russia
+
+</h3>
+
+₽0
+
+</div>
+
+</div>
+
+<!-- BOTTOM NAV -->
+
+<div class="bottom-nav">
+
+<a
+
+href="dashboard.html"
+
+class="nav-btn">
+
+<div class="nav-icon">
+
+🏠
+
+</div>
+
+Home
+
+</a>
+
+
+
+<a
+
+href="market.html"
+
+class="nav-btn">
+
+<div class="nav-icon">
+
+🛒
+
+</div>
+
+Market
+
+</a>
+
+
+
+<a
+
+href="cart.html"
+
+class="nav-btn">
+
+<div class="nav-icon">
+
+🧺
+
+</div>
+
+Cart
+
+</a>
+
+
+
+<a
+
+href="find-user.html"
+
+class="nav-btn">
+
+<div class="nav-icon">
+
+💬
+
+</div>
+
+Users
+
+</a>
+
+
+
+<a
+
+href="profile.html"
+
+class="nav-btn">
+
+<div class="nav-icon">
+
+👤
+
+</div>
+
+Profile
+
+</a>
+
+</div>
+
+<!-- FIREBASE -->
+
+<script type="module">
+
+import {
+
+initializeApp
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+
+
+import {
+
+getFirestore,
+
+doc,
+
+getDoc
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+
+
+import {
+
+getAuth,
+
+onAuthStateChanged
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
+
+
+
+const firebaseConfig = {
+
+apiKey:
+
+"AIzaSyDRAcsC8RUTPtxbMdHjHpYZH2LjaP8jqMM",
+
+authDomain:
+
+"voogo-48569.firebaseapp.com",
+
+projectId:
+
+"voogo-48569",
+
+storageBucket:
+
+"voogo-48569.firebasestorage.app",
+
+messagingSenderId:
+
+"735597967945",
+
+appId:
+
+"1:735597967945:web:346f2a0506d55f7e651d98"
+
+};
+
+
+
+const app=
+
+initializeApp(firebaseConfig);
+
+const db=
+
+getFirestore(app);
+
+const auth=
+
+getAuth(app);
+
+
+
+onAuthStateChanged(
+
+auth,
+
+async(user)=>{
+
+if(user){
+
+const ref=
+
+doc(
+
+db,
+
+"users",
+
+user.uid
+
+);
+
+
+
+const snap=
+
+await getDoc(ref);
+
+
+
+if(
+
+snap.exists()
+
+){
+
+const data=
+
+snap.data();
+
+
+
+let usd=
+
+Number(
+
+data.balance || 0
+
+);
+
+
+
+document
+
+.getElementById(
+
+"usdBalance"
+
+)
+
+.innerHTML=
+
+"$"
+
++
+
+usd.toFixed(2);
+
+
+
+document
+
+.getElementById(
+
+"ngn"
+
+)
+
+.innerHTML=
+
+"<h3>🇳🇬 NGN</h3>₦"
+
++
+
+(
+
+usd*1457
+
+)
+
+.toLocaleString();
+
+
+
+document
+
+.getElementById(
+
+"ghana"
+
+)
+
+.innerHTML=
+
+"<h3>🇬🇭 Ghana</h3>₵"
+
++
+
+(
+
+usd*15
+
+)
+
+.toFixed(2);
+
+
+
+document
+
+.getElementById(
+
+"europe"
+
+)
+
+.innerHTML=
+
+"<h3>🇪🇺 Europe</h3>€"
+
++
+
+(
+
+usd*0.92
+
+)
+
+.toFixed(2);
+
+
+
+document
+
+.getElementById(
+
+"china"
+
+)
+
+.innerHTML=
+
+"<h3>🇨🇳 China</h3>¥"
+
++
+
+(
+
+usd*7.2
+
+)
+
+.toFixed(2);
+
+
+
+document
+
+.getElementById(
+
+"india"
+
+)
+
+.innerHTML=
+
+"<h3>🇮🇳 India</h3>₹"
+
++
+
+(
+
+usd*84
+
+)
+
+.toFixed(2);
+
+
+
+document
+
+.getElementById(
+
+"russia"
+
+)
+
+.innerHTML=
+
+"<h3>🇷🇺 Russia</h3>₽"
+
++
+
+(
+
+usd*82
+
+)
+
+.toFixed(2);
+
+}
+
+}
+
+}
+
+);
+
+
+
+window.toggleMenu=function(){
+
+document
+
+.getElementById(
+
+"dropdown"
+
+)
+
+.classList.toggle(
+
+"show"
+
+);
+
+}
+
+</script>
+
+</body>
+
+</html>
