@@ -17,6 +17,17 @@ font-family:Arial;
 padding:20px;
 }
 
+.top{
+background:linear-gradient(
+135deg,
+#00cc66,
+#008844
+);
+padding:25px;
+border-radius:20px;
+margin-bottom:20px;
+}
+
 input,button{
 
 width:100%;
@@ -29,41 +40,42 @@ border-radius:10px;
 
 }
 
+input{
+background:black;
+color:white;
+border:1px solid #00cc66;
+}
+
 button{
 background:#00cc66;
 border:none;
+font-weight:bold;
 }
 
 .user{
-
 background:black;
-
 padding:20px;
-
-margin-top:20px;
-
 border-radius:15px;
-
 border:1px solid #00cc66;
-
+margin-top:20px;
 }
 
 .chat{
-
 display:block;
-
-padding:12px;
-
-background:#00cc66;
-
 margin-top:12px;
-
-text-align:center;
-
-text-decoration:none;
-
+padding:12px;
+background:#00cc66;
 color:black;
+text-align:center;
+text-decoration:none;
+border-radius:10px;
+}
 
+.notice{
+margin-top:20px;
+font-weight:bold;
+font-size:20px;
+color:#00cc66;
 }
 
 </style>
@@ -72,31 +84,73 @@ color:black;
 
 <body>
 
-<h2>
+<div class="top">
 
 💬 Find Users
 
-</h2>
+</div>
 
 <input
 
-placeholder="Username">
+id="search"
 
-<button>
+placeholder="Search Username">
 
-Search
+<button onclick="findUser()">
+
+Search User
 
 </button>
 
+<div id="result">
+
+</div>
+
+<div class="notice">
+
+USERS SELLING ON WHATSAPP ARE NOT ONLINE
+
+WAIT 10 MINUTES AND REFRESH
+
+</div>
+
+<script>
+
+function findUser(){
+
+let u=
+
+document
+
+.getElementById(
+
+"search"
+
+)
+
+.value;
+
+
+
+document
+
+.getElementById(
+
+"result"
+
+)
+
+.innerHTML=
+
+`
+
 <div class="user">
 
 Username:
 
-VOGOUSER
+${u}
 
-<a
-
-href="chat.html"
+<a href="chat.html"
 
 class="chat">
 
@@ -106,23 +160,11 @@ Open Chat
 
 </div>
 
-<div class="user">
+`;
 
-Username:
+}
 
-MARKETPRO
-
-<a
-
-href="chat.html"
-
-class="chat">
-
-Open Chat
-
-</a>
-
-</div>
+</script>
 
 </body>
 

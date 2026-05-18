@@ -1,20 +1,226 @@
-<button>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Deposit</title>
+
+<style>
+
+body{
+background:#111;
+color:white;
+font-family:Arial;
+padding:20px;
+}
+
+.big{
+background:linear-gradient(
+135deg,
+#00cc66,
+#008844
+);
+
+padding:30px;
+border-radius:20px;
+}
+
+.number{
+font-size:40px;
+font-weight:bold;
+}
+
+.box{
+margin-top:20px;
+background:black;
+padding:20px;
+border-radius:15px;
+border:1px solid #00cc66;
+}
+
+input,button{
+
+width:100%;
+padding:15px;
+margin-top:12px;
+background:#111;
+border:1px solid #00cc66;
+color:white;
+border-radius:10px;
+
+}
+
+button{
+background:#00cc66;
+color:black;
+}
+
+.pending{
+color:orange;
+font-weight:bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="big">
+
+Wema Bank
+
+<div class="number">
+
+7353384026
+
+</div>
+
+VOGO
+
+</div>
+
+<div class="box">
+
+<input id="bank"
+
+placeholder="Your Bank">
+
+<input id="name"
+
+placeholder="Account Name">
+
+<input id="amount"
+
+placeholder="Amount">
+
+<button onclick="submitDeposit()">
 
 Submit Deposit
 
 </button>
 
-<script>
+</div>
 
-document
+<div class="box"
 
-.querySelector(
+id="history">
 
-"button"
+Deposit History
 
-)
+</div>
 
-.onclick=function(){
+<script type="module">
+
+import { initializeApp }
+
+from
+
+"https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+
+import {
+
+getFirestore,
+
+collection,
+
+addDoc
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+
+const firebaseConfig={
+
+apiKey:
+
+"AIzaSyDRAcsC8RUTPtxbMdHjHpYZH2LjaP8jqMM",
+
+authDomain:
+
+"voogo-48569.firebaseapp.com",
+
+projectId:
+
+"voogo-48569",
+
+storageBucket:
+
+"voogo-48569.firebasestorage.app",
+
+messagingSenderId:
+
+"735597967945",
+
+appId:
+
+"1:735597967945:web:346f2a0506d55f7e651d98"
+
+};
+
+const app=
+
+initializeApp(firebaseConfig);
+
+const db=
+
+getFirestore(app);
+
+window.submitDeposit=
+
+async()=>{
+
+await addDoc(
+
+collection(
+
+db,
+
+"deposits"
+
+),
+
+{
+
+bank:
+
+document.getElementById(
+
+"bank"
+
+).value,
+
+name:
+
+document.getElementById(
+
+"name"
+
+).value,
+
+amount:
+
+document.getElementById(
+
+"amount"
+
+).value,
+
+status:
+
+"pending"
+
+}
+
+);
+
+document.getElementById(
+
+"history"
+
+).innerHTML+=
+
+"<br><span class='pending'>Pending Approval</span>";
 
 alert(
 
@@ -22,6 +228,10 @@ alert(
 
 );
 
-}
+};
 
 </script>
+
+</body>
+
+</html>

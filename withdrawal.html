@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 
 <title>
@@ -12,8 +13,8 @@ Withdrawal
 
 body{
 background:#111;
-padding:20px;
 color:white;
+padding:20px;
 font-family:Arial;
 }
 
@@ -24,52 +25,26 @@ border-radius:20px;
 border:2px solid #00cc66;
 }
 
-input,select{
+input,button{
 
 width:100%;
-
 padding:15px;
-
 margin-top:12px;
-
 background:#111;
-
 color:white;
-
 border:1px solid #00cc66;
-
 border-radius:10px;
 
 }
 
 button{
-
-width:100%;
-
-padding:15px;
-
-margin-top:15px;
-
 background:#00cc66;
-
-border:none;
-
-border-radius:10px;
-
-font-weight:bold;
-
+color:black;
 }
 
-.history{
-
-margin-top:20px;
-
-background:#222;
-
-padding:15px;
-
-border-radius:12px;
-
+.pending{
+color:orange;
+font-weight:bold;
 }
 
 </style>
@@ -82,59 +57,159 @@ border-radius:12px;
 
 <h2>
 
-💸 Withdrawal
+Withdrawal
 
 </h2>
 
-<select>
-
-<option>
-
-🇳🇬 NGN
-
-</option>
-
-<option>
-
-🇺🇸 USD
-
-</option>
-
-</select>
-
-<input
+<input id="bank"
 
 placeholder="Bank Name">
 
-<input
-
-placeholder="Account Name">
-
-<input
+<input id="acc"
 
 placeholder="Account Number">
 
-<input
+<input id="amount"
 
 placeholder="Amount">
 
-<button>
+<button onclick="submitWithdrawal()">
 
 Submit Withdrawal
 
 </button>
 
-<div class="history">
+<div id="history">
 
-📜 History
-
-<br><br>
-
-No Withdrawal Yet
+Withdrawal History
 
 </div>
 
 </div>
+
+<script type="module">
+
+import { initializeApp }
+
+from
+
+"https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+
+import {
+
+getFirestore,
+
+collection,
+
+addDoc
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+
+const firebaseConfig={
+
+apiKey:
+
+"AIzaSyDRAcsC8RUTPtxbMdHjHpYZH2LjaP8jqMM",
+
+authDomain:
+
+"voogo-48569.firebaseapp.com",
+
+projectId:
+
+"voogo-48569",
+
+storageBucket:
+
+"voogo-48569.firebasestorage.app",
+
+messagingSenderId:
+
+"735597967945",
+
+appId:
+
+"1:735597967945:web:346f2a0506d55f7e651d98"
+
+};
+
+const app=
+
+initializeApp(firebaseConfig);
+
+const db=
+
+getFirestore(app);
+
+window.submitWithdrawal=
+
+async()=>{
+
+await addDoc(
+
+collection(
+
+db,
+
+"withdrawals"
+
+),
+
+{
+
+bank:
+
+document.getElementById(
+
+"bank"
+
+).value,
+
+account:
+
+document.getElementById(
+
+"acc"
+
+).value,
+
+amount:
+
+document.getElementById(
+
+"amount"
+
+).value,
+
+status:
+
+"pending"
+
+}
+
+);
+
+document.getElementById(
+
+"history"
+
+).innerHTML+=
+
+"<br><span class='pending'>Pending Approval</span>";
+
+alert(
+
+"Withdrawal Submitted"
+
+);
+
+};
+
+</script>
 
 </body>
 
