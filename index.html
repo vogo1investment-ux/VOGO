@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>VOOGO</title>
+<title>VOGO MARKET</title>
 
 <style>
 
@@ -12,266 +12,136 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial,sans-serif;
+font-family:Arial;
 }
 
 body{
 background:#111;
 color:white;
-overflow-x:hidden;
 }
 
 header{
 background:black;
-padding:20px 8%;
+padding:20px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-flex-wrap:wrap;
-position:sticky;
-top:0;
-z-index:1000;
 border-bottom:2px solid #00cc66;
 }
 
 .logo{
-font-size:32px;
+font-size:28px;
 font-weight:bold;
 color:#00cc66;
-}
-
-nav{
-display:flex;
-gap:20px;
-flex-wrap:wrap;
-}
-
-nav a{
-text-decoration:none;
-color:white;
-font-weight:bold;
 }
 
 .hero{
-
-min-height:90vh;
-
+padding:60px 20px;
+text-align:center;
 background:
-
 linear-gradient(
-
-rgba(0,0,0,0.85),
-
-rgba(0,80,0,0.80)
-
+rgba(0,0,0,.7),
+rgba(0,0,0,.7)
 ),
 
-url('images/dollar.png');
+url("dollar.png");
 
-background-size:contain;
-
-background-repeat:no-repeat;
-
-background-position:center;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-text-align:center;
-
-padding:40px;
-
-}
-
-.hero-content{
-
-max-width:900px;
-
+background-size:cover;
 }
 
 .hero h1{
-
-font-size:60px;
-
-margin-bottom:20px;
-
-color:#00ff88;
-
+font-size:42px;
+color:#00cc66;
 }
 
 .hero p{
-
-font-size:21px;
-
-line-height:1.9;
-
-margin-bottom:30px;
-
+margin-top:15px;
 }
 
-.buttons{
-
-display:flex;
-
-justify-content:center;
-
-gap:15px;
-
-flex-wrap:wrap;
-
+.btns{
+margin-top:25px;
 }
 
-.btn{
-
-padding:15px 28px;
-
-border-radius:10px;
-
-font-weight:bold;
-
+.btns a{
 text-decoration:none;
-
-}
-
-.signup{
-
+padding:15px 25px;
 background:#00cc66;
-
 color:black;
-
+border-radius:10px;
+margin:5px;
+display:inline-block;
 }
 
-.login{
+.stats{
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(200px,1fr));
 
-border:2px solid #00cc66;
-
-color:#00ff88;
-
+gap:20px;
+padding:20px;
 }
 
-.section{
-
-padding:80px 8%;
-
-}
-
-.title{
-
+.card{
+background:black;
+padding:20px;
+border-radius:15px;
+border:1px solid #00cc66;
 text-align:center;
+}
 
-font-size:42px;
-
+.card h2{
+font-size:35px;
 color:#00cc66;
+}
 
-margin-bottom:40px;
+.ticker{
+margin:20px;
+background:black;
+padding:15px;
+overflow:hidden;
+border-radius:10px;
+border:1px solid #00cc66;
+}
+
+.move{
+white-space:nowrap;
+animation:slide 15s linear infinite;
+}
+
+@keyframes slide{
+
+0%{
+transform:
+translateX(100%);
+}
+
+100%{
+transform:
+translateX(-100%);
+}
+
+}
+
+.about,
+.testimony{
+
+padding:30px;
 
 }
 
 .box{
-
 background:black;
-
-padding:35px;
-
-border-radius:20px;
-
-line-height:1.9;
-
+padding:20px;
+margin-top:15px;
+border-radius:15px;
 border:1px solid #00cc66;
-
-}
-
-.country-grid{
-
-display:grid;
-
-grid-template-columns:
-
-repeat(auto-fit,minmax(130px,1fr));
-
-gap:15px;
-
-margin-top:25px;
-
-font-size:19px;
-
-}
-
-.testimony-grid{
-
-display:grid;
-
-grid-template-columns:
-
-repeat(auto-fit,minmax(250px,1fr));
-
-gap:25px;
-
-}
-
-.card{
-
-background:black;
-
-padding:25px;
-
-border-radius:20px;
-
-border:1px solid #00cc66;
-
-}
-
-.card h3{
-
-color:#00cc66;
-
-margin-bottom:15px;
-
 }
 
 footer{
-
-background:black;
-
-padding:35px;
-
+padding:25px;
 text-align:center;
-
-border-top:2px solid #00cc66;
-
-}
-
-@media(max-width:768px){
-
-.hero h1{
-
-font-size:40px;
-
-}
-
-.hero p{
-
-font-size:17px;
-
-}
-
-header{
-
-justify-content:center;
-
-gap:15px;
-
-}
-
-nav{
-
-justify-content:center;
-
-}
-
+background:black;
+margin-top:30px;
 }
 
 </style>
@@ -284,35 +154,49 @@ justify-content:center;
 
 <div class="logo">
 
-VOOGO
+VOGO
 
 </div>
 
-<nav>
+<div>
 
-<a href="#">Home</a>
+<a href="login.html">
 
-<a href="#about">
-
-About
+Login
 
 </a>
 
-<a href="#world">
-
-Global Users
-
-</a>
-
-<a href="#testimony">
-
-Testimony
-
-</a>
+|
 
 <a href="signup.html">
 
 Signup
+
+</a>
+
+</div>
+
+</header>
+
+<section class="hero">
+
+<h1>
+
+BUY & SELL PRODUCTS WORLDWIDE
+
+</h1>
+
+<p>
+
+Users worldwide use our platform to market and trade products.
+
+</p>
+
+<div class="btns">
+
+<a href="signup.html">
+
+Get Started
 
 </a>
 
@@ -322,234 +206,195 @@ Login
 
 </a>
 
-</nav>
+</div>
 
-</header>
+</section>
 
+<section class="stats">
 
+<div class="card">
 
-<section class="hero">
+<h2 id="users">
 
-<div class="hero-content">
+0
 
-<h1>
+</h2>
 
-Buy & Sell Products Worldwide
-
-</h1>
-
-<p>
-
-VOOGO is a marketplace for buying and selling different products. Users around the world use our platform to market products, connect with customers and grow their business.
-
-</p>
-
-<div class="buttons">
-
-<a href="signup.html"
-
-class="btn signup">
-
-Create Account
-
-</a>
-
-<a href="login.html"
-
-class="btn login">
-
-Login
-
-</a>
+Users
 
 </div>
+
+<div class="card">
+
+<h2 id="products">
+
+0
+
+</h2>
+
+Products
+
+</div>
+
+<div class="card">
+
+<h2>
+
+50+
+
+</h2>
+
+Countries
 
 </div>
 
 </section>
 
+<div class="ticker">
 
+<div class="move"
 
-<section
+id="market">
 
-id="about"
+Loading Market...
 
-class="section">
+</div>
 
-<h2 class="title">
+</div>
 
-About VOOGO
+<section class="about">
+
+<h2>
+
+ABOUT
 
 </h2>
 
 <div class="box">
 
-VOOGO focuses on buying and selling products across different categories. Sellers can market products while buyers can discover products easily using one platform.
+We provide buying and selling services for users worldwide.
 
 </div>
 
 </section>
 
+<section class="testimony">
 
+<h2>
 
-<section
-
-id="world"
-
-class="section">
-
-<h2 class="title">
-
-Global Community
+TESTIMONY
 
 </h2>
 
 <div class="box">
 
-<h3 style="color:#00cc66;">
-
-🌍 Users Around The World Use VOOGO To Market Products
-
-</h3>
-
-<br>
-
-<p>
-
-VOOGO users market products from different countries worldwide.
-
-</p>
-
-<div class="country-grid">
-
-<div>🇳🇬 Nigeria</div>
-<div>🇺🇸 USA</div>
-<div>🇬🇧 UK</div>
-<div>🇨🇦 Canada</div>
-<div>🇫🇷 France</div>
-<div>🇩🇪 Germany</div>
-<div>🇪🇸 Spain</div>
-<div>🇮🇹 Italy</div>
-<div>🇯🇵 Japan</div>
-<div>🇨🇳 China</div>
-
-<div>🇮🇳 India</div>
-<div>🇧🇷 Brazil</div>
-<div>🇿🇦 South Africa</div>
-<div>🇦🇺 Australia</div>
-<div>🇷🇺 Russia</div>
-<div>🇰🇷 South Korea</div>
-<div>🇲🇽 Mexico</div>
-<div>🇹🇷 Turkey</div>
-<div>🇪🇬 Egypt</div>
-<div>🇰🇪 Kenya</div>
-
-<div>🇬🇭 Ghana</div>
-<div>🇦🇪 UAE</div>
-<div>🇸🇦 Saudi Arabia</div>
-<div>🇸🇪 Sweden</div>
-<div>🇳🇴 Norway</div>
-<div>🇳🇱 Netherlands</div>
-<div>🇧🇪 Belgium</div>
-<div>🇨🇭 Switzerland</div>
-<div>🇦🇷 Argentina</div>
-<div>🇵🇱 Poland</div>
-
-<div>🇵🇹 Portugal</div>
-<div>🇮🇩 Indonesia</div>
-<div>🇹🇭 Thailand</div>
-<div>🇲🇾 Malaysia</div>
-<div>🇸🇬 Singapore</div>
-<div>🇵🇭 Philippines</div>
-<div>🇳🇿 New Zealand</div>
-<div>🇩🇰 Denmark</div>
-<div>🇦🇹 Austria</div>
-<div>🇮🇪 Ireland</div>
-
-<div>🇨🇿 Czech Republic</div>
-<div>🇫🇮 Finland</div>
-<div>🇶🇦 Qatar</div>
-<div>🇮🇱 Israel</div>
-<div>🇨🇱 Chile</div>
-<div>🇨🇴 Colombia</div>
-<div>🇵🇰 Pakistan</div>
-<div>🇧🇩 Bangladesh</div>
-<div>🇺🇦 Ukraine</div>
-<div>🇲🇦 Morocco</div>
-
-</div>
+Users worldwide trust VOGO marketplace.
 
 </div>
 
 </section>
-
-
-
-<section
-
-id="testimony"
-
-class="section">
-
-<h2 class="title">
-
-Testimonials
-
-</h2>
-
-<div class="testimony-grid">
-
-<div class="card">
-
-<h3>
-
-Chinedu
-
-</h3>
-
-Users can market products easily.
-
-</div>
-
-<div class="card">
-
-<h3>
-
-Ada
-
-</h3>
-
-Very simple buying and selling experience.
-
-</div>
-
-<div class="card">
-
-<h3>
-
-Emeka
-
-</h3>
-
-Good platform for product promotion.
-
-</div>
-
-</div>
-
-</section>
-
-
 
 <footer>
 
-© 2026 VOOGO
-
-<br><br>
-
-Buying & Selling Marketplace
+VOGO MARKET
 
 </footer>
+
+<script type="module">
+
+import {
+
+initializeApp
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+
+import {
+
+getFirestore,
+
+collection,
+
+getDocs
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+
+const firebaseConfig={
+
+apiKey:"AIzaSyDRAcsC8RUTPtxbMdHjHpYZH2LjaP8jqMM",
+
+authDomain:"voogo-48569.firebaseapp.com",
+
+projectId:"voogo-48569",
+
+storageBucket:"voogo-48569.firebasestorage.app",
+
+messagingSenderId:"735597967945",
+
+appId:"1:735597967945:web:346f2a0506d55f7e651d98"
+
+};
+
+const app=
+initializeApp(firebaseConfig);
+
+const db=
+getFirestore(app);
+
+async function load(){
+
+let u=
+await getDocs(
+collection(
+db,
+"users"
+));
+
+document.getElementById(
+"users"
+).innerHTML=
+u.size;
+
+let p=
+await getDocs(
+collection(
+db,
+"cart"
+));
+
+document.getElementById(
+"products"
+).innerHTML=
+p.size;
+
+}
+
+load();
+
+setInterval(()=>{
+
+let x=
+
+Math.floor(
+Math.random()*500
+)+50;
+
+document.getElementById(
+"market"
+).innerHTML=
+
+"Market Update • Product Value +$"+x;
+
+},4000);
+
+</script>
 
 </body>
 

@@ -1,124 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-
-<meta charset="UTF-8">
 
 <meta name="viewport"
 
-content="width=device-width,
-
-initial-scale=1.0">
+content="width=device-width,initial-scale=1">
 
 <title>
 
-VOOGO Dashboard
+Dashboard
 
 </title>
 
 <style>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
-}
-
 body{
 background:#111;
 color:white;
-padding:15px;
-padding-bottom:110px;
+font-family:Arial;
+padding:20px;
 }
-
-/* TOP */
 
 .top{
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-margin-bottom:20px;
-
-}
-
-.logo{
-
-font-size:28px;
-
-font-weight:bold;
-
-color:#00cc66;
-
-}
-
-.menu{
-
-font-size:30px;
-
-cursor:pointer;
-
-}
-
-/* BALANCE */
-
-.balance-box{
-
 background:
-
 linear-gradient(
-
 135deg,
-
 #00cc66,
-
 #008844
-
 );
 
-padding:30px;
+padding:25px;
 
-border-radius:22px;
-
-margin-bottom:20px;
-
-}
-
-.balance-title{
-
-font-size:18px;
-
-opacity:0.9;
-
+border-radius:20px;
 }
 
 .balance{
-
 font-size:45px;
-
 font-weight:bold;
-
-margin-top:10px;
-
 }
 
-/* CURRENCIES */
-
-.currency-grid{
+.grid{
 
 display:grid;
 
 grid-template-columns:
 
-repeat(2,1fr);
+repeat(auto-fit,minmax(180px,1fr));
 
 gap:15px;
 
-margin-bottom:25px;
+margin-top:20px;
 
 }
 
@@ -126,29 +57,21 @@ margin-bottom:25px;
 
 background:black;
 
+padding:20px;
+
+border-radius:15px;
+
 border:1px solid #00cc66;
-
-padding:18px;
-
-border-radius:18px;
 
 text-align:center;
 
 }
 
-.card h3{
-
+.card h2{
 color:#00cc66;
-
-margin-bottom:10px;
-
-font-size:17px;
-
 }
 
-/* OPAY STYLE NAV */
-
-.bottom-nav{
+.bottom{
 
 position:fixed;
 
@@ -156,105 +79,27 @@ bottom:0;
 
 left:0;
 
-width:100%;
+right:0;
 
 background:black;
-
-border-top:1px solid #00cc66;
 
 display:flex;
 
 justify-content:space-around;
 
-padding:12px 5px;
-
-z-index:1000;
-
-}
-
-.nav-btn{
-
-text-decoration:none;
-
-color:white;
-
-font-size:12px;
-
-text-align:center;
-
-width:20%;
-
-}
-
-.nav-icon{
-
-font-size:24px;
-
-margin-bottom:4px;
-
-}
-
-/* DROPDOWN */
-
-.dropdown{
-
-display:none;
-
-position:absolute;
-
-top:70px;
-
-right:15px;
-
-background:black;
-
-border:1px solid #00cc66;
-
-border-radius:15px;
-
-overflow:hidden;
-
-width:200px;
-
-z-index:9999;
-
-}
-
-.dropdown a{
-
-display:block;
-
 padding:15px;
 
-color:white;
+border-top:
+
+1px solid #00cc66;
+
+}
+
+.bottom a{
+
+color:#00cc66;
 
 text-decoration:none;
-
-border-bottom:1px solid #222;
-
-}
-
-.dropdown a:hover{
-
-background:#00cc66;
-
-color:black;
-
-}
-
-.show{
-
-display:block;
-
-}
-
-@media(max-width:600px){
-
-.balance{
-
-font-size:38px;
-
-}
 
 }
 
@@ -264,77 +109,13 @@ font-size:38px;
 
 <body>
 
-<!-- TOP -->
-
 <div class="top">
-
-<div class="logo">
-
-VOOGO
-
-</div>
-
-<div
-
-class="menu"
-
-onclick="toggleMenu()">
-
-⋮
-
-</div>
-
-</div>
-
-<!-- MENU -->
-
-<div
-
-class="dropdown"
-
-id="dropdown">
-
-<a href="deposit.html">
-
-💳 Deposit
-
-</a>
-
-<a href="withdrawal.html">
-
-💸 Withdrawal
-
-</a>
-
-<a href="referral.html">
-
-🎁 Referral
-
-</a>
-
-<a href="settings.html">
-
-⚙️ Settings
-
-</a>
-
-</div>
-
-<!-- BALANCE -->
-
-<div class="balance-box">
-
-<div class="balance-title">
 
 USD Balance
 
-</div>
+<div class="balance"
 
-<div
-
-class="balance"
-
-id="usdBalance">
+id="usd">
 
 $0
 
@@ -342,203 +123,73 @@ $0
 
 </div>
 
-<!-- CURRENCY -->
+<div class="grid">
 
-<div class="currency-grid">
+<div class="card">
 
-<div
+NGN
 
-class="card"
-
-id="ngn">
-
-<h3>
-
-🇳🇬 NGN
-
-</h3>
+<h2 id="ngn">
 
 ₦0
 
-</div>
-
-<div
-
-class="card"
-
-id="ghana">
-
-<h3>
-
-🇬🇭 Ghana
-
-</h3>
-
-₵0
+</h2>
 
 </div>
 
-<div
+<div class="card">
 
-class="card"
+Referral Bonus
 
-id="europe">
+<h2 id="ref">
 
-<h3>
+0
 
-🇪🇺 Europe
-
-</h3>
-
-€0
+</h2>
 
 </div>
 
-<div
+<div class="card">
 
-class="card"
+Cart
 
-id="china">
+<h2 id="cart">
 
-<h3>
+0
 
-🇨🇳 China
-
-</h3>
-
-¥0
-
-</div>
-
-<div
-
-class="card"
-
-id="india">
-
-<h3>
-
-🇮🇳 India
-
-</h3>
-
-₹0
-
-</div>
-
-<div
-
-class="card"
-
-id="russia">
-
-<h3>
-
-🇷🇺 Russia
-
-</h3>
-
-₽0
+</h2>
 
 </div>
 
 </div>
 
-<!-- BOTTOM NAV -->
+<div class="bottom">
 
-<div class="bottom-nav">
-
-<a
-
-href="dashboard.html"
-
-class="nav-btn">
-
-<div class="nav-icon">
-
-🏠
-
-</div>
-
-Home
-
-</a>
-
-
-
-<a
-
-href="market.html"
-
-class="nav-btn">
-
-<div class="nav-icon">
-
-🛒
-
-</div>
+<a href="market.html">
 
 Market
 
 </a>
 
-
-
-<a
-
-href="cart.html"
-
-class="nav-btn">
-
-<div class="nav-icon">
-
-🧺
-
-</div>
+<a href="cart.html">
 
 Cart
 
 </a>
 
-
-
-<a
-
-href="find-user.html"
-
-class="nav-btn">
-
-<div class="nav-icon">
-
-💬
-
-</div>
-
-Users
-
-</a>
-
-
-
-<a
-
-href="profile.html"
-
-class="nav-btn">
-
-<div class="nav-icon">
-
-👤
-
-</div>
+<a href="profile.html">
 
 Profile
 
 </a>
 
-</div>
+<a href="settings.html">
 
-<!-- FIREBASE -->
+More
+
+</a>
+
+</div>
 
 <script type="module">
 
@@ -552,21 +203,27 @@ from
 
 "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
 
-
 import {
 
 getFirestore,
 
 doc,
 
-getDoc
+getDoc,
+
+collection,
+
+query,
+
+where,
+
+getDocs
 
 }
 
 from
 
 "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
-
 
 import {
 
@@ -580,51 +237,30 @@ from
 
 "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
 
+const firebaseConfig={
 
+apiKey:"AIzaSyDRAcsC8RUTPtxbMdHjHpYZH2LjaP8jqMM",
 
-const firebaseConfig = {
+authDomain:"voogo-48569.firebaseapp.com",
 
-apiKey:
+projectId:"voogo-48569",
 
-"AIzaSyDRAcsC8RUTPtxbMdHjHpYZH2LjaP8jqMM",
+storageBucket:"voogo-48569.firebasestorage.app",
 
-authDomain:
+messagingSenderId:"735597967945",
 
-"voogo-48569.firebaseapp.com",
-
-projectId:
-
-"voogo-48569",
-
-storageBucket:
-
-"voogo-48569.firebasestorage.app",
-
-messagingSenderId:
-
-"735597967945",
-
-appId:
-
-"1:735597967945:web:346f2a0506d55f7e651d98"
+appId:"1:735597967945:web:346f2a0506d55f7e651d98"
 
 };
 
-
-
 const app=
-
 initializeApp(firebaseConfig);
 
 const db=
-
 getFirestore(app);
 
 const auth=
-
 getAuth(app);
-
-
 
 onAuthStateChanged(
 
@@ -632,237 +268,75 @@ auth,
 
 async(user)=>{
 
-if(user){
+if(!user)return;
 
-const ref=
+let snap=
+
+await getDoc(
 
 doc(
-
 db,
-
 "users",
-
 user.uid
+)
 
 );
 
-
-
-const snap=
-
-await getDoc(ref);
-
-
-
-if(
-
-snap.exists()
-
-){
-
-const data=
-
+let d=
 snap.data();
 
-
-
 let usd=
-
 Number(
-
-data.balance || 0
-
+d.balance||0
 );
 
+document.getElementById(
+"usd"
+).innerHTML=
+"$"+usd;
 
-
-document
-
-.getElementById(
-
-"usdBalance"
-
-)
-
-.innerHTML=
-
-"$"
-
-+
-
-usd.toFixed(2);
-
-
-
-document
-
-.getElementById(
-
+document.getElementById(
 "ngn"
+).innerHTML=
+"₦"+(usd*1457);
+
+document.getElementById(
+"ref"
+).innerHTML=
+"$"+
+Number(
+d.referralBonus||0
+);
+
+let c=
+
+await getDocs(
+
+query(
+
+collection(
+db,
+"cart"
+),
+
+where(
+"uid",
+"==",
+user.uid
+)
 
 )
 
-.innerHTML=
-
-"<h3>🇳🇬 NGN</h3>₦"
-
-+
-
-(
-
-usd*1457
-
-)
-
-.toLocaleString();
-
-
-
-document
-
-.getElementById(
-
-"ghana"
-
-)
-
-.innerHTML=
-
-"<h3>🇬🇭 Ghana</h3>₵"
-
-+
-
-(
-
-usd*15
-
-)
-
-.toFixed(2);
-
-
-
-document
-
-.getElementById(
-
-"europe"
-
-)
-
-.innerHTML=
-
-"<h3>🇪🇺 Europe</h3>€"
-
-+
-
-(
-
-usd*0.92
-
-)
-
-.toFixed(2);
-
-
-
-document
-
-.getElementById(
-
-"china"
-
-)
-
-.innerHTML=
-
-"<h3>🇨🇳 China</h3>¥"
-
-+
-
-(
-
-usd*7.2
-
-)
-
-.toFixed(2);
-
-
-
-document
-
-.getElementById(
-
-"india"
-
-)
-
-.innerHTML=
-
-"<h3>🇮🇳 India</h3>₹"
-
-+
-
-(
-
-usd*84
-
-)
-
-.toFixed(2);
-
-
-
-document
-
-.getElementById(
-
-"russia"
-
-)
-
-.innerHTML=
-
-"<h3>🇷🇺 Russia</h3>₽"
-
-+
-
-(
-
-usd*82
-
-)
-
-.toFixed(2);
-
-}
-
-}
+);
+
+document.getElementById(
+"cart"
+).innerHTML=
+c.size;
 
 }
 
 );
-
-
-
-window.toggleMenu=function(){
-
-document
-
-.getElementById(
-
-"dropdown"
-
-)
-
-.classList.toggle(
-
-"show"
-
-);
-
-}
 
 </script>
 
