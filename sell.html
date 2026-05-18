@@ -4,7 +4,7 @@
 
 <title>
 
-Sell Product
+Sell Products
 
 </title>
 
@@ -19,30 +19,25 @@ padding:20px;
 
 .box{
 background:black;
-padding:25px;
-border-radius:20px;
-border:2px solid #00cc66;
+padding:20px;
+margin-top:20px;
+border-radius:15px;
+border:1px solid #00cc66;
 }
 
 .price{
-font-size:35px;
+font-size:28px;
 color:#00cc66;
 }
 
 input,select,button{
 
 width:100%;
-
 padding:15px;
-
 margin-top:12px;
-
 background:#111;
-
-border:1px solid #00cc66;
-
 color:white;
-
+border:1px solid #00cc66;
 border-radius:10px;
 
 }
@@ -58,63 +53,177 @@ color:black;
 
 <body>
 
-<div class="box">
+<h2>
 
-Apple iPhone 15
+Sell Products
 
-<div class="price">
+</h2>
 
-$900
+<div id="products">
+
+Loading...
 
 </div>
 
-<select>
+<script type="module">
 
-<option>
+import {
 
-1 Product
+initializeApp
 
-</option>
+}
 
-<option>
+from
 
-2 Products
+"https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
 
-</option>
+import {
 
-<option>
+getFirestore,
 
-3 Products
+collection,
 
-</option>
+query,
 
-<option>
+where,
 
-5 Products
+getDocs,
 
-</option>
+doc,
 
-<option>
+getDoc,
 
-10 Products
+updateDoc,
 
-</option>
+deleteDoc,
 
-<option>
+addDoc
 
-20 Products
+}
 
-</option>
+from
+
+"https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+
+import {
+
+getAuth,
+
+onAuthStateChanged
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
+
+const firebaseConfig={
+
+apiKey:"AIzaSyDRAcsC8RUTPtxbMdHjHpYZH2LjaP8jqMM",
+
+authDomain:"voogo-48569.firebaseapp.com",
+
+projectId:"voogo-48569",
+
+storageBucket:"voogo-48569.firebasestorage.app",
+
+messagingSenderId:"735597967945",
+
+appId:"1:735597967945:web:346f2a0506d55f7e651d98"
+
+};
+
+const app=
+initializeApp(firebaseConfig);
+
+const db=
+getFirestore(app);
+
+const auth=
+getAuth(app);
+
+
+
+onAuthStateChanged(
+
+auth,
+
+async(user)=>{
+
+if(!user)return;
+
+
+
+const q=
+
+query(
+
+collection(
+db,
+"cart"
+),
+
+where(
+"uid",
+"==",
+user.uid
+)
+
+);
+
+
+
+const snap=
+
+await getDocs(q);
+
+
+
+let html="";
+
+
+
+snap.forEach((d)=>{
+
+let x=d.data();
+
+
+
+html+=`
+
+<div class="box">
+
+${x.product}
+
+<div class="price">
+
+$${x.price}
+
+</div>
+
+Cart Qty:
+
+${x.qty}
+
+<select id="qty-${d.id}">
+
+<option>1</option>
+<option>2</option>
+<option>3</option>
+<option>5</option>
+<option>10</option>
 
 </select>
 
-<input
+<button onclick="sell(
 
-type="password"
+'${d.id}',
 
-placeholder="Password">
+${x.price},
 
-<button onclick="sell()">
+${x.qty}
+
+)">
 
 Sell
 
@@ -122,17 +231,178 @@ Sell
 
 </div>
 
-<script>
+`;
 
-function sell(){
+});
 
-alert(
 
-"Sold Successfully + Balance Added"
+
+document
+
+.getElementById(
+"products"
+)
+
+.innerHTML=
+
+html;
+
+}
+
+
+
+);
+
+
+
+window.sell=
+
+async(
+
+cartId,
+
+price,
+
+cartQty
+
+)=>{
+
+let user=
+
+auth.currentUser;
+
+
+
+let qty=
+
+Number(
+
+document
+
+.getElementById(
+`qty-${cartId}`
+)
+
+.value
+
+);
+
+
+
+let total=
+
+price*qty;
+
+
+
+const userRef=
+
+doc(
+db,
+"users",
+user.uid
+);
+
+
+
+const snap=
+
+await getDoc(
+userRef
+);
+
+
+
+let balance=
+
+Number(
+snap.data().balance||0
+);
+
+
+
+await updateDoc(
+
+userRef,
+
+{
+
+balance:
+
+balance+total
+
+}
+
+);
+
+
+
+await addDoc(
+
+collection(
+db,
+"soldProducts"
+),
+
+{
+
+uid:user.uid,
+
+qty:qty,
+
+price:price
+
+}
+
+);
+
+
+
+if(cartQty-qty<=0){
+
+await deleteDoc(
+
+doc(
+db,
+"cart",
+cartId
+)
 
 );
 
 }
+
+else{
+
+await updateDoc(
+
+doc(
+db,
+"cart",
+cartId
+),
+
+{
+
+qty:
+
+cartQty-qty
+
+}
+
+);
+
+}
+
+
+
+alert(
+"Sold Successfully"
+);
+
+location.reload();
+
+};
 
 </script>
 

@@ -36,13 +36,6 @@ font-size:40px;
 font-weight:bold;
 }
 
-.box{
-background:black;
-padding:20px;
-border-radius:15px;
-border:1px solid #00cc66;
-}
-
 </style>
 
 </head>
@@ -55,7 +48,7 @@ Users Joined
 
 <div class="big"
 
-id="joined">
+id="users">
 
 0
 
@@ -69,25 +62,11 @@ Referral Earnings
 
 <div class="big"
 
-id="earn">
+id="money">
 
-$0
-
-</div>
+0
 
 </div>
-
-<div class="box">
-
-Referral Code:
-
-USERNAME
-
-<br><br>
-
-You earn 10%
-
-when users use your username.
 
 </div>
 
@@ -119,29 +98,17 @@ from
 
 const firebaseConfig={
 
-apiKey:
+apiKey:"AIzaSyDRAcsC8RUTPtxbMdHjHpYZH2LjaP8jqMM",
 
-"AIzaSyDRAcsC8RUTPtxbMdHjHpYZH2LjaP8jqMM",
+authDomain:"voogo-48569.firebaseapp.com",
 
-authDomain:
+projectId:"voogo-48569",
 
-"voogo-48569.firebaseapp.com",
+storageBucket:"voogo-48569.firebasestorage.app",
 
-projectId:
+messagingSenderId:"735597967945",
 
-"voogo-48569",
-
-storageBucket:
-
-"voogo-48569.firebasestorage.app",
-
-messagingSenderId:
-
-"735597967945",
-
-appId:
-
-"1:735597967945:web:346f2a0506d55f7e651d98"
+appId:"1:735597967945:web:346f2a0506d55f7e651d98"
 
 };
 
@@ -155,6 +122,8 @@ getFirestore(app);
 
 async function load(){
 
+
+
 const snap=
 
 await getDocs(
@@ -166,6 +135,8 @@ db,
 
 );
 
+
+
 let users=0;
 
 let money=0;
@@ -176,14 +147,14 @@ snap.forEach((d)=>{
 
 let x=d.data();
 
+
+
 users++;
 
 money+=
 
 Number(
-
-x.bonus || 0
-
+x.bonus||0
 );
 
 });
@@ -193,7 +164,7 @@ x.bonus || 0
 document
 
 .getElementById(
-"joined"
+"users"
 )
 
 .innerHTML=
@@ -205,7 +176,7 @@ users;
 document
 
 .getElementById(
-"earn"
+"money"
 )
 
 .innerHTML=
@@ -213,6 +184,8 @@ document
 "$"+money;
 
 }
+
+
 
 load();
 
