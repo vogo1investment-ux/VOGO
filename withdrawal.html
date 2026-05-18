@@ -1,213 +1,93 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-
-<title>
-
-Withdrawal
-
-</title>
-
-<style>
-
-body{
-background:#111;
-color:white;
-padding:20px;
-font-family:Arial;
-}
-
-.box{
-background:black;
-padding:25px;
-border-radius:20px;
-border:2px solid #00cc66;
-}
-
-input,button{
-
-width:100%;
-padding:15px;
-margin-top:12px;
-background:#111;
-color:white;
-border:1px solid #00cc66;
-border-radius:10px;
-
-}
-
-button{
-background:#00cc66;
-color:black;
-}
-
-.pending{
-color:orange;
-font-weight:bold;
-}
-
-</style>
-
+<title>Withdrawal</title>
 </head>
 
 <body>
 
-<div class="box">
-
-<h2>
-
-Withdrawal
-
-</h2>
-
-<input id="bank"
-
-placeholder="Bank Name">
-
-<input id="acc"
-
-placeholder="Account Number">
-
-<input id="amount"
-
-placeholder="Amount">
-
-<button onclick="submitWithdrawal()">
-
-Submit Withdrawal
-
-</button>
-
 <div id="history">
 
-Withdrawal History
-
-</div>
+Loading...
 
 </div>
 
 <script type="module">
 
-import { initializeApp }
-
+import {initializeApp}
 from
-
 "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
 
 import {
-
 getFirestore,
-
-collection,
-
-addDoc
-
+getDocs,
+collection
 }
-
 from
-
 "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
 
 const firebaseConfig={
 
-apiKey:
+apiKey:"AIzaSyDRAcsC8RUTPtxbMdHjHpYZH2LjaP8jqMM",
 
-"AIzaSyDRAcsC8RUTPtxbMdHjHpYZH2LjaP8jqMM",
+authDomain:"voogo-48569.firebaseapp.com",
 
-authDomain:
+projectId:"voogo-48569",
 
-"voogo-48569.firebaseapp.com",
+storageBucket:"voogo-48569.firebasestorage.app",
 
-projectId:
+messagingSenderId:"735597967945",
 
-"voogo-48569",
-
-storageBucket:
-
-"voogo-48569.firebasestorage.app",
-
-messagingSenderId:
-
-"735597967945",
-
-appId:
-
-"1:735597967945:web:346f2a0506d55f7e651d98"
+appId:"1:735597967945:web:346f2a0506d55f7e651d98"
 
 };
 
 const app=
-
 initializeApp(firebaseConfig);
 
 const db=
-
 getFirestore(app);
 
-window.submitWithdrawal=
+async function load(){
 
-async()=>{
-
-await addDoc(
-
+const snap=
+await getDocs(
 collection(
-
 db,
-
 "withdrawals"
+)
+);
 
-),
+let html="";
 
-{
+snap.forEach((d)=>{
 
-bank:
+let x=d.data();
+
+html+=`
+
+<div>
+
+$${x.amount}
+
+-
+
+${x.status}
+
+</div>
+
+`;
+
+});
 
 document.getElementById(
-
-"bank"
-
-).value,
-
-account:
-
-document.getElementById(
-
-"acc"
-
-).value,
-
-amount:
-
-document.getElementById(
-
-"amount"
-
-).value,
-
-status:
-
-"pending"
+"history"
+).innerHTML=
+html;
 
 }
 
-);
-
-document.getElementById(
-
-"history"
-
-).innerHTML+=
-
-"<br><span class='pending'>Pending Approval</span>";
-
-alert(
-
-"Withdrawal Submitted"
-
-);
-
-};
+load();
 
 </script>
 

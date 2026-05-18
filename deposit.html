@@ -12,40 +12,22 @@ font-family:Arial;
 padding:20px;
 }
 
-.big{
-background:linear-gradient(
-135deg,
-#00cc66,
-#008844
-);
-
-padding:30px;
-border-radius:20px;
-}
-
-.number{
-font-size:40px;
-font-weight:bold;
-}
-
 .box{
-margin-top:20px;
 background:black;
 padding:20px;
 border-radius:15px;
 border:1px solid #00cc66;
+margin-top:20px;
 }
 
 input,button{
-
 width:100%;
 padding:15px;
 margin-top:12px;
 background:#111;
-border:1px solid #00cc66;
 color:white;
+border:1px solid #00cc66;
 border-radius:10px;
-
 }
 
 button{
@@ -53,44 +35,23 @@ background:#00cc66;
 color:black;
 }
 
-.pending{
-color:orange;
-font-weight:bold;
-}
+.pending{color:orange}
+.approved{color:#00cc66}
 
 </style>
-
 </head>
 
 <body>
 
-<div class="big">
-
-Wema Bank
-
-<div class="number">
-
-7353384026
-
-</div>
-
-VOGO
-
-</div>
-
 <div class="box">
 
-<input id="bank"
+<h2>Deposit</h2>
 
-placeholder="Your Bank">
+<input id="bank" placeholder="Bank Name">
 
-<input id="name"
+<input id="name" placeholder="Account Name">
 
-placeholder="Account Name">
-
-<input id="amount"
-
-placeholder="Amount">
+<input id="amount" placeholder="Amount">
 
 <button onclick="submitDeposit()">
 
@@ -100,138 +61,153 @@ Submit Deposit
 
 </div>
 
-<div class="box"
+<div class="box">
 
-id="history">
+<h3>
 
 Deposit History
+
+</h3>
+
+<div id="history">
+
+Loading...
+
+</div>
 
 </div>
 
 <script type="module">
 
-import { initializeApp }
-
+import {initializeApp}
 from
-
 "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
 
 import {
-
 getFirestore,
-
 collection,
-
-addDoc
-
+addDoc,
+getDocs
 }
-
 from
-
 "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
 
 const firebaseConfig={
 
-apiKey:
+apiKey:"AIzaSyDRAcsC8RUTPtxbMdHjHpYZH2LjaP8jqMM",
 
-"AIzaSyDRAcsC8RUTPtxbMdHjHpYZH2LjaP8jqMM",
+authDomain:"voogo-48569.firebaseapp.com",
 
-authDomain:
+projectId:"voogo-48569",
 
-"voogo-48569.firebaseapp.com",
+storageBucket:"voogo-48569.firebasestorage.app",
 
-projectId:
+messagingSenderId:"735597967945",
 
-"voogo-48569",
-
-storageBucket:
-
-"voogo-48569.firebasestorage.app",
-
-messagingSenderId:
-
-"735597967945",
-
-appId:
-
-"1:735597967945:web:346f2a0506d55f7e651d98"
+appId:"1:735597967945:web:346f2a0506d55f7e651d98"
 
 };
 
 const app=
-
 initializeApp(firebaseConfig);
 
 const db=
-
 getFirestore(app);
 
 window.submitDeposit=
-
 async()=>{
 
 await addDoc(
 
 collection(
-
 db,
-
 "deposits"
-
 ),
 
 {
 
 bank:
-
 document.getElementById(
-
 "bank"
-
 ).value,
 
 name:
-
 document.getElementById(
-
 "name"
-
 ).value,
 
 amount:
-
+Number(
 document.getElementById(
-
 "amount"
-
-).value,
+).value
+),
 
 status:
-
 "pending"
 
 }
 
 );
 
-document.getElementById(
-
-"history"
-
-).innerHTML+=
-
-"<br><span class='pending'>Pending Approval</span>";
-
 alert(
-
 "Deposit Submitted"
-
 );
 
+loadHistory();
+
 };
+
+async function loadHistory(){
+
+const snap=
+await getDocs(
+collection(
+db,
+"deposits"
+)
+);
+
+let html="";
+
+snap.forEach((d)=>{
+
+let x=d.data();
+
+html+=`
+
+<div>
+
+$${x.amount}
+
+<br>
+
+<span class="${
+x.status
+}">
+
+${x.status}
+
+</span>
+
+</div>
+
+<hr>
+
+`;
+
+});
+
+document.getElementById(
+"history"
+).innerHTML=
+html;
+
+}
+
+loadHistory();
 
 </script>
 
 </body>
-
 </html>
