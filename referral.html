@@ -17,21 +17,21 @@ font-family:Arial;
 padding:20px;
 }
 
-.big{
+.card{
 background:linear-gradient(
 135deg,
 #00cc66,
 #008844
 );
 
-padding:30px;
+padding:25px;
 
 border-radius:20px;
 
 margin-bottom:20px;
 }
 
-.num{
+.big{
 font-size:40px;
 font-weight:bold;
 }
@@ -49,11 +49,13 @@ border:1px solid #00cc66;
 
 <body>
 
-<div class="big">
+<div class="card">
 
 Users Joined
 
-<div class="num">
+<div class="big"
+
+id="joined">
 
 0
 
@@ -61,11 +63,13 @@ Users Joined
 
 </div>
 
-<div class="big">
+<div class="card">
 
 Referral Earnings
 
-<div class="num">
+<div class="big"
+
+id="earn">
 
 $0
 
@@ -75,17 +79,144 @@ $0
 
 <div class="box">
 
-Referral code = your username
+Referral Code:
+
+USERNAME
 
 <br><br>
 
-You get
+You earn 10%
 
-10%
-
-when referred users receive balance.
+when users use your username.
 
 </div>
+
+<script type="module">
+
+import {
+
+initializeApp
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+
+import {
+
+getFirestore,
+
+collection,
+
+getDocs
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+
+const firebaseConfig={
+
+apiKey:
+
+"AIzaSyDRAcsC8RUTPtxbMdHjHpYZH2LjaP8jqMM",
+
+authDomain:
+
+"voogo-48569.firebaseapp.com",
+
+projectId:
+
+"voogo-48569",
+
+storageBucket:
+
+"voogo-48569.firebasestorage.app",
+
+messagingSenderId:
+
+"735597967945",
+
+appId:
+
+"1:735597967945:web:346f2a0506d55f7e651d98"
+
+};
+
+const app=
+initializeApp(firebaseConfig);
+
+const db=
+getFirestore(app);
+
+
+
+async function load(){
+
+const snap=
+
+await getDocs(
+
+collection(
+db,
+"referrals"
+)
+
+);
+
+let users=0;
+
+let money=0;
+
+
+
+snap.forEach((d)=>{
+
+let x=d.data();
+
+users++;
+
+money+=
+
+Number(
+
+x.bonus || 0
+
+);
+
+});
+
+
+
+document
+
+.getElementById(
+"joined"
+)
+
+.innerHTML=
+
+users;
+
+
+
+document
+
+.getElementById(
+"earn"
+)
+
+.innerHTML=
+
+"$"+money;
+
+}
+
+load();
+
+</script>
 
 </body>
 

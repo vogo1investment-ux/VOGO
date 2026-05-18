@@ -1,112 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport"
-
-content="width=device-width,
-
-initial-scale=1.0">
 
 <title>
 
-VOOGO Signup
+Sign Up
 
 </title>
 
 <style>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
-}
-
 body{
 background:#111;
-display:flex;
-justify-content:center;
-align-items:center;
-min-height:100vh;
+color:white;
+font-family:Arial;
 padding:20px;
 }
 
 .box{
 background:black;
-width:100%;
-max-width:500px;
-padding:35px;
+padding:25px;
 border-radius:20px;
 border:2px solid #00cc66;
+max-width:500px;
+margin:auto;
 }
 
-h1{
+h2{
 color:#00cc66;
 text-align:center;
-margin-bottom:10px;
 }
 
-p{
-text-align:center;
-color:white;
-margin-bottom:25px;
-}
-
-input,select{
+input,select,button{
 
 width:100%;
 
-padding:16px;
+padding:15px;
 
-margin-bottom:18px;
-
-border-radius:10px;
-
-border:1px solid #00cc66;
+margin-top:12px;
 
 background:#111;
 
 color:white;
 
-}
-
-button{
-
-width:100%;
-
-padding:16px;
-
-background:#00cc66;
-
-border:none;
+border:1px solid #00cc66;
 
 border-radius:10px;
 
+}
+
+button{
+background:#00cc66;
+color:black;
 font-weight:bold;
-
-font-size:16px;
-
-cursor:pointer;
-
-}
-
-.bottom{
-
-text-align:center;
-
-margin-top:20px;
-
-}
-
-.bottom a{
-
-color:#00cc66;
-
-text-decoration:none;
-
 }
 
 </style>
@@ -117,98 +63,87 @@ text-decoration:none;
 
 <div class="box">
 
-<h1>
+<h2>
 
-Signup
+Create Account
 
-</h1>
+</h2>
 
-<p>
-
-Create VOOGO account
-
-</p>
-
-<input
-
-type="text"
-
-id="username"
+<input id="username"
 
 placeholder="Username">
 
-<input
-
-type="text"
-
-id="fullname"
+<input id="fullname"
 
 placeholder="Full Name">
 
-<input
+<input id="email"
 
 type="email"
 
-id="email"
-
 placeholder="Email">
 
-<input
-
-type="tel"
-
-id="phone"
+<input id="phone"
 
 placeholder="Phone Number">
 
-<input
+<input id="dob"
 
-type="text"
-
-id="nin"
-
-placeholder="NIN Number">
+type="date">
 
 <select id="country">
 
 <option>
 
-🌍 Select Country
+🇳🇬 Nigeria
 
 </option>
 
-<option>🇳🇬 Nigeria</option>
-<option>🇬🇭 Ghana</option>
-<option>🇺🇸 USA</option>
-<option>🇬🇧 UK</option>
-<option>🇨🇦 Canada</option>
-<option>🇫🇷 France</option>
-<option>🇮🇳 India</option>
-<option>🇨🇳 China</option>
-<option>🇷🇺 Russia</option>
-<option>🇿🇦 South Africa</option>
+<option>
+
+🇬🇭 Ghana
+
+</option>
+
+<option>
+
+🇺🇸 USA
+
+</option>
+
+<option>
+
+🇮🇳 India
+
+</option>
+
+<option>
+
+🇨🇳 China
+
+</option>
+
+<option>
+
+🇫🇷 France
+
+</option>
+
+<option>
+
+🇷🇺 Russia
+
+</option>
 
 </select>
 
-<input
+<input id="referral"
 
-type="text"
+placeholder="Referral Username (optional)">
 
-id="referral"
-
-placeholder="Referral Username">
-
-<input
-
-type="date"
-
-id="dob">
-
-<input
+<input id="password"
 
 type="password"
-
-id="password"
 
 placeholder="Password">
 
@@ -218,32 +153,33 @@ Create Account
 
 </button>
 
-<div class="bottom">
-
-<a href="login.html">
-
-Already have account?
-
-</a>
-
 </div>
-
-</div>
-
-
 
 <script type="module">
 
-import {
-
-initializeApp
-
-}
+import { initializeApp }
 
 from
 
 "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
 
+import {
+
+getFirestore,
+
+doc,
+
+setDoc,
+
+addDoc,
+
+collection
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
 
 import {
 
@@ -257,24 +193,7 @@ from
 
 "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
 
-
-import {
-
-getFirestore,
-
-doc,
-
-setDoc
-
-}
-
-from
-
-"https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
-
-
-
-const firebaseConfig = {
+const firebaseConfig={
 
 apiKey:
 
@@ -302,180 +221,176 @@ appId:
 
 };
 
-
-
 const app=
-
 initializeApp(firebaseConfig);
 
-const auth=
-
-getAuth(app);
-
 const db=
-
 getFirestore(app);
 
-
+const auth=
+getAuth(app);
 
 window.signup=
+async()=>{
 
-async function(){
+let dob=
 
-const username=
-
-document.getElementById(
-
-"username"
-
-).value;
-
-const fullname=
+new Date(
 
 document.getElementById(
-
-"fullname"
-
-).value;
-
-const email=
-
-document.getElementById(
-
-"email"
-
-).value;
-
-const phone=
-
-document.getElementById(
-
-"phone"
-
-).value;
-
-const nin=
-
-document.getElementById(
-
-"nin"
-
-).value;
-
-const country=
-
-document.getElementById(
-
-"country"
-
-).value;
-
-const referral=
-
-document.getElementById(
-
-"referral"
-
-).value;
-
-const dob=
-
-document.getElementById(
-
 "dob"
+).value
 
-).value;
+);
 
-const password=
+let age=
+
+new Date().getFullYear()
+
+-
+
+dob.getFullYear();
+
+
+
+if(age<10){
+
+alert(
+
+"10 Years And Above Only"
+
+);
+
+return;
+
+}
+
+
+
+let email=
 
 document.getElementById(
+"email"
+).value;
 
+let pass=
+
+document.getElementById(
 "password"
-
 ).value;
 
 
 
-try{
+const userCred=
 
-const userCredential=
-
-await
-
-createUserWithEmailAndPassword(
+await createUserWithEmailAndPassword(
 
 auth,
 
 email,
 
-password
+pass
 
 );
 
 
 
-const user=
+let user=
 
-userCredential.user;
+userCred.user;
+
+
+
+let username=
+
+document.getElementById(
+"username"
+).value;
+
+let ref=
+
+document.getElementById(
+"referral"
+).value;
 
 
 
 await setDoc(
 
 doc(
-
 db,
-
 "users",
-
 user.uid
-
 ),
 
 {
 
-username,
-fullname,
-email,
-phone,
-nin,
-country,
-referral,
-dob,
+username:username,
+
+fullname:
+
+document.getElementById(
+"fullname"
+).value,
+
+email:email,
+
+phone:
+
+document.getElementById(
+"phone"
+).value,
+
+country:
+
+document.getElementById(
+"country"
+).value,
 
 balance:0,
 
-createdAt:
+referral:ref,
 
-new Date()
+referralBonus:0
 
 }
 
 );
+
+
+
+if(ref!=""){
+
+await addDoc(
+
+collection(
+db,
+"referrals"
+),
+
+{
+
+referrer:ref,
+
+joined:username,
+
+bonus:0
+
+}
+
+);
+
+}
 
 
 
 alert(
 
-"Account Created"
+"Signup Successful"
 
 );
 
-
-
-window.location.href=
-
-"dashboard.html";
-
-
-
-}catch(error){
-
-alert(error.message);
-
-}
-
-}
+};
 
 </script>
 
