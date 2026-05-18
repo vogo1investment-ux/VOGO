@@ -1,23 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-
 <title>VOGO MARKET</title>
 
 <style>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
 
 body{
 background:#111;
 color:white;
+overflow-x:hidden;
 }
 
 header{
@@ -25,82 +19,98 @@ background:black;
 padding:20px;
 display:flex;
 justify-content:space-between;
-align-items:center;
 border-bottom:2px solid #00cc66;
+position:sticky;
+top:0;
+z-index:100;
 }
 
 .logo{
-font-size:28px;
+font-size:32px;
 font-weight:bold;
 color:#00cc66;
 }
 
+.nav a{
+text-decoration:none;
+margin-left:10px;
+padding:12px 20px;
+border-radius:30px;
+background:#00cc66;
+color:black;
+font-weight:bold;
+}
+
 .hero{
-padding:60px 20px;
+padding:100px 20px;
 text-align:center;
 background:
-linear-gradient(
-rgba(0,0,0,.7),
-rgba(0,0,0,.7)
-),
-
+linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.8)),
 url("dollar.png");
-
 background-size:cover;
 }
 
 .hero h1{
-font-size:42px;
+font-size:50px;
 color:#00cc66;
+animation:up 3s infinite;
+}
+
+@keyframes up{
+50%{transform:translateY(-10px)}
 }
 
 .hero p{
 margin-top:15px;
+font-size:18px;
 }
 
-.btns{
-margin-top:25px;
-}
-
-.btns a{
-text-decoration:none;
-padding:15px 25px;
-background:#00cc66;
-color:black;
-border-radius:10px;
-margin:5px;
-display:inline-block;
-}
-
-.stats{
+.live{
 display:grid;
-grid-template-columns:
-repeat(auto-fit,minmax(200px,1fr));
-
-gap:20px;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:15px;
 padding:20px;
 }
 
 .card{
 background:black;
-padding:20px;
-border-radius:15px;
+padding:25px;
+border-radius:20px;
 border:1px solid #00cc66;
 text-align:center;
+animation:float 4s infinite;
+}
+
+@keyframes float{
+50%{transform:translateY(-8px)}
 }
 
 .card h2{
-font-size:35px;
+font-size:40px;
 color:#00cc66;
+}
+
+.flags{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(90px,1fr));
+gap:10px;
+padding:20px;
+}
+
+.flag{
+background:black;
+padding:15px;
+border-radius:15px;
+text-align:center;
+border:1px solid #00cc66;
 }
 
 .ticker{
 margin:20px;
-background:black;
 padding:15px;
+background:black;
 overflow:hidden;
-border-radius:10px;
-border:1px solid #00cc66;
+border-radius:20px;
 }
 
 .move{
@@ -109,43 +119,11 @@ animation:slide 15s linear infinite;
 }
 
 @keyframes slide{
-
-0%{
-transform:
-translateX(100%);
-}
-
-100%{
-transform:
-translateX(-100%);
-}
-
-}
-
-.about,
-.testimony{
-
-padding:30px;
-
-}
-
-.box{
-background:black;
-padding:20px;
-margin-top:15px;
-border-radius:15px;
-border:1px solid #00cc66;
-}
-
-footer{
-padding:25px;
-text-align:center;
-background:black;
-margin-top:30px;
+0%{transform:translateX(100%)}
+100%{transform:translateX(-100%)}
 }
 
 </style>
-
 </head>
 
 <body>
@@ -158,19 +136,17 @@ VOGO
 
 </div>
 
-<div>
+<div class="nav">
 
 <a href="login.html">
 
-Login
+LOGIN
 
 </a>
 
-|
-
 <a href="signup.html">
 
-Signup
+SIGN UP
 
 </a>
 
@@ -182,57 +158,29 @@ Signup
 
 <h1>
 
-BUY & SELL PRODUCTS WORLDWIDE
+BUY • SELL • MARKET WORLDWIDE
 
 </h1>
 
 <p>
 
-Users worldwide use our platform to market and trade products.
+1,000,000+ users worldwide trading products
 
 </p>
 
-<div class="btns">
-
-<a href="signup.html">
-
-Get Started
-
-</a>
-
-<a href="login.html">
-
-Login
-
-</a>
-
-</div>
-
 </section>
 
-<section class="stats">
+<div class="live">
 
 <div class="card">
 
-<h2 id="users">
+<h2>
 
-0
+1M+
 
 </h2>
 
 Users
-
-</div>
-
-<div class="card">
-
-<h2 id="products">
-
-0
-
-</h2>
-
-Products
 
 </div>
 
@@ -248,154 +196,70 @@ Countries
 
 </div>
 
-</section>
+<div class="card">
+
+<h2>
+
+24/7
+
+</h2>
+
+Market
+
+</div>
+
+</div>
 
 <div class="ticker">
 
 <div class="move"
 
-id="market">
+id="ticker">
 
-Loading Market...
-
-</div>
+Global market updating...
 
 </div>
 
-<section class="about">
-
-<h2>
-
-ABOUT
-
-</h2>
-
-<div class="box">
-
-We provide buying and selling services for users worldwide.
-
 </div>
+
+<section class="flags">
+
+<div class="flag">🇳🇬 Nigeria</div>
+<div class="flag">🇬🇭 Ghana</div>
+<div class="flag">🇺🇸 USA</div>
+<div class="flag">🇫🇷 France</div>
+<div class="flag">🇷🇺 Russia</div>
+<div class="flag">🇨🇳 China</div>
+<div class="flag">🇮🇳 India</div>
+<div class="flag">🇬🇧 UK</div>
+<div class="flag">🇧🇷 Brazil</div>
+<div class="flag">🇯🇵 Japan</div>
+
+<p style="grid-column:1/-1;text-align:center">
+
++ 40 More Countries Worldwide
+
+</p>
 
 </section>
 
-<section class="testimony">
-
-<h2>
-
-TESTIMONY
-
-</h2>
-
-<div class="box">
-
-Users worldwide trust VOGO marketplace.
-
-</div>
-
-</section>
-
-<footer>
-
-VOGO MARKET
-
-</footer>
-
-<script type="module">
-
-import {
-
-initializeApp
-
-}
-
-from
-
-"https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
-
-import {
-
-getFirestore,
-
-collection,
-
-getDocs
-
-}
-
-from
-
-"https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
-
-const firebaseConfig={
-
-apiKey:"AIzaSyDRAcsC8RUTPtxbMdHjHpYZH2LjaP8jqMM",
-
-authDomain:"voogo-48569.firebaseapp.com",
-
-projectId:"voogo-48569",
-
-storageBucket:"voogo-48569.firebasestorage.app",
-
-messagingSenderId:"735597967945",
-
-appId:"1:735597967945:web:346f2a0506d55f7e651d98"
-
-};
-
-const app=
-initializeApp(firebaseConfig);
-
-const db=
-getFirestore(app);
-
-async function load(){
-
-let u=
-await getDocs(
-collection(
-db,
-"users"
-));
-
-document.getElementById(
-"users"
-).innerHTML=
-u.size;
-
-let p=
-await getDocs(
-collection(
-db,
-"cart"
-));
-
-document.getElementById(
-"products"
-).innerHTML=
-p.size;
-
-}
-
-load();
+<script>
 
 setInterval(()=>{
 
 let x=
 
-Math.floor(
-Math.random()*500
-)+50;
+Math.floor(Math.random()*1000)+50;
 
 document.getElementById(
-"market"
+"ticker"
 ).innerHTML=
 
-"Market Update • Product Value +$"+x;
+"📈 Live Global Market • Product Value +$"+x;
 
-},4000);
+},3000);
 
 </script>
 
 </body>
-
 </html>

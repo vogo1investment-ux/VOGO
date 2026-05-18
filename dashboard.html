@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-<meta name="viewport"
-
-content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
 <title>
 
@@ -19,6 +16,7 @@ background:#111;
 color:white;
 font-family:Arial;
 padding:20px;
+padding-bottom:100px;
 }
 
 .top{
@@ -29,45 +27,38 @@ linear-gradient(
 #008844
 );
 
-padding:25px;
+padding:30px;
+border-radius:25px;
+animation:float 4s infinite;
+}
 
-border-radius:20px;
+@keyframes float{
+50%{transform:translateY(-5px)}
 }
 
 .balance{
-font-size:45px;
+font-size:50px;
 font-weight:bold;
 }
 
 .grid{
-
 display:grid;
-
 grid-template-columns:
-
-repeat(auto-fit,minmax(180px,1fr));
+repeat(auto-fit,minmax(150px,1fr));
 
 gap:15px;
-
 margin-top:20px;
-
 }
 
-.card{
-
+.box{
 background:black;
-
 padding:20px;
-
-border-radius:15px;
-
+border-radius:20px;
 border:1px solid #00cc66;
-
 text-align:center;
-
 }
 
-.card h2{
+.box h2{
 color:#00cc66;
 }
 
@@ -89,18 +80,13 @@ justify-content:space-around;
 
 padding:15px;
 
-border-top:
-
-1px solid #00cc66;
+border-top:1px solid #00cc66;
 
 }
 
 .bottom a{
-
 color:#00cc66;
-
 text-decoration:none;
-
 }
 
 </style>
@@ -125,9 +111,9 @@ $0
 
 <div class="grid">
 
-<div class="card">
+<div class="box">
 
-NGN
+🇳🇬 NGN
 
 <h2 id="ngn">
 
@@ -137,11 +123,11 @@ NGN
 
 </div>
 
-<div class="card">
+<div class="box">
 
-Referral Bonus
+🇬🇭 GHS
 
-<h2 id="ref">
+<h2 id="gh">
 
 0
 
@@ -149,11 +135,59 @@ Referral Bonus
 
 </div>
 
-<div class="card">
+<div class="box">
 
-Cart
+🇨🇳 CNY
 
-<h2 id="cart">
+<h2 id="cn">
+
+0
+
+</h2>
+
+</div>
+
+<div class="box">
+
+🇮🇳 INR
+
+<h2 id="ind">
+
+0
+
+</h2>
+
+</div>
+
+<div class="box">
+
+🇫🇷 EUR
+
+<h2 id="eu">
+
+0
+
+</h2>
+
+</div>
+
+<div class="box">
+
+🇷🇺 RUB
+
+<h2 id="ru">
+
+0
+
+</h2>
+
+</div>
+
+<div class="box">
+
+Referral
+
+<h2 id="ref">
 
 0
 
@@ -165,39 +199,19 @@ Cart
 
 <div class="bottom">
 
-<a href="market.html">
+<a href="market.html">Market</a>
 
-Market
+<a href="cart.html">Cart</a>
 
-</a>
+<a href="profile.html">Profile</a>
 
-<a href="cart.html">
-
-Cart
-
-</a>
-
-<a href="profile.html">
-
-Profile
-
-</a>
-
-<a href="settings.html">
-
-More
-
-</a>
+<a href="settings.html">More</a>
 
 </div>
 
 <script type="module">
 
-import {
-
-initializeApp
-
-}
+import {initializeApp}
 
 from
 
@@ -209,15 +223,7 @@ getFirestore,
 
 doc,
 
-getDoc,
-
-collection,
-
-query,
-
-where,
-
-getDocs
+getDoc
 
 }
 
@@ -253,14 +259,11 @@ appId:"1:735597967945:web:346f2a0506d55f7e651d98"
 
 };
 
-const app=
-initializeApp(firebaseConfig);
+const app=initializeApp(firebaseConfig);
 
-const db=
-getFirestore(app);
+const db=getFirestore(app);
 
-const auth=
-getAuth(app);
+const auth=getAuth(app);
 
 onAuthStateChanged(
 
@@ -270,7 +273,7 @@ async(user)=>{
 
 if(!user)return;
 
-let snap=
+let s=
 
 await getDoc(
 
@@ -282,10 +285,10 @@ user.uid
 
 );
 
-let d=
-snap.data();
+let d=s.data();
 
 let usd=
+
 Number(
 d.balance||0
 );
@@ -301,38 +304,37 @@ document.getElementById(
 "₦"+(usd*1457);
 
 document.getElementById(
+"gh"
+).innerHTML=
+(usd*15);
+
+document.getElementById(
+"cn"
+).innerHTML=
+(usd*7);
+
+document.getElementById(
+"ind"
+).innerHTML=
+(usd*83);
+
+document.getElementById(
+"eu"
+).innerHTML=
+(usd*0.92);
+
+document.getElementById(
+"ru"
+).innerHTML=
+(usd*81);
+
+document.getElementById(
 "ref"
 ).innerHTML=
 "$"+
 Number(
 d.referralBonus||0
 );
-
-let c=
-
-await getDocs(
-
-query(
-
-collection(
-db,
-"cart"
-),
-
-where(
-"uid",
-"==",
-user.uid
-)
-
-)
-
-);
-
-document.getElementById(
-"cart"
-).innerHTML=
-c.size;
 
 }
 
@@ -341,5 +343,4 @@ c.size;
 </script>
 
 </body>
-
 </html>
