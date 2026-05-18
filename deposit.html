@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Deposit</title>
+
+<title>
+
+Deposit
+
+</title>
 
 <style>
 
@@ -12,22 +17,48 @@ font-family:Arial;
 padding:20px;
 }
 
+.big{
+background:linear-gradient(
+135deg,
+#00cc66,
+#008844
+);
+
+padding:25px;
+
+border-radius:20px;
+
+}
+
+.num{
+font-size:38px;
+font-weight:bold;
+}
+
 .box{
+margin-top:20px;
 background:black;
 padding:20px;
 border-radius:15px;
 border:1px solid #00cc66;
-margin-top:20px;
 }
 
 input,button{
+
 width:100%;
+
 padding:15px;
+
 margin-top:12px;
+
 background:#111;
+
 color:white;
+
 border:1px solid #00cc66;
+
 border-radius:10px;
+
 }
 
 button{
@@ -35,23 +66,49 @@ background:#00cc66;
 color:black;
 }
 
-.pending{color:orange}
-.approved{color:#00cc66}
+.pending{
+color:orange;
+font-weight:bold;
+}
+
+.approved{
+color:#00cc66;
+font-weight:bold;
+}
 
 </style>
+
 </head>
 
 <body>
 
+<div class="big">
+
+Wema Bank
+
+<div class="num">
+
+7353384026
+
+</div>
+
+VOGO
+
+</div>
+
 <div class="box">
 
-<h2>Deposit</h2>
+<input id="bank"
 
-<input id="bank" placeholder="Bank Name">
+placeholder="Bank Name">
 
-<input id="name" placeholder="Account Name">
+<input id="name"
 
-<input id="amount" placeholder="Amount">
+placeholder="Account Name">
+
+<input id="amount"
+
+placeholder="Amount">
 
 <button onclick="submitDeposit()">
 
@@ -71,7 +128,7 @@ Deposit History
 
 <div id="history">
 
-Loading...
+No Deposits
 
 </div>
 
@@ -80,16 +137,25 @@ Loading...
 <script type="module">
 
 import {initializeApp}
+
 from
+
 "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
 
 import {
+
 getFirestore,
+
 collection,
+
 addDoc,
+
 getDocs
+
 }
+
 from
+
 "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
 
 const firebaseConfig={
@@ -127,23 +193,25 @@ db,
 {
 
 bank:
+
 document.getElementById(
 "bank"
 ).value,
 
 name:
+
 document.getElementById(
 "name"
 ).value,
 
 amount:
-Number(
+
 document.getElementById(
 "amount"
-).value
-),
+).value,
 
 status:
+
 "pending"
 
 }
@@ -151,21 +219,28 @@ status:
 );
 
 alert(
+
 "Deposit Submitted"
+
 );
 
 loadHistory();
 
 };
 
+
+
 async function loadHistory(){
 
 const snap=
+
 await getDocs(
+
 collection(
 db,
 "deposits"
 )
+
 );
 
 let html="";
@@ -190,9 +265,9 @@ ${x.status}
 
 </span>
 
-</div>
-
 <hr>
+
+</div>
 
 `;
 
@@ -201,6 +276,7 @@ ${x.status}
 document.getElementById(
 "history"
 ).innerHTML=
+
 html;
 
 }
@@ -210,4 +286,5 @@ loadHistory();
 </script>
 
 </body>
+
 </html>

@@ -1,10 +1,156 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Withdrawal</title>
+
+<title>
+
+Withdrawal
+
+</title>
+
+<style>
+
+body{
+background:#111;
+color:white;
+font-family:Arial;
+padding:20px;
+}
+
+.top{
+background:linear-gradient(
+135deg,
+#00cc66,
+#008844
+);
+
+padding:25px;
+
+border-radius:20px;
+
+margin-bottom:20px;
+}
+
+.title{
+font-size:32px;
+font-weight:bold;
+}
+
+.box{
+background:black;
+padding:20px;
+border-radius:15px;
+border:1px solid #00cc66;
+margin-top:20px;
+}
+
+input,select,button{
+
+width:100%;
+
+padding:15px;
+
+margin-top:12px;
+
+background:#111;
+
+color:white;
+
+border:1px solid #00cc66;
+
+border-radius:10px;
+
+}
+
+button{
+background:#00cc66;
+color:black;
+font-weight:bold;
+}
+
+.pending{
+color:orange;
+font-weight:bold;
+}
+
+.approved{
+color:#00cc66;
+font-weight:bold;
+}
+
+.item{
+padding:10px;
+border-bottom:1px solid #333;
+margin-top:10px;
+}
+
+</style>
+
 </head>
 
 <body>
+
+<div class="top">
+
+<div class="title">
+
+💸 Withdrawal
+
+</div>
+
+Submit and wait for approval
+
+</div>
+
+<div class="box">
+
+<select id="currency">
+
+<option>
+
+🇳🇬 NGN
+
+</option>
+
+<option>
+
+🇺🇸 USD
+
+</option>
+
+</select>
+
+<input id="bank"
+
+placeholder="Bank Name">
+
+<input id="accname"
+
+placeholder="Account Name">
+
+<input id="accnum"
+
+placeholder="Account Number">
+
+<input id="amount"
+
+placeholder="Amount">
+
+<button onclick="submitWithdrawal()">
+
+Submit Withdrawal
+
+</button>
+
+</div>
+
+<div class="box">
+
+<h3>
+
+📜 Withdrawal History
+
+</h3>
 
 <div id="history">
 
@@ -12,67 +158,173 @@ Loading...
 
 </div>
 
+</div>
+
 <script type="module">
 
-import {initializeApp}
+import { initializeApp }
+
 from
+
 "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
 
 import {
+
 getFirestore,
-getDocs,
-collection
+
+collection,
+
+addDoc,
+
+getDocs
+
 }
+
 from
+
 "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
 
 const firebaseConfig={
 
-apiKey:"AIzaSyDRAcsC8RUTPtxbMdHjHpYZH2LjaP8jqMM",
+apiKey:
 
-authDomain:"voogo-48569.firebaseapp.com",
+"AIzaSyDRAcsC8RUTPtxbMdHjHpYZH2LjaP8jqMM",
 
-projectId:"voogo-48569",
+authDomain:
 
-storageBucket:"voogo-48569.firebasestorage.app",
+"voogo-48569.firebaseapp.com",
 
-messagingSenderId:"735597967945",
+projectId:
 
-appId:"1:735597967945:web:346f2a0506d55f7e651d98"
+"voogo-48569",
+
+storageBucket:
+
+"voogo-48569.firebasestorage.app",
+
+messagingSenderId:
+
+"735597967945",
+
+appId:
+
+"1:735597967945:web:346f2a0506d55f7e651d98"
 
 };
 
 const app=
+
 initializeApp(firebaseConfig);
 
 const db=
+
 getFirestore(app);
 
-async function load(){
+window.submitWithdrawal=
+
+async()=>{
+
+await addDoc(
+
+collection(
+db,
+"withdrawals"
+),
+
+{
+
+currency:
+
+document.getElementById(
+"currency"
+).value,
+
+bank:
+
+document.getElementById(
+"bank"
+).value,
+
+accountName:
+
+document.getElementById(
+"accname"
+).value,
+
+accountNumber:
+
+document.getElementById(
+"accnum"
+).value,
+
+amount:
+
+document.getElementById(
+"amount"
+).value,
+
+status:
+
+"pending"
+
+}
+
+);
+
+alert(
+
+"Withdrawal Submitted"
+
+);
+
+loadHistory();
+
+};
+
+
+
+async function loadHistory(){
 
 const snap=
+
 await getDocs(
+
 collection(
 db,
 "withdrawals"
 )
+
 );
 
 let html="";
 
-snap.forEach((d)=>{
+snap.forEach((doc)=>{
 
-let x=d.data();
+let x=doc.data();
 
 html+=`
 
-<div>
+<div class="item">
 
-$${x.amount}
+${x.currency}
 
--
+<br>
+
+Amount:
+
+${x.amount}
+
+<br>
+
+Status:
+
+<span class="${
+x.status
+}">
 
 ${x.status}
+
+</span>
 
 </div>
 
@@ -83,14 +335,17 @@ ${x.status}
 document.getElementById(
 "history"
 ).innerHTML=
-html;
+
+html ||
+
+"No Withdrawal";
 
 }
 
-load();
+loadHistory();
 
 </script>
 
 </body>
 
-</html>
+</html>s
