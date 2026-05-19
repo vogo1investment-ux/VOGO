@@ -47,18 +47,15 @@ margin-bottom:20px;
 }
 
 .balance{
-
-font-size:50px;
-
+font-size:48px;
 font-weight:bold;
-
 }
 
-.refbox{
+.ref{
 
 background:black;
 
-padding:20px;
+padding:18px;
 
 border-radius:20px;
 
@@ -68,12 +65,12 @@ margin-bottom:20px;
 
 }
 
-.refbox h3{
+.ref h3{
 color:#00cc66;
 }
 
-.reftext{
-font-size:13px;
+.small{
+font-size:12px;
 margin-top:10px;
 }
 
@@ -83,13 +80,13 @@ display:grid;
 
 grid-template-columns:
 
-repeat(auto-fit,minmax(110px,1fr));
+repeat(auto-fit,minmax(100px,1fr));
 
 gap:10px;
 
 }
 
-.cbox{
+.box{
 
 background:black;
 
@@ -97,19 +94,15 @@ padding:15px;
 
 border-radius:15px;
 
-border:1px solid #00cc66;
-
 text-align:center;
 
+border:1px solid #00cc66;
+
 }
 
-.cbox span{
-font-size:12px;
-}
-
-.cbox h3{
+.box h3{
 color:#00cc66;
-margin-top:5px;
+font-size:15px;
 }
 
 .bottom{
@@ -134,13 +127,7 @@ border-top:2px solid #00cc66;
 
 }
 
-.navbtn{
-
-display:flex;
-
-flex-direction:column;
-
-align-items:center;
+.nav{
 
 color:#00cc66;
 
@@ -148,11 +135,12 @@ text-decoration:none;
 
 font-size:12px;
 
+text-align:center;
+
 }
 
-.icon{
+.i{
 font-size:22px;
-margin-bottom:4px;
 }
 
 </style>
@@ -169,13 +157,13 @@ USD Balance
 
 id="usd">
 
-$0
+$0.00
 
 </div>
 
 </div>
 
-<div class="refbox">
+<div class="ref">
 
 <h3>
 
@@ -185,13 +173,13 @@ $0
 
 <h2 id="ref">
 
-$0
+$0.00
 
 </h2>
 
-<div class="reftext">
+<div class="small">
 
-10% bonus is added automatically whenever your referral makes a deposit using your username.
+10% bonus automatically added whenever your referral deposits.
 
 </div>
 
@@ -199,109 +187,73 @@ $0
 
 <div class="country">
 
-<div class="cbox">
+<div class="box">
 
 🇳🇬
 
-<span>
-
-NGN
-
-</span>
-
 <h3 id="ngn">
 
-₦0
+₦0.00
 
 </h3>
 
 </div>
 
-<div class="cbox">
+<div class="box">
 
 🇬🇭
 
-<span>
-
-GHS
-
-</span>
-
 <h3 id="gh">
 
-0
+0.00
 
 </h3>
 
 </div>
 
-<div class="cbox">
+<div class="box">
 
 🇨🇳
 
-<span>
-
-CNY
-
-</span>
-
 <h3 id="cn">
 
-0
+0.00
 
 </h3>
 
 </div>
 
-<div class="cbox">
+<div class="box">
 
 🇮🇳
 
-<span>
-
-INR
-
-</span>
-
 <h3 id="ind">
 
-0
+0.00
 
 </h3>
 
 </div>
 
-<div class="cbox">
+<div class="box">
 
 🇫🇷
 
-<span>
-
-EUR
-
-</span>
-
 <h3 id="eu">
 
-0
+0.00
 
 </h3>
 
 </div>
 
-<div class="cbox">
+<div class="box">
 
 🇷🇺
 
-<span>
-
-RUB
-
-</span>
-
 <h3 id="ru">
 
-0
+0.00
 
 </h3>
 
@@ -311,11 +263,11 @@ RUB
 
 <div class="bottom">
 
-<a class="navbtn"
+<a class="nav"
 
 href="market.html">
 
-<div class="icon">
+<div class="i">
 
 🛒
 
@@ -325,11 +277,25 @@ Market
 
 </a>
 
-<a class="navbtn"
+<a class="nav"
+
+href="sell.html">
+
+<div class="i">
+
+💰
+
+</div>
+
+Sell
+
+</a>
+
+<a class="nav"
 
 href="cart.html">
 
-<div class="icon">
+<div class="i">
 
 🧺
 
@@ -339,11 +305,11 @@ Cart
 
 </a>
 
-<a class="navbtn"
+<a class="nav"
 
 href="referral.html">
 
-<div class="icon">
+<div class="i">
 
 🎁
 
@@ -353,31 +319,17 @@ Referral
 
 </a>
 
-<a class="navbtn"
+<a class="nav"
 
 href="profile.html">
 
-<div class="icon">
+<div class="i">
 
 👤
 
 </div>
 
 Profile
-
-</a>
-
-<a class="navbtn"
-
-href="settings.html">
-
-<div class="icon">
-
-☰
-
-</div>
-
-More
 
 </a>
 
@@ -454,7 +406,7 @@ async(user)=>{
 
 if(!user)return;
 
-let snap=
+let s=
 
 await getDoc(
 
@@ -467,8 +419,7 @@ user.uid
 );
 
 let d=
-
-snap.data();
+s.data();
 
 let usd=
 
@@ -479,12 +430,20 @@ d.balance||0
 document.getElementById(
 "usd"
 ).innerHTML=
-"$"+usd;
+"$"+usd.toFixed(2);
+
+document.getElementById(
+"ref"
+).innerHTML=
+"$"+
+Number(
+d.referralBonus||0
+).toFixed(2);
 
 document.getElementById(
 "ngn"
 ).innerHTML=
-"₦"+(usd*1457);
+"₦"+(usd*1457).toFixed(2);
 
 document.getElementById(
 "gh"
@@ -510,14 +469,6 @@ document.getElementById(
 "ru"
 ).innerHTML=
 (usd*81).toFixed(2);
-
-document.getElementById(
-"ref"
-).innerHTML=
-"$"+
-Number(
-d.referralBonus||0
-);
 
 }
 
