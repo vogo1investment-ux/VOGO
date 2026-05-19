@@ -2,9 +2,13 @@
 <html>
 <head>
 
+<meta name="viewport"
+
+content="width=device-width,initial-scale=1">
+
 <title>
 
-Sell Products
+Sell Center
 
 </title>
 
@@ -17,27 +21,54 @@ font-family:Arial;
 padding:20px;
 }
 
-.box{
+.user{
+
 background:black;
+
 padding:20px;
-margin-top:20px;
+
+margin-top:12px;
+
 border-radius:15px;
+
 border:1px solid #00cc66;
+
+display:flex;
+
+justify-content:space-between;
+
 }
 
-.price{
-font-size:28px;
-color:#00cc66;
+.chat{
+
+display:none;
+
+background:black;
+
+padding:20px;
+
+margin-top:20px;
+
+border-radius:20px;
+
+border:1px solid #00cc66;
+
 }
 
-input,select,button{
+select,input,button{
 
 width:100%;
+
 padding:15px;
-margin-top:12px;
+
+margin-top:10px;
+
 background:#111;
+
 color:white;
+
 border:1px solid #00cc66;
+
 border-radius:10px;
 
 }
@@ -55,23 +86,57 @@ color:black;
 
 <h2>
 
-Sell Products
+Selling Users
 
 </h2>
 
-<div id="products">
+<div id="list"></div>
+
+<div class="chat"
+
+id="chat">
+
+<h3 id="name">
+
+John
+
+</h3>
+
+<select id="product">
+
+<option>
 
 Loading...
+
+</option>
+
+</select>
+
+<input
+
+type="password"
+
+id="pass"
+
+placeholder="Password">
+
+<input
+
+id="msg"
+
+placeholder="Message">
+
+<button onclick="sendSell()">
+
+Send Sell Request
+
+</button>
 
 </div>
 
 <script type="module">
 
-import {
-
-initializeApp
-
-}
+import {initializeApp}
 
 from
 
@@ -83,21 +148,13 @@ getFirestore,
 
 collection,
 
+addDoc,
+
 query,
 
 where,
 
-getDocs,
-
-doc,
-
-getDoc,
-
-updateDoc,
-
-deleteDoc,
-
-addDoc
+getDocs
 
 }
 
@@ -107,9 +164,7 @@ from
 
 import {
 
-getAuth,
-
-onAuthStateChanged
+getAuth
 
 }
 
@@ -142,19 +197,88 @@ getFirestore(app);
 const auth=
 getAuth(app);
 
+let users=[
 
+"John",
 
-onAuthStateChanged(
+"Daniel",
 
-auth,
+"James",
 
-async(user)=>{
+"David",
 
-if(!user)return;
+"Paul",
 
+"Mark",
 
+"Chris",
 
-const q=
+"Peter",
+
+"Joseph",
+
+"Michael"
+
+];
+
+let html="";
+
+users.forEach((u,i)=>{
+
+html+=`
+
+<div class="user">
+
+<div>
+
+${u}
+
+<br>
+
+${90-i}% Fast Selling
+
+</div>
+
+<button onclick="openChat(
+
+'${u}'
+
+)">
+
+Chat
+
+</button>
+
+</div>
+
+`;
+
+});
+
+document.getElementById(
+"list"
+).innerHTML=
+html;
+
+let seller="";
+
+window.openChat=
+
+async(n)=>{
+
+seller=n;
+
+document.getElementById(
+"chat"
+).style.display=
+"block";
+
+document.getElementById(
+"name"
+).innerHTML=
+n;
+
+let q=
 
 query(
 
@@ -166,241 +290,74 @@ db,
 where(
 "uid",
 "==",
-user.uid
+auth.currentUser.uid
 )
 
 );
 
-
-
-const snap=
+let snap=
 
 await getDocs(q);
 
-
-
-let html="";
-
-
+let x="";
 
 snap.forEach((d)=>{
 
-let x=d.data();
-
-
-
-html+=`
-
-<div class="box">
-
-${x.product}
-
-<div class="price">
-
-$${x.price}
-
-</div>
-
-Cart Qty:
-
-${x.qty}
-
-<select id="qty-${d.id}">
-
-<option>1</option>
-<option>2</option>
-<option>3</option>
-<option>5</option>
-<option>10</option>
-
-</select>
-
-<button onclick="sell(
-
-'${d.id}',
-
-${x.price},
-
-${x.qty}
-
-)">
-
-Sell
-
-</button>
-
-</div>
-
-`;
+x+=`<option>${d.data().product}</option>`;
 
 });
 
+document.getElementById(
+"product"
+).innerHTML=
+x;
 
+};
 
-document
+window.sendSell=
 
-.getElementById(
-"products"
-)
-
-.innerHTML=
-
-html;
-
-}
-
-
-
-);
-
-
-
-window.sell=
-
-async(
-
-cartId,
-
-price,
-
-cartQty
-
-)=>{
-
-let user=
-
-auth.currentUser;
-
-
-
-let qty=
-
-Number(
-
-document
-
-.getElementById(
-`qty-${cartId}`
-)
-
-.value
-
-);
-
-
-
-let total=
-
-price*qty;
-
-
-
-const userRef=
-
-doc(
-db,
-"users",
-user.uid
-);
-
-
-
-const snap=
-
-await getDoc(
-userRef
-);
-
-
-
-let balance=
-
-Number(
-snap.data().balance||0
-);
-
-
-
-await updateDoc(
-
-userRef,
-
-{
-
-balance:
-
-balance+total
-
-}
-
-);
-
-
+async()=>{
 
 await addDoc(
 
 collection(
 db,
-"soldProducts"
+"sellChats"
 ),
 
 {
 
-uid:user.uid,
+uid:auth.currentUser.uid,
 
-qty:qty,
+seller:seller,
 
-price:price
+product:
 
-}
+document.getElementById(
+"product"
+).value,
 
-);
+password:
 
+document.getElementById(
+"pass"
+).value,
 
+message:
 
-if(cartQty-qty<=0){
+document.getElementById(
+"msg"
+).value,
 
-await deleteDoc(
-
-doc(
-db,
-"cart",
-cartId
-)
-
-);
-
-}
-
-else{
-
-await updateDoc(
-
-doc(
-db,
-"cart",
-cartId
-),
-
-{
-
-qty:
-
-cartQty-qty
+status:"pending"
 
 }
 
 );
-
-}
-
-
 
 alert(
-"Sold Successfully"
+"Request Sent"
 );
-
-location.reload();
 
 };
 
