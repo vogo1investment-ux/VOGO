@@ -1,16 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
-<meta name="viewport"
-
-content="width=device-width,initial-scale=1">
-
-<title>
-
-Sell Center
-
-</title>
+<title>Sell Center</title>
 
 <style>
 
@@ -18,18 +11,18 @@ body{
 background:#111;
 color:white;
 font-family:Arial;
-padding:20px;
+padding:15px;
 }
 
 .user{
 
 background:black;
 
-padding:20px;
+padding:12px;
 
-margin-top:12px;
+margin-top:8px;
 
-border-radius:15px;
+border-radius:12px;
 
 border:1px solid #00cc66;
 
@@ -37,29 +30,49 @@ display:flex;
 
 justify-content:space-between;
 
+align-items:center;
+
 }
 
-.chat{
+.rate{
+font-size:11px;
+color:#00cc66;
+}
 
-display:none;
+button{
+
+background:#00cc66;
+
+color:black;
+
+border:none;
+
+padding:10px;
+
+border-radius:10px;
+
+}
+
+.chat,
+.history{
 
 background:black;
 
-padding:20px;
+padding:15px;
 
 margin-top:20px;
 
-border-radius:20px;
+border-radius:15px;
 
 border:1px solid #00cc66;
 
 }
 
-select,input,button{
+select,input{
 
 width:100%;
 
-padding:15px;
+padding:12px;
 
 margin-top:10px;
 
@@ -73,157 +86,106 @@ border-radius:10px;
 
 }
 
-button{
-background:#00cc66;
-color:black;
-}
-
 </style>
 
 </head>
 
 <body>
 
-<h2>
+<h2>Sell Products</h2>
 
-Selling Users
+<div id="users"></div>
 
-</h2>
+<div class="chat" id="chat" style="display:none">
 
-<div id="list"></div>
+<h3 id="seller"></h3>
 
-<div class="chat"
+<select id="product"></select>
 
-id="chat">
-
-<h3 id="name">
-
-John
-
-</h3>
-
-<select id="product">
-
-<option>
-
-Loading...
-
-</option>
-
-</select>
-
-<input
-
+<input id="pass"
 type="password"
-
-id="pass"
-
 placeholder="Password">
 
-<input
-
-id="msg"
-
+<input id="msg"
 placeholder="Message">
 
 <button onclick="sendSell()">
 
-Send Sell Request
+Sell Product
 
 </button>
+
+</div>
+
+<div class="history">
+
+<h3>
+
+Selling History
+
+</h3>
+
+<div id="history">
+
+No Sales
+
+</div>
 
 </div>
 
 <script type="module">
 
 import {initializeApp}
-
 from
-
 "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
 
 import {
-
 getFirestore,
-
 collection,
-
-addDoc,
-
 query,
-
 where,
-
-getDocs
-
+getDocs,
+addDoc
 }
-
 from
-
 "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
 
 import {
-
 getAuth
-
 }
-
 from
-
 "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
 
 const firebaseConfig={
 
 apiKey:"AIzaSyDRAcsC8RUTPtxbMdHjHpYZH2LjaP8jqMM",
-
 authDomain:"voogo-48569.firebaseapp.com",
-
-projectId:"voogo-48569",
-
-storageBucket:"voogo-48569.firebasestorage.app",
-
-messagingSenderId:"735597967945",
-
-appId:"1:735597967945:web:346f2a0506d55f7e651d98"
+projectId:"voogo-48569"
 
 };
 
-const app=
-initializeApp(firebaseConfig);
+const app=initializeApp(firebaseConfig);
 
-const db=
-getFirestore(app);
+const db=getFirestore(app);
 
-const auth=
-getAuth(app);
+const auth=getAuth(app);
 
-let users=[
-
+let names=[
 "John",
-
 "Daniel",
-
-"James",
-
 "David",
-
 "Paul",
-
-"Mark",
-
+"James",
 "Chris",
-
 "Peter",
-
 "Joseph",
-
+"Mark",
 "Michael"
-
 ];
 
 let html="";
 
-users.forEach((u,i)=>{
+names.forEach((n,i)=>{
 
 html+=`
 
@@ -231,19 +193,17 @@ html+=`
 
 <div>
 
-${u}
+${n}
 
-<br>
+<div class="rate">
 
-${90-i}% Fast Selling
+${90-i}% Fast Sell
 
 </div>
 
-<button onclick="openChat(
+</div>
 
-'${u}'
-
-)">
+<button onclick="openChat('${n}')">
 
 Chat
 
@@ -255,37 +215,67 @@ Chat
 
 });
 
-document.getElementById(
-"list"
-).innerHTML=
-html;
+users.innerHTML=html;
 
-let seller="";
+window.openChat=async(n)=>{
 
-window.openChat=
+chat.style.display="block";
 
-async(n)=>{
+seller.innerHTML=n;
 
-seller=n;
+let q=query(
+collection(db,"cart"),
+where(
+"uid",
+"==",
+auth.currentUser.uid
+));
 
-document.getElementById(
-"chat"
-).style.display=
-"block";
+let s=await getDocs(q);
 
-document.getElementById(
-"name"
-).innerHTML=
-n;
+let p="";
 
-let q=
+s.forEach((d)=>{
 
-query(
+p+=`<option>${d.data().product}</option>`;
 
-collection(
-db,
-"cart"
-),
+});
+
+product.innerHTML=p;
+
+};
+
+window.sendSell=async()=>{
+
+await addDoc(
+
+collection(db,"sellHistory"),
+
+{
+
+uid:auth.currentUser.uid,
+
+product:product.value,
+
+message:msg.value,
+
+status:"pending"
+
+}
+
+);
+
+alert("Sent");
+
+loadHistory();
+
+};
+
+async function loadHistory(){
+
+let q=query(
+
+collection(db,"sellHistory"),
 
 where(
 "uid",
@@ -295,71 +285,31 @@ auth.currentUser.uid
 
 );
 
-let snap=
+let s=await getDocs(q);
 
-await getDocs(q);
+let h="";
 
-let x="";
+s.forEach((d)=>{
 
-snap.forEach((d)=>{
+h+=`
 
-x+=`<option>${d.data().product}</option>`;
+<div>
+
+${d.data().product}
+-
+${d.data().status}
+
+</div>
+
+`;
 
 });
 
-document.getElementById(
-"product"
-).innerHTML=
-x;
-
-};
-
-window.sendSell=
-
-async()=>{
-
-await addDoc(
-
-collection(
-db,
-"sellChats"
-),
-
-{
-
-uid:auth.currentUser.uid,
-
-seller:seller,
-
-product:
-
-document.getElementById(
-"product"
-).value,
-
-password:
-
-document.getElementById(
-"pass"
-).value,
-
-message:
-
-document.getElementById(
-"msg"
-).value,
-
-status:"pending"
+history.innerHTML=h;
 
 }
 
-);
-
-alert(
-"Request Sent"
-);
-
-};
+setTimeout(loadHistory,1000);
 
 </script>
 
