@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 
 <meta name="viewport"
@@ -8,24 +9,17 @@ content="width=device-width,initial-scale=1">
 
 <title>
 
-Dashboard
+JUMIASTAFF Dashboard
 
 </title>
 
 <style>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial;
-}
-
 body{
 background:#111;
 color:white;
+font-family:Arial;
 padding:20px;
-padding-bottom:100px;
 }
 
 .top{
@@ -33,76 +27,35 @@ padding-bottom:100px;
 background:
 
 linear-gradient(
+
 135deg,
+
 #00cc66,
+
 #008844
+
 );
 
 padding:30px;
 
-border-radius:25px;
+border-radius:20px;
 
-margin-bottom:20px;
+}
+
+.brand{
+
+font-size:20px;
+
+margin-bottom:10px;
 
 }
 
 .balance{
-font-size:48px;
+
+font-size:45px;
+
 font-weight:bold;
-}
 
-.ref{
-
-background:black;
-
-padding:18px;
-
-border-radius:20px;
-
-border:1px solid #00cc66;
-
-margin-bottom:20px;
-
-}
-
-.ref h3{
-color:#00cc66;
-}
-
-.small{
-font-size:12px;
-margin-top:10px;
-}
-
-.country{
-
-display:grid;
-
-grid-template-columns:
-
-repeat(auto-fit,minmax(100px,1fr));
-
-gap:10px;
-
-}
-
-.box{
-
-background:black;
-
-padding:15px;
-
-border-radius:15px;
-
-text-align:center;
-
-border:1px solid #00cc66;
-
-}
-
-.box h3{
-color:#00cc66;
-font-size:15px;
 }
 
 .bottom{
@@ -121,26 +74,18 @@ display:flex;
 
 justify-content:space-around;
 
-padding:12px;
+padding:15px;
 
 border-top:2px solid #00cc66;
 
 }
 
-.nav{
+.bottom a{
 
 color:#00cc66;
 
 text-decoration:none;
 
-font-size:12px;
-
-text-align:center;
-
-}
-
-.i{
-font-size:22px;
 }
 
 </style>
@@ -151,111 +96,17 @@ font-size:22px;
 
 <div class="top">
 
+<div class="brand">
+
+JUMIASTAFF
+
+</div>
+
 USD Balance
 
-<div class="balance"
-
-id="usd">
+<div class="balance">
 
 $0.00
-
-</div>
-
-</div>
-
-<div class="ref">
-
-<h3>
-
-🎁 Referral Bonus
-
-</h3>
-
-<h2 id="ref">
-
-$0.00
-
-</h2>
-
-<div class="small">
-
-10% bonus automatically added whenever your referral deposits.
-
-</div>
-
-</div>
-
-<div class="country">
-
-<div class="box">
-
-🇳🇬
-
-<h3 id="ngn">
-
-₦0.00
-
-</h3>
-
-</div>
-
-<div class="box">
-
-🇬🇭
-
-<h3 id="gh">
-
-0.00
-
-</h3>
-
-</div>
-
-<div class="box">
-
-🇨🇳
-
-<h3 id="cn">
-
-0.00
-
-</h3>
-
-</div>
-
-<div class="box">
-
-🇮🇳
-
-<h3 id="ind">
-
-0.00
-
-</h3>
-
-</div>
-
-<div class="box">
-
-🇫🇷
-
-<h3 id="eu">
-
-0.00
-
-</h3>
-
-</div>
-
-<div class="box">
-
-🇷🇺
-
-<h3 id="ru">
-
-0.00
-
-</h3>
 
 </div>
 
@@ -263,218 +114,31 @@ $0.00
 
 <div class="bottom">
 
-<a class="nav"
-
-href="market.html">
-
-<div class="i">
-
-🛒
-
-</div>
+<a href="market.html">
 
 Market
 
 </a>
 
-<a class="nav"
-
-href="sell.html">
-
-<div class="i">
-
-💰
-
-</div>
+<a href="sell.html">
 
 Sell
 
 </a>
 
-<a class="nav"
-
-href="cart.html">
-
-<div class="i">
-
-🧺
-
-</div>
+<a href="cart.html">
 
 Cart
 
 </a>
 
-<a class="nav"
-
-href="referral.html">
-
-<div class="i">
-
-🎁
-
-</div>
-
-Referral
-
-</a>
-
-<a class="nav"
-
-href="profile.html">
-
-<div class="i">
-
-👤
-
-</div>
+<a href="profile.html">
 
 Profile
 
 </a>
 
 </div>
-
-<script type="module">
-
-import {
-
-initializeApp
-
-}
-
-from
-
-"https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
-
-import {
-
-getFirestore,
-
-doc,
-
-getDoc
-
-}
-
-from
-
-"https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
-
-import {
-
-getAuth,
-
-onAuthStateChanged
-
-}
-
-from
-
-"https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
-
-const firebaseConfig={
-
-apiKey:"AIzaSyDRAcsC8RUTPtxbMdHjHpYZH2LjaP8jqMM",
-
-authDomain:"voogo-48569.firebaseapp.com",
-
-projectId:"voogo-48569",
-
-storageBucket:"voogo-48569.firebasestorage.app",
-
-messagingSenderId:"735597967945",
-
-appId:"1:735597967945:web:346f2a0506d55f7e651d98"
-
-};
-
-const app=
-initializeApp(firebaseConfig);
-
-const db=
-getFirestore(app);
-
-const auth=
-getAuth(app);
-
-onAuthStateChanged(
-
-auth,
-
-async(user)=>{
-
-if(!user)return;
-
-let s=
-
-await getDoc(
-
-doc(
-db,
-"users",
-user.uid
-)
-
-);
-
-let d=
-s.data();
-
-let usd=
-
-Number(
-d.balance||0
-);
-
-document.getElementById(
-"usd"
-).innerHTML=
-"$"+usd.toFixed(2);
-
-document.getElementById(
-"ref"
-).innerHTML=
-"$"+
-Number(
-d.referralBonus||0
-).toFixed(2);
-
-document.getElementById(
-"ngn"
-).innerHTML=
-"₦"+(usd*1457).toFixed(2);
-
-document.getElementById(
-"gh"
-).innerHTML=
-(usd*15).toFixed(2);
-
-document.getElementById(
-"cn"
-).innerHTML=
-(usd*7).toFixed(2);
-
-document.getElementById(
-"ind"
-).innerHTML=
-(usd*83).toFixed(2);
-
-document.getElementById(
-"eu"
-).innerHTML=
-(usd*0.92).toFixed(2);
-
-document.getElementById(
-"ru"
-).innerHTML=
-(usd*81).toFixed(2);
-
-}
-
-);
-
-</script>
 
 </body>
 
