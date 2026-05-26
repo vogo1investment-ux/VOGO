@@ -1,129 +1,96 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>VOGO MARKET</title>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+
+content="width=device-width,initial-scale=1">
+
+<title>
+
+JUMIASTAFF MARKET
+
+</title>
 
 <style>
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
-
 body{
+margin:0;
 background:#111;
 color:white;
-overflow-x:hidden;
+font-family:Arial;
 }
 
 header{
+
 background:black;
+
 padding:20px;
+
 display:flex;
+
 justify-content:space-between;
+
 border-bottom:2px solid #00cc66;
-position:sticky;
-top:0;
-z-index:100;
+
 }
 
 .logo{
-font-size:32px;
-font-weight:bold;
-color:#00cc66;
-}
 
-.nav a{
-text-decoration:none;
-margin-left:10px;
-padding:12px 20px;
-border-radius:30px;
-background:#00cc66;
-color:black;
+font-size:32px;
+
 font-weight:bold;
+
+color:#00cc66;
+
 }
 
 .hero{
+
 padding:100px 20px;
+
 text-align:center;
+
 background:
-linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.8)),
+
+linear-gradient(
+
+rgba(0,0,0,.7),
+
+rgba(0,0,0,.8)
+
+),
+
 url("dollar.png");
+
 background-size:cover;
+
 }
 
 .hero h1{
+
 font-size:50px;
+
 color:#00cc66;
-animation:up 3s infinite;
+
 }
 
-@keyframes up{
-50%{transform:translateY(-10px)}
-}
+footer{
 
-.hero p{
-margin-top:15px;
-font-size:18px;
-}
+background:black;
 
-.live{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:15px;
 padding:20px;
-}
 
-.card{
-background:black;
-padding:25px;
-border-radius:20px;
-border:1px solid #00cc66;
 text-align:center;
-animation:float 4s infinite;
-}
 
-@keyframes float{
-50%{transform:translateY(-8px)}
-}
+margin-top:30px;
 
-.card h2{
-font-size:40px;
-color:#00cc66;
-}
-
-.flags{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(90px,1fr));
-gap:10px;
-padding:20px;
-}
-
-.flag{
-background:black;
-padding:15px;
-border-radius:15px;
-text-align:center;
-border:1px solid #00cc66;
-}
-
-.ticker{
-margin:20px;
-padding:15px;
-background:black;
-overflow:hidden;
-border-radius:20px;
-}
-
-.move{
-white-space:nowrap;
-animation:slide 15s linear infinite;
-}
-
-@keyframes slide{
-0%{transform:translateX(100%)}
-100%{transform:translateX(-100%)}
 }
 
 </style>
+
 </head>
 
 <body>
@@ -132,11 +99,11 @@ animation:slide 15s linear infinite;
 
 <div class="logo">
 
-VOGO
+JUMIASTAFF
 
 </div>
 
-<div class="nav">
+<div>
 
 <a href="login.html">
 
@@ -144,9 +111,11 @@ LOGIN
 
 </a>
 
+|
+
 <a href="signup.html">
 
-SIGN UP
+SIGNUP
 
 </a>
 
@@ -158,108 +127,24 @@ SIGN UP
 
 <h1>
 
-BUY • SELL • MARKET WORLDWIDE
+JUMIASTAFF MARKET
 
 </h1>
 
 <p>
 
-1,000,000+ users worldwide trading products
+1,000,000+ users worldwide using our platform.
 
 </p>
 
 </section>
 
-<div class="live">
+<footer>
 
-<div class="card">
+JUMIASTAFF MARKET
 
-<h2>
-
-1M+
-
-</h2>
-
-Users
-
-</div>
-
-<div class="card">
-
-<h2>
-
-50+
-
-</h2>
-
-Countries
-
-</div>
-
-<div class="card">
-
-<h2>
-
-24/7
-
-</h2>
-
-Market
-
-</div>
-
-</div>
-
-<div class="ticker">
-
-<div class="move"
-
-id="ticker">
-
-Global market updating...
-
-</div>
-
-</div>
-
-<section class="flags">
-
-<div class="flag">🇳🇬 Nigeria</div>
-<div class="flag">🇬🇭 Ghana</div>
-<div class="flag">🇺🇸 USA</div>
-<div class="flag">🇫🇷 France</div>
-<div class="flag">🇷🇺 Russia</div>
-<div class="flag">🇨🇳 China</div>
-<div class="flag">🇮🇳 India</div>
-<div class="flag">🇬🇧 UK</div>
-<div class="flag">🇧🇷 Brazil</div>
-<div class="flag">🇯🇵 Japan</div>
-
-<p style="grid-column:1/-1;text-align:center">
-
-+ 40 More Countries Worldwide
-
-</p>
-
-</section>
-
-<script>
-
-setInterval(()=>{
-
-let x=
-
-Math.floor(Math.random()*1000)+50;
-
-document.getElementById(
-"ticker"
-).innerHTML=
-
-"📈 Live Global Market • Product Value +$"+x;
-
-},3000);
-
-</script>
+</footer>
 
 </body>
+
 </html>
